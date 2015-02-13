@@ -5,6 +5,10 @@ import java.util.Date;
 
 import javax.servlet.annotation.WebServlet;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.flow.server.stream.JSONStream;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -27,12 +31,17 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 
 
-
+/**
+ * @author edenzik
+ * Main UI class which receives a stream of data from back end and displays it
+ *
+ */
 @Push()
 @SuppressWarnings("serial")
 @Theme("valo")
@@ -40,72 +49,103 @@ public class MainUI extends UI {
 
 	@WebServlet(value = {"/*"}, asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = MainUI.class)
-	public static class Servlet extends VaadinServlet {
-	}
-	
+	public static class Servlet extends VaadinServlet {}
+
 	final VerticalLayout layout = new VerticalLayout();
 
 	@Override
 	protected void init(VaadinRequest request) {
-		
+
 		layout.setMargin(true);
 		setContent(layout);
 
 		Button button = new Button("Click Me");
-		button.addClickListener(new Button.ClickListener() {
-			public void buttonClick(ClickEvent event) {
-				//layout.addComponent(new Label("MOO"));
-				read();
-			}
-		});
 		layout.addComponent(button);
-		new InitializerThread().start();
-
+		new ReaderThread().start();
 
 
 	}
-	
-	private void read(){
-		try {
-			URL myservice = new URL("http://localhost:5050");
-			InputStream openStream = myservice.openStream();
-			BufferedReader bufferedReader = new BufferedReader(
-					new InputStreamReader(openStream));
-			String line;
-			while ((line = bufferedReader.readLine()) != null) {
-				System.out.println(line);
-				layout.addComponent(new Label(line));
+
+	class ReaderThread extends Thread {
+		@Override
+		public void run() {
+			try {
+				JSONStream stream = new JSONStream("localhost", 5050);
+				stream.startRead();
+				JSONObject json;
+				while ((json = stream.readJSON()) != null){
+					System.out.println(json);
+					layout.addComponent(new Label(json.toString()));
+					push();
+					Thread.sleep(100);
+				}
+				stream.endRead();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-		catch (Exception e){}
 	}
-	
+
+
+
+	private void read(){
+		try {
+			JSONStream stream = new JSONStream("localhost", 5050);
+			stream.startRead();
+			JSONObject json;
+			while ((json = stream.readJSON()) != null){
+				System.out.println(json);
+				layout.addComponent(new Label(json.toString()));
+			}
+			stream.endRead();
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	class InitializerThread extends Thread {
-        @Override
-        public void run() {
-            // Do initialization which takes some time.
-            // Here represented by a 1s sleep
-            try {
-                Thread.sleep(1000);
-                while (true){
-                	read();
-                	Thread.sleep(100);
-                	push();
+		@Override
+		public void run() {
+			// Do initialization which takes some time.
+			// Here represented by a 1s sleep
+			try {
+				Thread.sleep(1000);
+				while (true){
+					read();
+					Thread.sleep(100);
+					push();
 
-                }
-            } catch (InterruptedException e) {
-            }
+				}
+			} catch (InterruptedException e) {
+			}
 
-            // Init done, update the UI after doing locking
-            access(new Runnable() {
-                public void run() {
-                    // Here the UI is locked and can be updated
-                	layout.addComponent(new Label("fsdaf"));
-                	
-                }
-            });
-        }
-    }
+			// Init done, update the UI after doing locking
+			access(new Runnable() {
+				public void run() {
+					// Here the UI is locked and can be updated
+					layout.addComponent(new Label("fsdaf"));
 
-	
+				}
+			});
+		}
+	}
+
+
 }
