@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.Socket;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,18 +22,25 @@ import com.vaadin.ui.Label;
  * @author edenzik
  *
  */
-public final class JSONStream extends URLStream {
+public final class JSONStream{
+	private final int port;
+	private final String url;
+	private Socket socket;
 	
 	public JSONStream(String url, int port) throws MalformedURLException{
-		super(url, port);
+		this.port = port;
+		this.url = url;
 	}
 	
-	public JSONObject readJSON() throws JSONException, IOException{
-		String nextLine = readNext();
-		if (nextLine == null) return null;
-		return new JSONObject(nextLine);
-		//JSONObject val = (nextLine != null) ? new JSONObject(readNext()) : null;
-		//return val;
+	public Set<JSONObject> read() throws JSONException, IOException{
+		socket = new Socket("localhost", 5050);
+		BufferedReader is = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		Set<JSONObject> result = new HashSet<JSONObject>();
+		String val;
+		while ((val = is.readLine()) != null){
+			result.add(new JSONObject(val));
+		}
+		return result;
 	}
 	
 }

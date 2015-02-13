@@ -28,12 +28,14 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.URL;
 
 
@@ -61,91 +63,56 @@ public class MainUI extends UI {
 
 		Button button = new Button("Click Me");
 		layout.addComponent(button);
-		new ReaderThread().start();
+		button.addClickListener(new Button.ClickListener() {
 
+			public void buttonClick(ClickEvent event) {
+
+
+			}
+		});
+
+		new Thread(new ReaderRunnable()).start();
 
 	}
 
-	class ReaderThread extends Thread {
-		@Override
+
+	class ReaderRunnable implements Runnable {
+
 		public void run() {
-			try {
-				JSONStream stream = new JSONStream("localhost", 5050);
-				stream.startRead();
-				JSONObject json;
-				while ((json = stream.readJSON()) != null){
-					System.out.println(json);
-					layout.addComponent(new Label(json.toString()));
-					push();
-					Thread.sleep(100);
+				try {
+					Thread.sleep(1000);
+					JSONStream stream = new JSONStream("localhost", 5050);
+					while (true){
+						for (JSONObject json : stream.read()) {
+							System.out.println(json);
+							//layout.addComponent(new Label(json.toString()));
+							layout.addComponent(new Label(String.valueOf(json.has("created_at"))));
+							Thread.sleep(10);
+							push();
+						}
+						//Thread.sleep(500);
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				stream.endRead();
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				
+
 		}
 	}
 
 
 
-	private void read(){
-		try {
-			JSONStream stream = new JSONStream("localhost", 5050);
-			stream.startRead();
-			JSONObject json;
-			while ((json = stream.readJSON()) != null){
-				System.out.println(json);
-				layout.addComponent(new Label(json.toString()));
-			}
-			stream.endRead();
-		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	class InitializerThread extends Thread {
-		@Override
-		public void run() {
-			// Do initialization which takes some time.
-			// Here represented by a 1s sleep
-			try {
-				Thread.sleep(1000);
-				while (true){
-					read();
-					Thread.sleep(100);
-					push();
-
-				}
-			} catch (InterruptedException e) {
-			}
-
-			// Init done, update the UI after doing locking
-			access(new Runnable() {
-				public void run() {
-					// Here the UI is locked and can be updated
-					layout.addComponent(new Label("fsdaf"));
-
-				}
-			});
-		}
-	}
 
 
 }

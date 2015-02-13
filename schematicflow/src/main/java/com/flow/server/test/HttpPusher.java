@@ -1,7 +1,6 @@
 package com.flow.server.test;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -11,27 +10,25 @@ import java.util.Random;
 public class HttpPusher {
 	public static void main(String args[]) {
 		try {
-			int moo = 0;
+
 			Random randomGenerator = new Random();
 			// Get the port to listen on
 			int port = Integer.parseInt(args[0]);
 			// Create a ServerSocket to listen on that port.
 			ServerSocket ss = new ServerSocket(port);
+			
 			// Now enter an infinite loop, waiting for & handling connections.
+			
 			for (;;) {
+				Socket client = ss.accept();
 				// Wait for a client to connect. The method will block;
 				// when it returns the socket will be connected to the client
-				Socket client = ss.accept();
+				
 
 				// Get input and output streams to talk to the client
-				BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-				PrintWriter out = new PrintWriter(client.getOutputStream());
+				PrintWriter out = new PrintWriter(client.getOutputStream(), true);
 
-				// Start sending our reply, using the HTTP 1.1 protocol
-				out.print("HTTP/1.1 200 \r\n"); // Version & status code
-				out.print("Content-Type: text/plain\r\n"); // The type of data
-				out.print("Connection: close\r\n"); // Will close stream
-				out.print("\r\n"); // End of headers
+
 
 				// Now, read the HTTP request from the client, and send it
 				// right back to the client as part of the body of our
@@ -56,7 +53,6 @@ public class HttpPusher {
 				// Close socket, breaking the connection to the client, and
 				// closing the input and output streams
 				out.close(); // Flush and close the output stream
-				in.close(); // Close the input stream
 				client.close(); // Close the socket itself
 			} // Now loop again, waiting for the next connection
 		}
@@ -67,6 +63,3 @@ public class HttpPusher {
 		}
 	}
 }
-
-
-
