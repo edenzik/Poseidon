@@ -1,0 +1,16 @@
+package com.flow.ui.states;
+
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Table;
+import com.vaadin.ui.VerticalLayout;
+
+public class StateSidebar extends VerticalLayout {
+	public StateSidebar(){
+		StateTable st = new StateTable();
+		Button b = new Button("Add");
+		
+		this.addComponent(new StateTable());
+		this.addComponent(new Button());
+	}
+}
