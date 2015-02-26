@@ -52,10 +52,10 @@ public final class TwitterStreamSource {
 			}
 
 			public void onStatus(Status arg0) {
-				//System.out.println("hello");
+				System.out.println("hello");
 				//TwitterStreamFactor.getRawJSON(arg0.getTw)
 				System.out.println(TwitterObjectFactory.getRawJSON(arg0));
-				//System.out.println ("Tweet From: " + arg0.getUser().getScreenName() + " Says: "+ arg0.getText());
+				System.out.println ("Tweet From: " + arg0.getUser().getScreenName() + " Says: "+ arg0.getText());
 				try {
 					streamer.send(TwitterObjectFactory.getRawJSON(arg0));
 				} catch (IOException e) {

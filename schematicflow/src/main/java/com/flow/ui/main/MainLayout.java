@@ -11,6 +11,5 @@ public class MainLayout extends HorizontalSplitPanel {
 		this.setSizeFull();
 		this.setLocked(true);
 		this.setSplitPosition(20, Unit.PERCENTAGE);
-		
 	}
 }
