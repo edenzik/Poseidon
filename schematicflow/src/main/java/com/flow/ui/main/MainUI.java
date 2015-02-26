@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.flow.server.stream.JSONStream;
+import com.flow.ui.states.StateSidebar;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -53,37 +54,13 @@ public class MainUI extends UI {
 	@WebServlet(value = {"/*"}, asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = MainUI.class)
 	public static class Servlet extends VaadinServlet {}
-	Table table;
-	final VerticalLayout layout = new VerticalLayout();
 
 	@Override
 	protected void init(VaadinRequest request) {
-
-		layout.setMargin(true);
-		setContent(layout);
-
-		Button button = new Button("Click Me");
-		//layout.addComponent(button);
-		button.addClickListener(new Button.ClickListener() {
-
-			public void buttonClick(ClickEvent event) {
+		setContent(new StateSidebar());
 
 
-			}
-		});
-		
-		table = new Table("Tweets");
-
-		// Define two columns for the built-in container
-		table.addContainerProperty("User", String.class, null);
-		table.addContainerProperty("Text",  String.class, null);
-		
-		// Add a few other rows using shorthand addItem()
-		//table.addItem(new Object[]{"Canopus",        -0.72f}, 2);
-		//table.addItem(new Object[]{"Arcturus",       -0.04f}, 3);
-		//layout.addComponent(table);
-		//table.setSizeFull();
-		new Thread(new ReaderRunnable()).start();
+		//new Thread(new ReaderRunnable()).start();
 
 	}
 
@@ -99,7 +76,7 @@ public class MainUI extends UI {
 							System.out.println(json);
 							//layout.addComponent(new Label(json.toString()));
 							//table.addItem(new String[]{"fd", "moo"});
-							layout.addComponent(new Label(String.valueOf(json.getString("text"))));
+							//layout.addComponent(new Label(String.valueOf(json.getString("text"))));
 							Thread.sleep(10);
 							push();
 						}
