@@ -23,6 +23,7 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -52,7 +53,7 @@ public class MainUI extends UI {
 	@WebServlet(value = {"/*"}, asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = MainUI.class)
 	public static class Servlet extends VaadinServlet {}
-
+	Table table;
 	final VerticalLayout layout = new VerticalLayout();
 
 	@Override
@@ -62,7 +63,7 @@ public class MainUI extends UI {
 		setContent(layout);
 
 		Button button = new Button("Click Me");
-		layout.addComponent(button);
+		//layout.addComponent(button);
 		button.addClickListener(new Button.ClickListener() {
 
 			public void buttonClick(ClickEvent event) {
@@ -70,7 +71,18 @@ public class MainUI extends UI {
 
 			}
 		});
+		
+		table = new Table("Tweets");
 
+		// Define two columns for the built-in container
+		table.addContainerProperty("User", String.class, null);
+		table.addContainerProperty("Text",  String.class, null);
+		
+		// Add a few other rows using shorthand addItem()
+		//table.addItem(new Object[]{"Canopus",        -0.72f}, 2);
+		//table.addItem(new Object[]{"Arcturus",       -0.04f}, 3);
+		//layout.addComponent(table);
+		//table.setSizeFull();
 		new Thread(new ReaderRunnable()).start();
 
 	}
@@ -86,7 +98,8 @@ public class MainUI extends UI {
 						for (JSONObject json : stream.read()) {
 							System.out.println(json);
 							//layout.addComponent(new Label(json.toString()));
-							layout.addComponent(new Label(String.valueOf(json.has("created_at"))));
+							//table.addItem(new String[]{"fd", "moo"});
+							layout.addComponent(new Label(String.valueOf(json.getString("text"))));
 							Thread.sleep(10);
 							push();
 						}
