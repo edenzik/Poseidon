@@ -8,9 +8,10 @@ import com.vaadin.ui.VerticalLayout;
 public class StateSidebar extends VerticalLayout {
 	public StateSidebar(){
 		StateTable st = new StateTable();
-		Button b = new Button("Add");
+		st.setSizeFull();
 		
-		this.addComponent(new StateTable());
-		this.addComponent(new Button());
+		AddRemoveStates ads = new AddRemoveStates();
+		this.addComponent(st);
+		this.addComponent(ads);
 	}
 }

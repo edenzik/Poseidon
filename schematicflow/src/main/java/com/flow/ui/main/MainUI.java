@@ -57,11 +57,7 @@ public class MainUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		setContent(new StateSidebar());
-
-
-		//new Thread(new ReaderRunnable()).start();
-
+		setContent(new MainLayout());
 	}
 
 
