@@ -2,6 +2,8 @@ package com.flow.ui.main;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -23,6 +25,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextArea;
@@ -94,6 +97,17 @@ public class MainUI extends UI {
 				
 
 		}
+	}
+
+	public void forEach(Consumer<? super Component> action) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public Spliterator<Component> spliterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
