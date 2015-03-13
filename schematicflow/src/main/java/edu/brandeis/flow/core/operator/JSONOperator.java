@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.vaadin.ui.Image;
@@ -16,7 +17,7 @@ import com.vaadin.ui.Image;
 abstract class JSONOperator implements Operator<JSONObject> {
 	
 	private final Queue<JSONObject> buffer; // hold all received JSON streams
-	private Set<Operator<JSONObject>> next; // a set of operators that the current operator will send data to.
+	private final Set<Operator<JSONObject>> next; // a set of operators that the current operator will send data to.
 	private String name;
 	private String description;
 	private Image img; //icon
@@ -24,70 +25,58 @@ abstract class JSONOperator implements Operator<JSONObject> {
 	/**
 	 * Constructor
 	 */
-	private JSONOperator(){
+	protected JSONOperator(){
 		this.buffer = new ConcurrentLinkedQueue<JSONObject>();
+		this.next = null;
 	}
 	
 	/**
 	 * Receive JSON object as input
 	 * @param obj JSONObject need to be received
 	 */
-	public void recieve(JSONObject obj) {
-		buffer.add(obj);
-	}
+	public void recieve(JSONObject obj) {buffer.add(obj);}
 
 	/**
 	 * Send processed JSON object to all its next operators
 	 * @param obj JSONObject needs to be send to next operators
 	 */
-	public void send(JSONObject obj) {
-		for (Operator<JSONObject> op : next)op.recieve(obj);
-	}
+	public void send(JSONObject obj) {for (Operator<JSONObject> op : next)op.recieve(obj);}
 
 	/**
 	 * Process input JSON. Need to be implemented by every opeartor
+	 * @throws JSONException 
 	 */
-	public abstract void process();
+	public abstract void process() throws JSONException;
 
 	/**
 	 * Set the name of operator
 	 */
-	public void setName(String name) {
-		this.name = name;
-		
-	}
+	public void setName(String name) {this.name = name;}
 
 	/**
 	 * Set the description of operator
 	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	public void setDescription(String description) {this.description = description;}
 
 	/**
 	 * Set the icon of operator
 	 */
-	public void setImage(Image img) {
-		this.img = img;
-		
-	}
+	public void setImage(Image img) {this.img = img;}
 
 	/**
 	 * Add the next operator to its set
 	 * @param op the next operator need to be added
 	 */
-	public void addNext(Operator<JSONObject> op) {
-		next.add(op);
-	}
+	public void addNextOperator(Operator<JSONObject> op) {next.add(op);}
 
-
-	public Set<Operator<JSONObject>> getNext() {return this.next;}
-
+	public Set<Operator<JSONObject>> getNextOperator() {return this.next;}
 
 	public String getName() {return this.name;}
 
 	public String getDescription() {return this.description;}
 
 	public Image getImage() {return this.img;}
+
+	public JSONObject read() {return buffer.poll();}
 	
 }

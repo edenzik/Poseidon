@@ -13,12 +13,13 @@ interface Operator<E> {
 	void setName(String name);
 	void setDescription(String description);
 	void setImage(Image img);
-	void addNext(Operator<E> op);
+	void addNextOperator(Operator<E> op);
 	void recieve(E obj);
 	void send(E obj);
-	void process();
+	void process() throws Exception;
 	String getName();
 	String getDescription();
 	Image getImage();
-	Set<Operator<E>> getNext();
+	Set<Operator<E>> getNextOperator();
+	E read();
 }
