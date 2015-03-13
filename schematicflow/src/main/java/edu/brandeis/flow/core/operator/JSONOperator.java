@@ -16,36 +16,28 @@ abstract class JSONOperator implements Operator<JSONObject> {
 	private String description;
 	private Image img;
 	
-	private JSONOperator(){
-		this.buffer = new ConcurrentLinkedQueue<JSONObject>();
-	}
+	private JSONOperator(){this.buffer = new ConcurrentLinkedQueue<JSONObject>();}
 
-	public void recieve(JSONObject obj) {
-		buffer.add(obj);
-	}
+	public void recieve(JSONObject obj) {buffer.add(obj);}
 
-	public void send(JSONObject obj) {
-		for (Operator<JSONObject> op : next)op.recieve(obj);
-	}
+	public void send(JSONObject obj) {for (Operator<JSONObject> op : next)op.recieve(obj);}
 
 	public abstract void process();
 
-	public void setName(String name) {
-		this.name = name;
-		
-	}
+	public void setName(String name) {this.name = name;}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	public void setDescription(String description) {this.description = description;}
 
-	public void setImage(Image img) {
-		this.img = img;
-		
-	}
+	public Set<Operator<JSONObject>> getNext() {return this.next;}
 
-	public void addNext(Operator<JSONObject> op) {
-		next.add(op);
-	}
+	public void setImage(Image img) {this.img = img;}
+
+	public String getName() {return this.name;}
+
+	public String getDescription() {return this.description;}
+
+	public Image getImage() {return this.img;}
+
+	public void addNext(Operator<JSONObject> op) {next.add(op);}
 	
 }
