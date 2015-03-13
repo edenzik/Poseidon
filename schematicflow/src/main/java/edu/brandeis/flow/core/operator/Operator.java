@@ -1,5 +1,10 @@
 package edu.brandeis.flow.core.operator;
 
+
+/**
+ * Operator is the interface designed for all stream operators. 
+ * It can 
+ */
 import com.vaadin.ui.Image;
 
 interface Operator<E> {
