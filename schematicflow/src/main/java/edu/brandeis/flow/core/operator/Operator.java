@@ -5,6 +5,8 @@ package edu.brandeis.flow.core.operator;
  * Operator is the interface designed for all stream operators. 
  * It can 
  */
+import java.util.Set;
+
 import com.vaadin.ui.Image;
 
 interface Operator<E> {
@@ -15,5 +17,8 @@ interface Operator<E> {
 	void recieve(E obj);
 	void send(E obj);
 	void process();
-	
+	String getName();
+	String getDescription();
+	Image getImage();
+	Set<Operator<E>> getNext();
 }

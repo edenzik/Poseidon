@@ -79,5 +79,15 @@ abstract class JSONOperator implements Operator<JSONObject> {
 	public void addNext(Operator<JSONObject> op) {
 		next.add(op);
 	}
+
+
+	public Set<Operator<JSONObject>> getNext() {return this.next;}
+
+
+	public String getName() {return this.name;}
+
+	public String getDescription() {return this.description;}
+
+	public Image getImage() {return this.img;}
 	
 }
