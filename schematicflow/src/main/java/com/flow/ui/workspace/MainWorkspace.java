@@ -1,8 +1,9 @@
 package com.flow.ui.workspace;
 
-import com.flow.ui.inspector.InspectorSidebar;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.HorizontalSplitPanel;
+
+import edu.brandeis.flow.ui.inspector.InspectorSidebar;
 
 public class MainWorkspace extends HorizontalSplitPanel {
 	public MainWorkspace(){

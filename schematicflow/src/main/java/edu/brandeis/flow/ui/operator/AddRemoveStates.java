@@ -1,4 +1,4 @@
-package com.flow.ui.states;
+package edu.brandeis.flow.ui.operator;
 
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Button;

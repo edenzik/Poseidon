@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import com.vaadin.ui.Image;
 
-abstract class JSONOperator implements Operator<JSONObject> {
+public abstract class JSONOperator implements Operator<JSONObject> {
 	
 	private final Queue<JSONObject> buffer; // hold all received JSON streams
 	private final Set<Operator<JSONObject>> next; // a set of operators that the current operator will send data to.
@@ -49,33 +49,12 @@ abstract class JSONOperator implements Operator<JSONObject> {
 	public abstract void process() throws JSONException;
 
 	/**
-	 * Set the name of operator
-	 */
-	public void setName(String name) {this.name = name;}
-
-	/**
-	 * Set the description of operator
-	 */
-	public void setDescription(String description) {this.description = description;}
-
-	/**
-	 * Set the icon of operator
-	 */
-	public void setImage(Image img) {this.img = img;}
-
-	/**
 	 * Add the next operator to its set
 	 * @param op the next operator need to be added
 	 */
 	public void addNextOperator(Operator<JSONObject> op) {next.add(op);}
 
 	public Set<Operator<JSONObject>> getNextOperator() {return this.next;}
-
-	public String getName() {return this.name;}
-
-	public String getDescription() {return this.description;}
-
-	public Image getImage() {return this.img;}
 
 	public JSONObject read() {return buffer.poll();}
 	
