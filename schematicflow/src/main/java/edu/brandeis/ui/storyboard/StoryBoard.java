@@ -24,12 +24,15 @@ import com.vaadin.server.ErrorHandler;
 import com.vaadin.server.Extension;
 import com.vaadin.server.Resource;
 import com.vaadin.server.ServerRpcManager;
+import com.vaadin.server.Sizeable;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinResponse;
 import com.vaadin.shared.communication.SharedState;
 import com.vaadin.shared.ui.dd.VerticalDropLocation;
 import com.vaadin.ui.AbsoluteLayout;
+import com.vaadin.ui.AbsoluteLayout.ComponentPosition;
 import com.vaadin.ui.AbstractLayout;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
@@ -40,6 +43,8 @@ import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HasComponents;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Table.TableTransferable;
@@ -52,16 +57,14 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 
 public class StoryBoard extends Panel {
 	public StoryBoard() {
-		this.setContent(createLayout(new CssLayout() {
-			protected String getCss(Component c) {
-				return "display: inline-block;";
-			}
-		}));
+		this.setContent(createLayout(new AbsoluteLayout()));
 		setSizeFull();
+		
 	}
 
-	private Component createLayout(final AbstractLayout layout) {
+	private Component createLayout(final AbsoluteLayout layout) {
 		DragAndDropWrapper dndLayout = new DragAndDropWrapper(layout);
+		
 		dndLayout.setSizeFull();
 		dndLayout.setDropHandler(new DropHandler() {
 			public AcceptCriterion getAcceptCriterion() {
@@ -71,12 +74,18 @@ public class StoryBoard extends Panel {
 			public void drop(DragAndDropEvent event) {
 				TableTransferable t = (TableTransferable) event.getTransferable();
 				UIOperator op = (UIOperator) t.getSourceContainer().getContainerProperty(t.getItemId(), "Operators").getValue();
-				t.getSourceComponent().removeAllItems();
-				
-				layout.addComponent(op);
+				//t.getSourceComponent().removeAllItems();
+				UIOperator f = op.copy();
+				layout.addComponent(f);
+				ComponentPosition k = layout.new ComponentPosition();
+				k.setBottom((float) 5.0, Sizeable.Unit.CM);
+				layout.new ComponentPosition();
+				//Object k = this.new ComponentPosition();
+				layout.setPosition(f, k);
 			}
 		});
 		return dndLayout;
 	}
+
 
 }
