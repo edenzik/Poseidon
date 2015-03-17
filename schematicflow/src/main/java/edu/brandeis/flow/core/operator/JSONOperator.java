@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import com.vaadin.ui.Image;
 
-abstract class JSONOperator implements Operator<JSONObject> {
+public abstract class JSONOperator implements Operator<JSONObject> {
 	
 	private final Queue<JSONObject> buffer; // hold all received JSON streams
 	private final Set<Operator<JSONObject>> next; // a set of operators that the current operator will send data to.
@@ -49,35 +49,47 @@ abstract class JSONOperator implements Operator<JSONObject> {
 	public abstract void process() throws JSONException;
 
 	/**
-	 * Set the name of operator
-	 */
-	public void setName(String name) {this.name = name;}
-
-	/**
-	 * Set the description of operator
-	 */
-	public void setDescription(String description) {this.description = description;}
-
-	/**
-	 * Set the icon of operator
-	 */
-	public void setImage(Image img) {this.img = img;}
-
-	/**
 	 * Add the next operator to its set
+	 * 
 	 * @param op the next operator need to be added
 	 */
 	public void addNextOperator(Operator<JSONObject> op) {next.add(op);}
-
-
+	
+	/**
+	 * Get the next operator in the list
+	 * 
+	 * @return Set<Operator<JSONObject>> next operator(s), which returns more than one
+	 * operation when implement Split operator
+	 */
 	public Set<Operator<JSONObject>> getNextOperator() {return this.next;}
 	
+	/**
+	 * Get the name of the current operator
+	 * 
+	 * @return String name
+	 */
 	public String getName() {return this.name;}
 
+	/**
+	 * Get the description of the current operator
+	 * 
+	 * @return String descroption
+	 */
 	public String getDescription() {return this.description;}
 	
+	/**
+	 * Get the image of the current oeprator
+	 * 
+	 * @return Image image
+	 */
 	public Image getImage() {return this.img;}
 
+	/**
+	 * Read the first JSONObject that is need to be processed
+	 * 
+	 * @return JSONObject processed JSONObject
+	 * 
+	 */
 	public JSONObject read() {return buffer.poll();}
 	
 }

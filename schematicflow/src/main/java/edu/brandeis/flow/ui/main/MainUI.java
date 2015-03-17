@@ -1,4 +1,4 @@
-package com.flow.ui.main;
+package edu.brandeis.flow.ui.main;
 
 import java.io.IOException;
 import java.util.Date;
@@ -11,7 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.flow.server.stream.JSONStream;
-import com.flow.ui.states.StateSidebar;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -31,6 +30,8 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+
+import edu.brandeis.flow.ui.operator.StateSidebar;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

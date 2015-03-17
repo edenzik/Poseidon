@@ -3,20 +3,71 @@
  */
 package edu.brandeis.flow.core.operator;
 
+import java.util.function.Function;
+
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Yahui
  *
  */
 final class Map extends JSONOperator {
+	String key;
+	Function<Double, Double> func;
 
 	/* (non-Javadoc)
 	 * @see edu.brandeis.flow.core.operator.JSONOperator#process()
 	 */
+	/**
+	 * Constructor
+	 */
+	public Map() {
+	}
+	
+	/**
+	 * Set JSON key
+	 * @param key
+	 */
+	public void setKey(String key){
+		this.key = key;
+	}
+	
+	/**
+	 * Get JSON key
+	 * @return String key
+	 */
+	public String getKey(){ return key;}
+	
+	
+	/**
+	 * Set map function
+	 * @param oper user operator in String format
+	 * @param num 
+	 */
+	public void setFunc(String oper, Double num) {
+		switch(oper) {
+		case "Times":
+			func = val -> val * num;
+		case "Adds" :
+			func = val -> val + num;
+		case "Minus":
+			func = val -> val - num;
+		case "divides":
+			func = val -> val / num;
+		default: break;	
+		}
+	}
+	
 	@Override
 	public void process() throws JSONException {
-		
+		JSONObject top = read();
+		if(top.has(key)) {
+			//apply map function
+			top.put(key, func.apply(top.getDouble(key)));
+			//send the result
+			send(top);	
+		}
 
 	}
 

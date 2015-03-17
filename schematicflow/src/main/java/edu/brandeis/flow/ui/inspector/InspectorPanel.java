@@ -1,4 +1,4 @@
-package com.flow.ui.inspector;
+package edu.brandeis.flow.ui.inspector;
 
 import com.vaadin.ui.Panel;
 

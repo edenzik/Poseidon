@@ -1,4 +1,4 @@
-package com.flow.ui.inspector;
+package edu.brandeis.flow.ui.inspector;
 
 class PropertiesInspectorPanel extends InspectorPanel {
 	protected PropertiesInspectorPanel(){

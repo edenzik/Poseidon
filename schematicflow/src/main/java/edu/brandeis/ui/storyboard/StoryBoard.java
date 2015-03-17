@@ -1,4 +1,4 @@
-package com.flow.ui.storyboard;
+package edu.brandeis.ui.storyboard;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -48,6 +48,8 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
 
+import edu.brandeis.flow.ui.operator.UIOperator;
+
 public class StoryBoard extends Panel {
 	public StoryBoard() {
 		this.setContent(createLayout(new CssLayout() {
@@ -68,7 +70,10 @@ public class StoryBoard extends Panel {
 
 			public void drop(DragAndDropEvent event) {
 				TableTransferable t = (TableTransferable) event.getTransferable();
-				layout.addComponent(t.getSourceComponent());
+				UIOperator op = (UIOperator) t.getSourceContainer().getContainerProperty(t.getItemId(), "Operators").getValue();
+				t.getSourceComponent().removeAllItems();
+				
+				layout.addComponent(op);
 			}
 		});
 		return dndLayout;
