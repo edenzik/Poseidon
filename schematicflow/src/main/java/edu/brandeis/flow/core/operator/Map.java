@@ -47,11 +47,11 @@ final class Map extends JSONOperator {
 	 */
 	public void setFunc(String oper, Double num) {
 		switch(oper) {
-		case "Times":
+		case "times":
 			func = val -> val * num;
-		case "Adds" :
+		case "adds" :
 			func = val -> val + num;
-		case "Minus":
+		case "minus":
 			func = val -> val - num;
 		case "divides":
 			func = val -> val / num;

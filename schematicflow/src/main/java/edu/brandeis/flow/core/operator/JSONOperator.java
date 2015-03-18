@@ -34,13 +34,13 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * Receive JSON object as input
 	 * @param obj JSONObject need to be received
 	 */
-	public void recieve(JSONObject obj) {buffer.add(obj);}
+	public void receive(JSONObject obj) {buffer.add(obj);}
 
 	/**
 	 * Send processed JSON object to all its next operators
 	 * @param obj JSONObject needs to be send to next operators
 	 */
-	public void send(JSONObject obj) {for (Operator<JSONObject> op : next)op.recieve(obj);}
+	public void send(JSONObject obj) {for (Operator<JSONObject> op : next)op.receive(obj);}
 
 	/**
 	 * Process input JSON. Need to be implemented by every opeartor

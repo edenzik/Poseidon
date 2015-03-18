@@ -10,7 +10,7 @@ import com.vaadin.ui.Image;
 
 interface Operator<E> {
 	void addNextOperator(Operator<E> op);
-	void recieve(E obj);
+	void receive(E obj);
 	void send(E obj);
 	void process() throws Exception;
 	Set<Operator<E>> getNextOperator();
