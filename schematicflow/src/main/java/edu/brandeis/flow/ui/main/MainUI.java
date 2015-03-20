@@ -62,12 +62,12 @@ public class MainUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		Navigator navigator = new Navigator(this,this);
-		navigator.addView("main", BasicUsageView.class);
-		getUI().getNavigator().navigateTo("main");
+		//Navigator navigator = new Navigator(this,this);
+		//navigator.addView("main", BasicUsageView.class);
+		//getUI().getNavigator().navigateTo("main");
 		//setContent(new BasicUsageView());
 		//setContent(new BasicUsageView());
-		//setContent(new MainLayout());
+		setContent(new MainLayout());
 	}
 
 
