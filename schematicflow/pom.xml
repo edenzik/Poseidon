@@ -135,6 +135,11 @@
 			<artifactId>twitter4j-stream</artifactId>
 			<version>4.0.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addon</groupId>
+			<artifactId>visjs-addon</artifactId>
+			<version>1.0.0.4</version>
+		</dependency>
 	</dependencies>
 	<build>
 <plugins>

@@ -14,6 +14,7 @@ import com.flow.server.stream.JSONStream;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.server.BootstrapFragmentResponse;
 import com.vaadin.server.BootstrapListener;
 import com.vaadin.server.BootstrapPageResponse;
@@ -61,7 +62,12 @@ public class MainUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		setContent(new MainLayout());
+		Navigator navigator = new Navigator(this,this);
+		navigator.addView("main", BasicUsageView.class);
+		getUI().getNavigator().navigateTo("main");
+		//setContent(new BasicUsageView());
+		//setContent(new BasicUsageView());
+		//setContent(new MainLayout());
 	}
 
 

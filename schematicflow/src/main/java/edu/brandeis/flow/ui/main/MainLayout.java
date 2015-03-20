@@ -1,6 +1,7 @@
 package edu.brandeis.flow.ui.main;
 
 import com.vaadin.ui.Component;
+
 import com.vaadin.ui.HorizontalLayout;
 
 import edu.brandeis.flow.ui.inspector.InspectorSidebar;
