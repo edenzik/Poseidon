@@ -1,6 +1,7 @@
 package edu.brandeis.flow.ui.operator;
 
 import org.json.JSONException;
+import org.vaadin.visjs.networkDiagram.Node;
 
 import com.vaadin.server.ClassResource;
 import com.vaadin.ui.AbstractComponent;
@@ -12,16 +13,15 @@ import com.vaadin.ui.Label;
 import edu.brandeis.flow.core.operator.JSONOperator;
 
 
-public abstract class UIOperator extends Label{
+public abstract class UIOperator extends Node{
 	private final JSONOperator operator;
 	private String name;
 	private String description;
 
 	protected UIOperator(JSONOperator operator, String name, String description){
-		super(name);
+		super(operator.hashCode(), name);
 		this.name = name;
 		this.description = description;
-//  new ClassResource("https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fphotos%2F34700000%2FRoses-flowers-34758621-1920-1052.jpg&f=1"));
 		this.operator = operator;
 	}
 

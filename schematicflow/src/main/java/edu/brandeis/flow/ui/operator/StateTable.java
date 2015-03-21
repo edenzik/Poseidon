@@ -13,8 +13,10 @@ import edu.brandeis.flow.core.operator.JSONOperator;
 public class StateTable extends Table{
 	
 	public StateTable(){
-		this.addContainerProperty("Operators", UIOperator.class, null);
-		this.addItem(new UIOperator[]{new UIFilter()}, 1);
+		this.addContainerProperty("Operators", UIOperatorFactory.class, null);
+		this.addItem(new UIOperatorFactory[]{new UIFilterFactory()}, 1);
+		this.addItem(new UIOperatorFactory[]{new UIFilterFactory()}, 2);
+		this.addItem(new UIOperatorFactory[]{new UIFilterFactory()}, 3);
 		this.setSelectable(true);
 		this.setDragMode(TableDragMode.ROW);
 

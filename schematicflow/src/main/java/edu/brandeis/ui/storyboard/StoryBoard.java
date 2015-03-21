@@ -58,6 +58,7 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
 
 import edu.brandeis.flow.ui.operator.UIOperator;
+import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
 public class StoryBoard extends Panel {
 	public StoryBoard() {
@@ -81,14 +82,19 @@ public class StoryBoard extends Panel {
 		networkDiagram.addNode(node1);
 		networkDiagram.addNode(node2,node3,node4,node5,node6);
 		networkDiagram.addEdge(edge1,edge2,edge3,edge4);
-		this.setContent(networkDiagram);
+		//this.setContent(networkDiagram);
+		this.setContent(makeNetwork());
 		setSizeFull();
 		
 	}
-
-	private Component createLayout(final AbsoluteLayout layout) {
-		DragAndDropWrapper dndLayout = new DragAndDropWrapper(layout);
+	
+	private Component makeNetwork(){
+		Options options = new Options();
+		NetworkDiagram networkDiagram = new NetworkDiagram(options);
+		DragAndDropWrapper dndLayout = new DragAndDropWrapper(networkDiagram);
 		
+		
+		networkDiagram.setSizeFull();
 		dndLayout.setSizeFull();
 		dndLayout.setDropHandler(new DropHandler() {
 			public AcceptCriterion getAcceptCriterion() {
@@ -97,19 +103,14 @@ public class StoryBoard extends Panel {
 
 			public void drop(DragAndDropEvent event) {
 				TableTransferable t = (TableTransferable) event.getTransferable();
-				UIOperator op = (UIOperator) t.getSourceContainer().getContainerProperty(t.getItemId(), "Operators").getValue();
-				//t.getSourceComponent().removeAllItems();
-				UIOperator f = op.copy();
-				layout.addComponent(f);
-				ComponentPosition k = layout.new ComponentPosition();
-				k.setBottom((float) 5.0, Sizeable.Unit.CM);
-				layout.new ComponentPosition();
-				//Object k = this.new ComponentPosition();
-				layout.setPosition(f, k);
+				UIOperatorFactory op = (UIOperatorFactory) t.getSourceContainer().getContainerProperty(t.getItemId(), "Operators").getValue();
+				networkDiagram.addNode(op.makeUIOperator());
 			}
 		});
 		return dndLayout;
 	}
+
+
 
 
 }
