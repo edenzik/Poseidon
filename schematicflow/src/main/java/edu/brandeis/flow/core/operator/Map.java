@@ -23,6 +23,7 @@ final class Map extends JSONOperator {
 	 * Constructor
 	 */
 	public Map() {
+		super("Map");
 	}
 	
 	/**

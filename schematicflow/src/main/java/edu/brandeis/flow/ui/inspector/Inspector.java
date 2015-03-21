@@ -7,15 +7,15 @@ import com.vaadin.ui.VerticalLayout;
 
 public abstract class Inspector extends Accordion {
 	private final InspectorProperties properties;
-	private final InspectorIO io;
+	//private final InspectorIO io;
 	public Inspector(){
 		setSizeFull();
 		properties = new InspectorProperties();
-		io = new InspectorIO();
+		//io = new InspectorIO();
 		addTab(properties, "Properties");
-		addTab(io, "Properties");
+		//addTab(io, "Properties");
 	}
 	
-	public String getName(){return properties.getName();}
-	public String getDesc(){return properties.getDesc();}
+//	public String getName(){return properties.getName();}
+	//public String getDesc(){return properties.getDesc();}
 }

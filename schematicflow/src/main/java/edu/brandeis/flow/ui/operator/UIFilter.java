@@ -7,8 +7,8 @@ import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
 final class UIFilter extends UIOperator {
 
 	protected UIFilter() {
-		super(new Filter(), new FilterInspector());
-		this.setImage("./VAADIN/images/filter.svg");
+		super(new Filter());
+		setImage("./VAADIN/images/filter.svg");
 	}
 
 }

@@ -18,16 +18,15 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	
 	private final Queue<JSONObject> buffer; // hold all received JSON streams
 	private final Set<Operator<JSONObject>> next; // a set of operators that the current operator will send data to.
-	private String name;
-	private String description;
-	private Image img; //icon
+	private final String name;
 	
 	/**
 	 * Constructor
 	 */
-	protected JSONOperator(){
+	protected JSONOperator(String name){
 		this.buffer = new ConcurrentLinkedQueue<JSONObject>();
 		this.next = null;
+		this.name = name;
 	}
 	
 	/**
@@ -62,7 +61,6 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	public void removeNext(Operator<JSONObject> op) {next.remove(op);}
 	
-	
 	/**
 	 * Get the next operator in the list
 	 * 
@@ -70,21 +68,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * operation when implement Split operator
 	 */
 	public Set<Operator<JSONObject>> getNext() {return this.next;}
-	
-	/**
-	 * Get the name of the current operator
-	 * 
-	 * @return String name
-	 */
-	public String getName() {return this.name;}
 
-	/**
-	 * Get the description of the current operator
-	 * 
-	 * @return String descroption
-	 */
-	public String getDescription() {return this.description;}
-	
 	/**
 	 * Read the first JSONObject that is need to be processed
 	 * 
@@ -92,5 +76,11 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * 
 	 */
 	public JSONObject read() {return buffer.poll();}
+
+	@Override
+	public String toString() {return name;}
+	
+	
+
 	
 }

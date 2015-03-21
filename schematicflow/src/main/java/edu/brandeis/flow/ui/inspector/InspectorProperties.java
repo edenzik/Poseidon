@@ -33,6 +33,6 @@ class InspectorProperties extends VerticalLayout {
 		setComponentAlignment(desc, Alignment.BOTTOM_CENTER);
 	}
 	
-	protected String getName(){return name.getValue();}
-	protected String getDesc(){return desc.getValue();}
+	//protected String getName(){return name.getValue();}
+	//protected String getDesc(){return desc.getValue();}
 }

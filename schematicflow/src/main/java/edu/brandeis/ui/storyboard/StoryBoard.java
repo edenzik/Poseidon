@@ -1,14 +1,8 @@
 package edu.brandeis.ui.storyboard;
 
-import org.vaadin.visjs.networkDiagram.Edge;
 import org.vaadin.visjs.networkDiagram.NetworkDiagram;
-import org.vaadin.visjs.networkDiagram.Node;
-import org.vaadin.visjs.networkDiagram.Node.NodeBlurListener;
 import org.vaadin.visjs.networkDiagram.Node.NodeClickListener;
-import org.vaadin.visjs.networkDiagram.event.node.BlurEvent;
 import org.vaadin.visjs.networkDiagram.event.node.ClickEvent;
-import org.vaadin.visjs.networkDiagram.options.Options;
-
 import com.vaadin.event.dd.DragAndDropEvent;
 import com.vaadin.event.dd.DropHandler;
 import com.vaadin.event.dd.acceptcriteria.AcceptAll;
@@ -17,7 +11,6 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.Panel;
 
-import edu.brandeis.flow.ui.inspector.InspectorSidebar;
 import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
 import edu.brandeis.flow.ui.main.MainLayout.InspectorCallback;
 import edu.brandeis.flow.ui.operator.UIOperator;
@@ -49,7 +42,8 @@ public class StoryBoard extends Panel {
 
 					@Override
 					public void onFired(ClickEvent arg0) {
-						ic.setInspector(new FilterInspector());
+						op.doStuff();
+						ic.setInspector(op.getInspector());
 						
 					}
 					
