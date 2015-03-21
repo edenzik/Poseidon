@@ -53,7 +53,15 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * 
 	 * @param op the next operator need to be added
 	 */
-	public void addNextOperator(Operator<JSONObject> op) {next.add(op);}
+	public void addNext(Operator<JSONObject> op) {next.add(op);}
+	
+	/**
+	 * Add the next operator to its set
+	 * 
+	 * @param op the next operator need to be added
+	 */
+	public void removeNext(Operator<JSONObject> op) {next.remove(op);}
+	
 	
 	/**
 	 * Get the next operator in the list
@@ -61,7 +69,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * @return Set<Operator<JSONObject>> next operator(s), which returns more than one
 	 * operation when implement Split operator
 	 */
-	public Set<Operator<JSONObject>> getNextOperator() {return this.next;}
+	public Set<Operator<JSONObject>> getNext() {return this.next;}
 	
 	/**
 	 * Get the name of the current operator
@@ -77,13 +85,6 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	public String getDescription() {return this.description;}
 	
-	/**
-	 * Get the image of the current oeprator
-	 * 
-	 * @return Image image
-	 */
-	public Image getImage() {return this.img;}
-
 	/**
 	 * Read the first JSONObject that is need to be processed
 	 * 

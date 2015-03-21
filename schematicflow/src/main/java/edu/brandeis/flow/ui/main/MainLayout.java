@@ -4,6 +4,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 
+import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.flow.ui.inspector.InspectorSidebar;
 import edu.brandeis.flow.ui.operator.StateSidebar;
 import edu.brandeis.ui.storyboard.StoryBoard;
@@ -28,11 +29,11 @@ public class MainLayout extends HorizontalLayout {
 	}
 	
 	public class InspectorCallback{
-		InspectorSidebar inspector = null;
+		Inspector inspector = null;
 		final HorizontalLayout layout;
 		
 		InspectorCallback(HorizontalLayout layout){this.layout = layout;}
-		public void setInspector(InspectorSidebar inspector){
+		public void setInspector(Inspector inspector){
 			if (this.inspector!=null) layout.removeComponent(this.inspector);
 			this.inspector = inspector;
 			layout.addComponent(inspector);

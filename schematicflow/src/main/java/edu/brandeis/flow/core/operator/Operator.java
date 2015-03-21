@@ -8,11 +8,12 @@ import java.util.Set;
 
 import com.vaadin.ui.Image;
 
-interface Operator<E> {
-	void addNextOperator(Operator<E> op);
+public interface Operator<E> {
+	void addNext(Operator<E> op);
+	void removeNext(Operator<E> op);
 	void receive(E obj);
 	void send(E obj);
 	void process() throws Exception;
-	Set<Operator<E>> getNextOperator();
+	Set<Operator<E>> getNext();
 	E read();
 }

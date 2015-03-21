@@ -18,6 +18,7 @@ import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.Panel;
 
 import edu.brandeis.flow.ui.inspector.InspectorSidebar;
+import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
 import edu.brandeis.flow.ui.main.MainLayout.InspectorCallback;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
@@ -48,7 +49,7 @@ public class StoryBoard extends Panel {
 
 					@Override
 					public void onFired(ClickEvent arg0) {
-						ic.setInspector(new InspectorSidebar());
+						ic.setInspector(new FilterInspector());
 						
 					}
 					

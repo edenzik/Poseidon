@@ -1,40 +1,39 @@
 package edu.brandeis.flow.ui.operator;
 
-import org.json.JSONException;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.vaadin.visjs.networkDiagram.Node;
 
-import com.vaadin.server.ClassResource;
-import com.vaadin.ui.AbstractComponent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Embedded;
-import com.vaadin.ui.Image;
-import com.vaadin.ui.Label;
-
 import edu.brandeis.flow.core.operator.JSONOperator;
+import edu.brandeis.flow.ui.inspector.Inspector;
 
 
 public abstract class UIOperator extends Node{
 	private final JSONOperator operator;
+	private final Inspector inspector;
 	private String name;
 	private String description;
+	private final Set<UIOperator> next;
 
-	protected UIOperator(JSONOperator operator, String name, String description){
-		super(operator.hashCode(), name);
-		this.name = name;
-		this.description = description;
+	protected UIOperator(JSONOperator operator, Inspector inspector){
+		super(operator.hashCode(), operator.getName());
+		this.inspector = inspector;
 		this.operator = operator;
+		this.next = new HashSet<UIOperator>();
+	}
+	
+	protected String getType(){
+		return operator.getName();
 	}
 
 	protected String getName() {
-		return name;
+		return inspector.getName();
 	}
 
-	protected void setName(String name) {
-		this.name = name;
-	}
 
 	public String getDescription() {
-		return description;
+		return inspector.getDesc();
 	}
 
 	public void setDescription(String description) {
@@ -46,13 +45,20 @@ public abstract class UIOperator extends Node{
 		return name;
 	}
 
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
+	public void addNext(UIOperator op){
+		next.add(op);
+		operator.addNext(op.operator);
 	}
 	
-	public abstract UIOperator copy();
+	public void removeNext(UIOperator op){
+		next.remove(op);
+		operator.removeNext(op.operator);
+	}
+	
+	public Inspector getInspector(){return inspector;}
+	
+	
+	
 	
 	
 	
