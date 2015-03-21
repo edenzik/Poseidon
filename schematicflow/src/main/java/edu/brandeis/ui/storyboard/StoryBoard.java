@@ -3,6 +3,7 @@ package edu.brandeis.ui.storyboard;
 import org.vaadin.visjs.networkDiagram.NetworkDiagram;
 import org.vaadin.visjs.networkDiagram.Node.NodeClickListener;
 import org.vaadin.visjs.networkDiagram.event.node.ClickEvent;
+
 import com.vaadin.event.dd.DragAndDropEvent;
 import com.vaadin.event.dd.DropHandler;
 import com.vaadin.event.dd.acceptcriteria.AcceptAll;
@@ -13,6 +14,7 @@ import com.vaadin.ui.Panel;
 
 import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
 import edu.brandeis.flow.ui.main.MainLayout.InspectorCallback;
+import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
@@ -24,7 +26,7 @@ public class StoryBoard extends Panel {
 	}
 	
 	private Component makeNetwork(InspectorCallback ic){
-		NetworkDiagram networkDiagram = new StoryBoardGraph();
+		UIOperatorNetworkDiagram networkDiagram = new UIOperatorNetworkDiagram();
 		DragAndDropWrapper dndLayout = new DragAndDropWrapper(networkDiagram);
 
 		networkDiagram.setSizeFull();
@@ -42,8 +44,7 @@ public class StoryBoard extends Panel {
 
 					@Override
 					public void onFired(ClickEvent arg0) {
-						op.doStuff();
-						ic.setInspector(op.getInspector());
+						op.clicked(ic, networkDiagram);
 						
 					}
 					

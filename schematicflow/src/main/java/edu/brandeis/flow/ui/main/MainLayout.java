@@ -1,5 +1,8 @@
 package edu.brandeis.flow.ui.main;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
@@ -7,6 +10,7 @@ import com.vaadin.ui.Layout;
 import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.flow.ui.inspector.InspectorSidebar;
 import edu.brandeis.flow.ui.operator.StateSidebar;
+import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.ui.storyboard.StoryBoard;
 
 public class MainLayout extends HorizontalLayout {
