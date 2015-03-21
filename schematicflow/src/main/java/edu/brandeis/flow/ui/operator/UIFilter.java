@@ -7,6 +7,7 @@ final class UIFilter extends UIOperator {
 
 	protected UIFilter() {
 		super(new Filter(), "Filter", "A filter operator filters on an attribute.");
+		this.setImage("./VAADIN/images/filter.svg");
 	}
 
 	@Override

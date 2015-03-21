@@ -1,6 +1,8 @@
 package edu.brandeis.flow.ui.operator;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import com.flow.core.state.State;
 import com.vaadin.server.ThemeResource;
@@ -14,38 +16,29 @@ import com.vaadin.ui.VerticalLayout;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
 
-public class StateLayout extends VerticalLayout{
-	
+public class StateLayout extends GridLayout{
+
 	public StateLayout(){
-		GridLayout iconsLayout = new GridLayout();
-//	    iconsLayout.setMargin(true);
-	    iconsLayout.setWidth("100%");
-	    iconsLayout.setColumns(3);
-	    this.addComponent(iconsLayout);
+		setSizeFull();
+		setColumns(3);
+
+		String iconNames[] = { "arrow-down.png", "arrow-left.png",
+				"arrow-right.png", "arrow-up.png", "calendar.png",
+				"document.png", "document-doc.png", "document-image.png",
+				"document-pdf.png", "document-ppt.png", "document-web.png",
+				"document-xsl.png", "email.png", "globe.png", "reload.png" };
+		Set<UIOperatorFactory> operatorFactories = new HashSet<UIOperatorFactory>();
+		operatorFactories.add(new UIFilterFactory());
+		operatorFactories.add(new UIFilterFactory());
+		operatorFactories.add(new UIFilterFactory());
+		for (UIOperatorFactory uiOp : operatorFactories){
+			DragAndDropWrapper transferable = new DragAndDropWrapper(uiOp);
+			transferable.setSizeUndefined();
+			transferable.setDragStartMode(DragStartMode.WRAPPER);
+			transferable.setData(uiOp);
+			addComponent(transferable);
+		}
 		
-	    String iconNames[] = { "arrow-down.png", "arrow-left.png",
-	            "arrow-right.png", "arrow-up.png", "calendar.png",
-	            "document.png", "document-doc.png", "document-image.png",
-	            "document-pdf.png", "document-ppt.png", "document-web.png",
-	            "document-xsl.png", "email.png", "globe.png", "reload.png" };
-
-	        for (int i = 0, x = 0, y = 0; i < iconNames.length; i++, x++) {
-	          if (x >= iconsLayout.getColumns()) {
-	            x = 0;
-	            iconsLayout.setRows(++y + 1);
-	          }
-
-	          ThemeResource resource = new ThemeResource("../runo/icons/64/"
-	              + iconNames[i]);
-	          Image icon = new Image(null, resource);
-
-	          DragAndDropWrapper transferable = new DragAndDropWrapper(icon);
-	          transferable.setSizeUndefined();
-	          transferable.setDragStartMode(DragStartMode.WRAPPER);
-	          transferable.setData(resource);
-
-	          iconsLayout.addComponent(transferable, x, y);
-	        }
 	}
 
 }
