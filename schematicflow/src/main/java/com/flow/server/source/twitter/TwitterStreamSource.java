@@ -29,6 +29,7 @@ public final class TwitterStreamSource {
         
         
         TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
+        
         StatusListener listener = new StatusListener(){
 
 			public void onException(Exception arg0) {

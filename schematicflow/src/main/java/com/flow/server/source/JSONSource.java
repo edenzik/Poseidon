@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import com.flow.server.source.twitter.TwitterStreamSource;
+
 public class JSONSource {
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader("twitter_source.json"));
@@ -13,5 +15,8 @@ public class JSONSource {
 		while ((json = br.readLine()) != null){
 			streamer.send(json);
 		}
+		
+		
+//		TwitterStreamSource twitter = new TwitterStreamSource();
 	}
 }
