@@ -16,7 +16,9 @@ public final class Filter extends JSONOperator {
 	String key;
 	String term;
 	
-	public Filter(){}
+	public Filter(){
+		super("Filter");
+	}
 	
 	
 

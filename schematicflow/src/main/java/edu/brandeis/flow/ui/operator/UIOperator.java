@@ -1,58 +1,98 @@
 package edu.brandeis.flow.ui.operator;
 
-import org.json.JSONException;
+import java.util.HashSet;
+import java.util.Set;
 
-import com.vaadin.server.ClassResource;
-import com.vaadin.ui.AbstractComponent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Embedded;
-import com.vaadin.ui.Image;
-import com.vaadin.ui.Label;
+import org.vaadin.visjs.networkDiagram.NetworkDiagram;
+import org.vaadin.visjs.networkDiagram.Node;
+import org.vaadin.visjs.networkDiagram.Node.NodeClickListener;
+import org.vaadin.visjs.networkDiagram.event.node.ClickEvent;
+
+import com.vaadin.ui.Component.Listener;
+import com.vaadin.ui.HorizontalLayout;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
+import edu.brandeis.flow.ui.callback.Callback;
+import edu.brandeis.flow.ui.inspector.Inspector;
+import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
+import edu.brandeis.flow.ui.main.MainLayout.InspectorCallback;
+import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 
 
-public abstract class UIOperator extends Label{
+public abstract class UIOperator extends Node{
 	private final JSONOperator operator;
-	private String name;
-	private String description;
+	private static boolean toggle = true;
+	private static Callback cb = null;
+	private Inspector inspector;
 
-	protected UIOperator(JSONOperator operator, String name, String description){
-		super(name);
-		this.name = name;
-		this.description = description;
-//  new ClassResource("https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fimages6.fanpop.com%2Fimage%2Fphotos%2F34700000%2FRoses-flowers-34758621-1920-1052.jpg&f=1"));
+	protected UIOperator(JSONOperator operator){
+		super(operator.hashCode(), operator.toString());
 		this.operator = operator;
+	}
+	
+	protected String getType(){
+		return operator.toString();
 	}
 
 	protected String getName() {
-		return name;
+		return "";
+		//return inspector.getName();
 	}
 
-	protected void setName(String name) {
-		this.name = name;
-	}
 
 	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	@Override
-	public String toString() {
-		return name;
-	}
-
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		return super.clone();
+		return "";
+		//return inspector.getDesc();
 	}
 	
-	public abstract UIOperator copy();
+	public void clicked(InspectorCallback ic, UIOperatorNetworkDiagram nd){
+		if (inspector == null) inspector = new FilterInspector(new NetworkCallback(ic, nd, this));
+		ic.setInspector(inspector);
+		
+	}
+	
+	public class NetworkCallback{
+		final InspectorCallback ic;
+		final UIOperator op;
+		final UIOperatorNetworkDiagram nd;
+		public Inspector inspector;
+		
+		NetworkCallback(InspectorCallback ic, UIOperatorNetworkDiagram nd, UIOperator op){
+			this.ic = ic;
+			this.nd = nd;
+			this.op = op;
+		}
+		
+		public void setInspector(Inspector inspector){this.inspector = inspector;}
+		
+		public void showInspector(){ic.setInspector(inspector);}
+		
+		public UIOperatorNetworkDiagram getNetwork(){return nd;}
+
+		public UIOperator getOp() {
+			return op;
+		}
+		
+		
+		
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "";
+	}
+
+
+	public Inspector getInspector(){
+		return inspector;
+	}
+
+
+
+	
+	
 	
 	
 	

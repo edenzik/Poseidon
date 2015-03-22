@@ -16,17 +16,17 @@ public class StateSidebar extends VerticalSplitPanel {
 	public StateSidebar(){
 		
 		this.setLocked(true);
-		final StateTable st = new StateTable();
-		st.setSizeFull();
+		final StateLayout sl = new StateLayout();
+		sl.setSizeFull();
 				
-		this.addComponent(st);
+		this.addComponent(sl);
 		//description
 		final Panel desc = new Panel("DESCRIPTION");
-		st.addItemClickListener(new ItemClickEvent.ItemClickListener() {
-			public void itemClick(ItemClickEvent event) {
-				desc.setContent(new Label(((UIOperator) event.getItem().getItemProperty("Operators").getValue()).getDescription()));
-			}
-		});
+//		sl.addItemClickListener(new ItemClickEvent.ItemClickListener() {
+//			public void itemClick(ItemClickEvent event) {
+//				desc.setContent(new Label(((UIOperator) event.getItem().getItemProperty("Operators").getValue()).getDescription()));
+//			}
+//		});
 		desc.setContent(new Label("Here is reserved for operators' descriptions"));
 		desc.setHeight(100, Unit.PERCENTAGE);
 		this.addComponent(desc);
