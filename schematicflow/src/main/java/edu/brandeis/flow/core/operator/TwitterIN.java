@@ -12,10 +12,10 @@ import org.json.JSONException;
  * @author Yahui
  *
  */
-public final class TwitterIN extends IN {
+public final class TwitterIN extends In {
 
-	protected TwitterIN(String name) throws JSONException, IOException {
-		super(name);
+	protected TwitterIN() throws JSONException, IOException {
+		super("TwitterIN");
 	}
 //	
 //	public static void main(String[] args) throws JSONException, IOException {

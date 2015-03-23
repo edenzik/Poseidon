@@ -15,13 +15,17 @@ import com.vaadin.ui.UI;
  * @author Yahui
  *
  */
-public class IN extends JSONOperator{
+public class In extends JSONOperator{
 	JSONStream inStream;
 
-	public IN(String name) throws JSONException, IOException {
+	public In(String name) throws JSONException, IOException {
 		super(name);
 		inStream = new JSONStream("localhost", 5050);	
 		setupBuffer();
+	}
+	
+	public In() throws JSONException, IOException {
+		this("In");
 	}
 	
 	
