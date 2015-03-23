@@ -62,64 +62,7 @@ public class MainUI extends UI {
 
 	@Override
 	protected void init(VaadinRequest request) {
-		//Navigator navigator = new Navigator(this,this);
-		//navigator.addView("main", BasicUsageView.class);
-		//getUI().getNavigator().navigateTo("main");
-		//setContent(new BasicUsageView());
-		//setContent(new BasicUsageView());
 		setContent(new MainLayout());
 	}
-
-
-	class ReaderRunnable implements Runnable {
-
-		public void run() {
-				try {
-					Thread.sleep(1000);
-					JSONStream stream = new JSONStream("localhost", 5050);
-					while (true){
-						for (JSONObject json : stream.read()) {
-							System.out.println(json);
-							//layout.addComponent(new Label(json.toString()));
-							//table.addItem(new String[]{"fd", "moo"});
-							//layout.addComponent(new Label(String.valueOf(json.getString("text"))));
-							Thread.sleep(10);
-							push();
-						}
-						//Thread.sleep(500);
-					}
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-
-		}
-	}
-
-	public void forEach(Consumer<? super Component> action) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	public Spliterator<Component> spliterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
-
 
 }
