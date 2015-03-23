@@ -31,7 +31,7 @@ public class StateLayout extends GridLayout{
 		operatorFactories.add(new UIFilterFactory());
 		operatorFactories.add(new UIFilterFactory());
 		operatorFactories.add(new UIFilterFactory());
-		operatorFactories.add(new UIINFactory());
+		//operatorFactories.add(new UIINFactory());
 		for (UIOperatorFactory uiOp : operatorFactories){
 			DragAndDropWrapper transferable = new DragAndDropWrapper(uiOp);
 			transferable.setSizeUndefined();
