@@ -17,10 +17,10 @@ public final class TwitterIN extends IN {
 	protected TwitterIN(String name) throws JSONException, IOException {
 		super(name);
 	}
-	
-	public static void main(String[] args) throws JSONException, IOException {
-		TwitterIN test = new TwitterIN("test");
-		System.out.println(test.read().toString());
-	}
+//	
+//	public static void main(String[] args) throws JSONException, IOException {
+//		TwitterIN test = new TwitterIN("test");
+//		System.out.println(test.read().toString());
+//	}
 
 }

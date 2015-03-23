@@ -18,7 +18,7 @@ import com.vaadin.ui.UI;
 public class IN extends JSONOperator{
 	JSONStream inStream;
 
-	protected IN(String name) throws JSONException, IOException {
+	public IN(String name) throws JSONException, IOException {
 		super(name);
 		inStream = new JSONStream("localhost", 5050);	
 		setupBuffer();
@@ -43,9 +43,9 @@ public class IN extends JSONOperator{
 		}
 	}
 	
-	public static void main(String[] args) throws Exception {
-		IN test = new IN("test");
-		test.process();
-	}
-	
+//	public static void main(String[] args) throws Exception {
+//		IN test = new IN("test");
+//		test.process();
+//	}
+//	
 }
