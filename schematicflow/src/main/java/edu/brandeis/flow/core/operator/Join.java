@@ -19,7 +19,7 @@ public final class Join extends JSONOperator {
 		super(name);
 	}
 	
-	public void setKey() {
+	public void setKey(String key) {
 		this.key = key;
 	}
 	public String getKey() {
