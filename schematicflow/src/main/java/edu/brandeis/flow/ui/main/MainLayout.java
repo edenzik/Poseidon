@@ -19,7 +19,6 @@ public class MainLayout extends HorizontalLayout {
 	public MainLayout(){
 		setSizeFull();
 		
-		Component inspector = new InspectorSidebar();
 		Component story = new StoryBoard(new InspectorCallback(this));
 		Component sidebar = new StateSidebar();
 		
