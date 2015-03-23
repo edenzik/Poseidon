@@ -33,7 +33,7 @@ public final class JSONStream{
 	}
 	
 	public Set<JSONObject> read() throws JSONException, IOException{
-		socket = new Socket("localhost", 5050);
+		socket = new Socket("localhost", port);
 		BufferedReader is = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		Set<JSONObject> result = new HashSet<JSONObject>();
 		String val;
