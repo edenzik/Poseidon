@@ -15,8 +15,8 @@ public final class Join extends JSONOperator {
 	/**
 	 * @param name
 	 */
-	public Join(String name) {
-		super(name);
+	public Join() {
+		super("Join");
 	}
 	
 	public void setKey(String key) {

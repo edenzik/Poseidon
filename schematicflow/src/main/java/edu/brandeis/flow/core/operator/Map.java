@@ -12,13 +12,10 @@ import org.json.JSONObject;
  * @author Yahui
  *
  */
-final class Map extends JSONOperator {
+public final class Map extends JSONOperator {
 	String key;
 	Function<Double, Double> func;
 
-	/* (non-Javadoc)
-	 * @see edu.brandeis.flow.core.operator.JSONOperator#process()
-	 */
 	/**
 	 * Constructor
 	 */
