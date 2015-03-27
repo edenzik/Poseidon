@@ -1,5 +1,8 @@
 package edu.brandeis.ui.storyboard;
 
+import java.io.IOException;
+
+import org.json.JSONException;
 import org.vaadin.visjs.networkDiagram.NetworkDiagram;
 import org.vaadin.visjs.networkDiagram.Node.NodeClickListener;
 import org.vaadin.visjs.networkDiagram.event.node.ClickEvent;
@@ -36,8 +39,10 @@ public class StoryBoard extends Panel {
 				return AcceptAll.get();
 			}
 			public void drop(DragAndDropEvent event) {
+				try {
 				UIOperatorFactory opF = (UIOperatorFactory) ((DragAndDropWrapper)event.getTransferable().getSourceComponent()).getData();
 				UIOperator op = opF.makeUIOperator();
+
 				
 				networkDiagram.addNode(op);
 				networkDiagram.addNodeClickListener(new NodeClickListener(op){
@@ -49,6 +54,10 @@ public class StoryBoard extends Panel {
 					}
 					
 				});
+				} catch (JSONException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 		});

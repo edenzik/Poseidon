@@ -14,7 +14,7 @@ import org.json.JSONException;
  */
 public final class TwitterIN extends In {
 
-	protected TwitterIN() throws JSONException, IOException {
+	public TwitterIN() throws JSONException, IOException {
 		super("TwitterIN");
 	}
 //	

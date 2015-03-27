@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="86px" height="81px" viewBox="0 0 86 81" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>f  + (x)</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="f--+-(x)" sketch:type="MSLayerGroup" transform="translate(6.000000, -21.000000)" font-style="italic" font-family="PT Serif Caption" fill="#000000" font-weight="normal">
+            <g sketch:type="MSTextLayer">
+                <text id="f-" font-size="83">
+                    <tspan x="0" y="84">f </tspan>
+                </text>
+                <text id="(x)" font-size="40">
+                    <tspan x="31" y="93">(x)</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

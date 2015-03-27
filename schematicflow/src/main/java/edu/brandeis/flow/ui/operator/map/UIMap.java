@@ -1,16 +1,16 @@
-package edu.brandeis.flow.ui.operator.join;
+package edu.brandeis.flow.ui.operator.map;
 
 import edu.brandeis.flow.core.operator.Filter;
 import edu.brandeis.flow.core.operator.JSONOperator;
-import edu.brandeis.flow.core.operator.Join;
+import edu.brandeis.flow.core.operator.Map;
 import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
 import edu.brandeis.flow.ui.operator.UIOperator;
 
-final class UIJoin extends UIOperator {
+final class UIMap extends UIOperator {
 
-	protected UIJoin() {
-		super(new Join());
-		setImage("./VAADIN/images/join.svg");
+	protected UIMap() {
+		super(new Map());
+		setImage("./VAADIN/images/map.svg");
 	}
 
 }

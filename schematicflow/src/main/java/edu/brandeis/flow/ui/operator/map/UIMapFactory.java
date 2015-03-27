@@ -1,19 +1,19 @@
-package edu.brandeis.flow.ui.operator.join;
+package edu.brandeis.flow.ui.operator.map;
 
 import com.vaadin.server.ThemeResource;
 
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
-public final class UIJoinFactory extends UIOperatorFactory {
+public final class UIMapFactory extends UIOperatorFactory {
 	
-	public UIJoinFactory(){
-		super("Join", "join.svg");
+	public UIMapFactory(){
+		super("Map", "map.svg");
 	}
 
 	@Override
 	public UIOperator makeUIOperator() {
-		return new UIJoin();
+		return new UIMap();
 	}
 
 }

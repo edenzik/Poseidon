@@ -20,7 +20,7 @@ public class UIOperatorNetworkDiagram extends NetworkDiagram {
 	private Set<NodeClickListener> oldListeners;
 
 	public UIOperatorNetworkDiagram() {
-		super(new Options());
+		super(new UIOperatorNetworkOptions());
 		nodes = new HashSet<UIOperator>();
 		oldListeners = new HashSet<NodeClickListener>();
 		currentListeners = new HashSet<NodeClickListener>();

@@ -1,13 +1,15 @@
-package edu.brandeis.flow.ui.operator;
+package edu.brandeis.flow.ui.operator.out;
 
 import edu.brandeis.flow.core.operator.Filter;
 import edu.brandeis.flow.core.operator.JSONOperator;
+import edu.brandeis.flow.core.operator.Map;
 import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
+import edu.brandeis.flow.ui.operator.UIOperator;
 
-final class UIFilter extends UIOperator {
+final class UIOut extends UIOperator {
 
-	protected UIFilter() {
-		super(new Filter());
+	protected UIOut() {
+		super(new Map());
 		setImage("./VAADIN/images/filter.svg");
 	}
 
