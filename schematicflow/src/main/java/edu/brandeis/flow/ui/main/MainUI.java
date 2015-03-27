@@ -2,6 +2,7 @@ package edu.brandeis.flow.ui.main;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Set;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
@@ -63,6 +64,41 @@ public class MainUI extends UI {
 	@Override
 	protected void init(VaadinRequest request) {
 		setContent(new MainLayout());
+		new JsonThread().start();
+	}
+	
+	class JsonThread extends Thread{
+		@Override
+		public void run(){
+			try{
+				while(true) {
+					Thread.sleep(1000);
+					access(new Runnable() {
+                        @Override
+                        public void run() {
+                            JSONStream inStream = null;
+							try {
+								inStream = new JSONStream("localhost", 5050);
+							} catch (MalformedURLException e) {
+								e.printStackTrace();
+							}
+                            Set<JSONObject> tmp = null;
+							try {
+								tmp = inStream.read();
+							} catch (JSONException | IOException e) {
+								e.printStackTrace();
+							}
+                    		for(JSONObject json : tmp) {
+                    			//send to buffer
+                    			System.out.println(json.toString());
+                    		}
+                        }
+                    });
+				}
+			}catch(Exception e){
+				
+			}
+		}
 	}
 
 }

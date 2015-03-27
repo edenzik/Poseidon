@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.flow.server.stream.JSONStream;
+import com.vaadin.annotations.Push;
 import com.vaadin.ui.UI;
 
 /**
@@ -15,6 +16,7 @@ import com.vaadin.ui.UI;
  * @author Yahui
  *
  */
+@Push
 public class In extends JSONOperator{
 	JSONStream inStream;
 
@@ -47,6 +49,40 @@ public class In extends JSONOperator{
 		}
 	}
 	
+//	class JsonThread extends Thread{
+//		@Override
+//		public void run(){
+//			try{
+//				while(true) {
+//					Thread.sleep(1000);
+//					UI.getCurrent().access(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            JSONStream inStream = null;
+//							try {
+//								inStream = new JSONStream("localhost", 5050);
+//							} catch (MalformedURLException e) {
+//								e.printStackTrace();
+//							}
+//                            Set<JSONObject> tmp = null;
+//							try {
+//								tmp = inStream.read();
+//							} catch (JSONException | IOException e) {
+//								e.printStackTrace();
+//							}
+//                    		for(JSONObject json : tmp) {
+//                    			//send to buffer
+//                    			System.out.println(json.toString());
+//                    		}
+//                        }
+//                    });
+//				}
+//			}catch(Exception e){
+//				
+//			}
+//		}
+//	}
+//	
 //	public static void main(String[] args) throws Exception {
 //		IN test = new IN("test");
 //		test.process();
