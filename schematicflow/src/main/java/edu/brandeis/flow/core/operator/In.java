@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.flow.server.stream.JSONStream;
+import com.flow.server.stream.JSONThread;
 import com.vaadin.annotations.Push;
 import com.vaadin.ui.UI;
 
@@ -18,74 +19,43 @@ import com.vaadin.ui.UI;
  */
 @Push
 public class In extends JSONOperator{
-	JSONStream inStream;
-
 	public In(String name) throws JSONException, IOException {
 		super(name);
-		inStream = new JSONStream("localhost", 5050);	
-		setupBuffer();
+		JSONThread thread = new JSONThread(this);
+		thread.start();
 	}
 	
 	public In() throws JSONException, IOException {
 		this("In");
 	}
-	
-	
-	public void setupBuffer() throws JSONException, IOException{
-		Set<JSONObject> tmp = inStream.read();
-		for(JSONObject json : tmp) {
-			receive(json);
-			//System.out.println(json.toString());
-		}
-
-	}
 
 	@Override
 	public void process() {
-		JSONObject top;
-		while((top = read())!= null){
-			//send(top);
-			System.out.println(top.toString());
+//		JSONObject top;
+//		while((top = read())!= null){
+//			//send(top);
+//			System.out.println(top.toString());
+//		}
+		while(true) {
+			JSONObject top;
+			if((top = read()) != null) {
+				//System.out.println("hahahahah" + top);
+				send(top);
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
+//	
+//
+//	
+	public static void main(String[] args) throws Exception {
+		In test = new In("test");
+		test.process();
+	}
 	
-//	class JsonThread extends Thread{
-//		@Override
-//		public void run(){
-//			try{
-//				while(true) {
-//					Thread.sleep(1000);
-//					UI.getCurrent().access(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            JSONStream inStream = null;
-//							try {
-//								inStream = new JSONStream("localhost", 5050);
-//							} catch (MalformedURLException e) {
-//								e.printStackTrace();
-//							}
-//                            Set<JSONObject> tmp = null;
-//							try {
-//								tmp = inStream.read();
-//							} catch (JSONException | IOException e) {
-//								e.printStackTrace();
-//							}
-//                    		for(JSONObject json : tmp) {
-//                    			//send to buffer
-//                    			System.out.println(json.toString());
-//                    		}
-//                        }
-//                    });
-//				}
-//			}catch(Exception e){
-//				
-//			}
-//		}
-//	}
-//	
-//	public static void main(String[] args) throws Exception {
-//		IN test = new IN("test");
-//		test.process();
-//	}
-//	
 }

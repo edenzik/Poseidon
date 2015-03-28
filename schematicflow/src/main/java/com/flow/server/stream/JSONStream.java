@@ -32,15 +32,18 @@ public final class JSONStream{
 		this.url = url;
 	}
 	
-	public Set<JSONObject> read() throws JSONException, IOException{
+	public JSONObject read() throws JSONException, IOException{
 		socket = new Socket("localhost", port);
 		BufferedReader is = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		Set<JSONObject> result = new HashSet<JSONObject>();
+//		Set<JSONObject> result = new HashSet<JSONObject>();
+//		String val;
+//		while ((val = is.readLine()) != null){
+//			result.add(new JSONObject(val));
+//		}
 		String val;
-		while ((val = is.readLine()) != null){
-			result.add(new JSONObject(val));
-		}
-		return result;
+		if((val = is.readLine()) != null) 
+			return new JSONObject(val);
+		return null;
 	}
 	
 }
