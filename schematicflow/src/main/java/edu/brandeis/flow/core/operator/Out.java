@@ -23,7 +23,7 @@ public final class Out extends JSONOperator {
 	 */
 	@Override
 	public void process() throws JSONException {
-		send(read());
+		System.out.println(read());
 	}
 
 }
