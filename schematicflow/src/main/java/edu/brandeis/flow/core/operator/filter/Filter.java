@@ -1,12 +1,14 @@
 /**
  * 
  */
-package edu.brandeis.flow.core.operator;
+package edu.brandeis.flow.core.operator.filter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.vaadin.ui.Image;
+
+import edu.brandeis.flow.core.operator.JSONOperator;
 
 /**
  * @author edenzik

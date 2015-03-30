@@ -1,9 +1,11 @@
 /**
  * 
  */
-package edu.brandeis.flow.core.operator;
+package edu.brandeis.flow.core.operator.out;
 
 import org.json.JSONException;
+
+import edu.brandeis.flow.core.operator.JSONOperator;
 
 /**
  * @author Yahui

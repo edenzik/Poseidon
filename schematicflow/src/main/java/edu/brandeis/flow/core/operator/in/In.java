@@ -1,4 +1,4 @@
-package edu.brandeis.flow.core.operator;
+package edu.brandeis.flow.core.operator.in;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.vaadin.annotations.Push;
 import com.vaadin.ui.UI;
 
+import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.server.stream.JSONStream;
 import edu.brandeis.flow.server.stream.JSONThread;
 

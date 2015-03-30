@@ -14,7 +14,6 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Table;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
-import edu.brandeis.flow.core.state.State;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 import edu.brandeis.flow.ui.operator.filter.UIFilterFactory;
 import edu.brandeis.flow.ui.operator.in.UIInFactory;
@@ -28,6 +27,7 @@ public class OperatorFactoryLayout extends GridLayout{
 	private final UIOperatorFactory uiOpFactories[] = new UIOperatorFactory[] {
 		new UIFilterFactory(),
 		new UIInFactory(),
+		new UIOutFactory(),
 		new UITwitterInFactory(),
 		new UIMapFactory(),
 		new UIJoinFactory()

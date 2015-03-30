@@ -1,12 +1,14 @@
 /**
  * 
  */
-package edu.brandeis.flow.core.operator;
+package edu.brandeis.flow.core.operator.in.twitter;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.json.JSONException;
+
+import edu.brandeis.flow.core.operator.in.In;
 
 /**
  * @author Yahui

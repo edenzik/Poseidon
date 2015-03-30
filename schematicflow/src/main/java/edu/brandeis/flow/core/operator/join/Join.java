@@ -1,10 +1,12 @@
 /**
  * 
  */
-package edu.brandeis.flow.core.operator;
+package edu.brandeis.flow.core.operator.join;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import edu.brandeis.flow.core.operator.JSONOperator;
 
 /**
  * @author Yahui
