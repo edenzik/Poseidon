@@ -4,7 +4,7 @@ import com.vaadin.ui.TabSheet;
 
 public class InspectorSidebar extends TabSheet {
 	public InspectorSidebar(){
-		this.addTab(new InspectorTabs("IO"), "IO");
-		this.addTab(new InspectorTabs("properties"), "Properties");
+//		this.addTab(new IOTab("IO"), "IO");
+//		this.addTab(new IOTab("properties"), "Properties");
 	}
 }
