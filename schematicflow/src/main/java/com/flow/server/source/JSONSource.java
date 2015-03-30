@@ -9,17 +9,17 @@ import com.flow.server.source.twitter.TwitterStreamSource;
 
 public class JSONSource {
 	public static void main(String[] args) throws Exception{
-		BufferedReader br = new BufferedReader(new FileReader("twitter_source.json"));
-		Streamer streamer = new Streamer(5050);
-		String json;
-		while ((json = br.readLine()) != null){
-			streamer.send(json);
-		}
-		
-		
-//		while(true) {
-//			TwitterStreamSource twitter = new TwitterStreamSource();
-//			Thread.sleep(1000);
+//		BufferedReader br = new BufferedReader(new FileReader("twitter_source.json"));
+//		Streamer streamer = new Streamer(5050);
+//		String json;
+//		while ((json = br.readLine()) != null){
+//			streamer.send(json);
 //		}
+		
+		
+		while(true) {
+			TwitterStreamSource twitter = new TwitterStreamSource();
+//			Thread.sleep(1000);
+		}
 	}
 }

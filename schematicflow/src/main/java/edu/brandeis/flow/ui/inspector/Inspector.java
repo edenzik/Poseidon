@@ -29,7 +29,9 @@ public abstract class Inspector extends VerticalLayout {
 		
 		String headName = nc.getOp().getOpName();
 		head = new InspectorHeader(headName);
-		tabsheet = new TabSheet();
+		head.setSizeFull();
+		tabsheet = new TabSheet();		
+		tabsheet.setSizeFull();
 		
 		iotab = new IOTab();
 		properties = new PropertyTab();
@@ -37,11 +39,14 @@ public abstract class Inspector extends VerticalLayout {
 		
 		
 		tabsheet.addTab(properties, "Properties");
-		tabsheet.addTab(iotab, "I/O");
+		tabsheet.addTab(iotab, "Live View");
 		tabsheet.addTab(connect, "Connect");
 		tabsheet.setSizeFull();
 		addComponent(head);
 		addComponent(tabsheet);
+		
+		//this.setExpandRatio(head, 0.2f);
+		//this.setExpandRatio(tabsheet, 0.8f);
 		
 
 	}
