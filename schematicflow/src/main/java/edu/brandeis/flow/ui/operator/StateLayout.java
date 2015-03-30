@@ -8,6 +8,7 @@ import com.flow.core.state.State;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DragAndDropWrapper;
+import com.vaadin.ui.Embedded;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.DragAndDropWrapper.DragStartMode;
 import com.vaadin.ui.Image;
@@ -22,25 +23,29 @@ import edu.brandeis.flow.ui.operator.map.UIMapFactory;
 import edu.brandeis.flow.ui.operator.out.UIOutFactory;
 
 public class StateLayout extends GridLayout{
+	private final int numCols = 3;
+	private final UIOperatorFactory uiOpFactories[] = new UIOperatorFactory[] {
+		new UIFilterFactory(),
+		new UIMapFactory(),
+		new UIInFactory(),
+		new UITwitterInFactory(),
+		new UIJoinFactory()
+	};
 
 	public StateLayout(){
 		setSizeFull();
 		setColumns(3);
 
-		Set<UIOperatorFactory> operatorFactories = new HashSet<UIOperatorFactory>();
-		operatorFactories.add(new UIFilterFactory());
-		operatorFactories.add(new UIMapFactory());
-		operatorFactories.add(new UIInFactory());
-		operatorFactories.add(new UITwitterInFactory());
-		operatorFactories.add(new UIJoinFactory());
-		operatorFactories.add(new UIOutFactory());
-		for (UIOperatorFactory uiOp : operatorFactories){
+		for (UIOperatorFactory uiOp : uiOpFactories){
+			uiOp.setWidth(this.getWidth()/3, this.getWidthUnits());
+			uiOp.setHeight(this.getHeight()/3, this.getHeightUnits());
 			DragAndDropWrapper transferable = new DragAndDropWrapper(uiOp);
 			transferable.setSizeUndefined();
 			transferable.setDragStartMode(DragStartMode.WRAPPER);
 			transferable.setData(uiOp);
 			addComponent(transferable);
 		}
+		
 		
 	}
 

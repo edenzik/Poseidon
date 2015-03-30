@@ -13,8 +13,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIIn extends UIOperator {
 
 	protected UIIn() throws JSONException, IOException {
-		super(new In());
-		setImage("./VAADIN/images/in.svg");
+		super(new In(), "in.svg");
 	}
 
 }

@@ -9,8 +9,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIMap extends UIOperator {
 
 	protected UIMap() {
-		super(new Map());
-		setImage("./VAADIN/images/map.svg");
+		super(new Map(), "map.svg");
 	}
 
 }

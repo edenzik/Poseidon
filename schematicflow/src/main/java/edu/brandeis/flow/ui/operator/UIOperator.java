@@ -15,8 +15,8 @@ public abstract class UIOperator extends Node{
 	private static Callback cb = null;
 	private Inspector inspector;
 
-	protected UIOperator(JSONOperator operator){
-		super(operator.hashCode(), operator.toString());
+	protected UIOperator(JSONOperator operator, String imageURI){
+		super(operator.hashCode(), operator.toString(), "./VAADIN/themes/valo/img/" + imageURI);
 		this.operator = operator;
 	}
 	

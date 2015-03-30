@@ -13,8 +13,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UITwitterIn extends UIOperator {
 
 	protected UITwitterIn() throws JSONException, IOException {
-		super(new TwitterIN());
-		setImage("./VAADIN/images/twitter.svg");
+		super(new TwitterIN(), "twitter.svg");
 	}
 
 }

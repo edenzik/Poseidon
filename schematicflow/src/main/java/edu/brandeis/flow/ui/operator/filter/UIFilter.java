@@ -8,9 +8,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIFilter extends UIOperator {
 
 	protected UIFilter() {
-		super(new Filter());
-		setImage("./VAADIN/images/filter.svg");
-		
+		super(new Filter(), "filter.svg");
 	}
 
 }

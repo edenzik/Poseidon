@@ -9,8 +9,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIJoin extends UIOperator {
 
 	protected UIJoin() {
-		super(new Join());
-		setImage("./VAADIN/images/join.svg");
+		super(new Join(), "join.svg");
 	}
 
 }
