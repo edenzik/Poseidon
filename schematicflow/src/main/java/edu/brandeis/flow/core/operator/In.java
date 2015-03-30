@@ -7,10 +7,11 @@ import java.util.Set;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.flow.server.stream.JSONStream;
-import com.flow.server.stream.JSONThread;
 import com.vaadin.annotations.Push;
 import com.vaadin.ui.UI;
+
+import edu.brandeis.flow.server.stream.JSONStream;
+import edu.brandeis.flow.server.stream.JSONThread;
 
 /**
  * 

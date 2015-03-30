@@ -1,12 +1,11 @@
-package com.flow.server.source.twitter;
+package edu.brandeis.flow.server.source.twitter;
 
 import java.io.IOException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.flow.server.source.Streamer;
-
+import edu.brandeis.flow.server.source.Streamer;
 import twitter4j.StallWarning;
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;

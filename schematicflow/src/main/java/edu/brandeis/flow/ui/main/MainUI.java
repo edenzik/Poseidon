@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.flow.server.stream.JSONStream;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -33,7 +32,8 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import edu.brandeis.flow.ui.operator.StateSidebar;
+import edu.brandeis.flow.server.stream.JSONStream;
+import edu.brandeis.flow.ui.sidebar.OperatorFactoryDescriptionSidebar;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

@@ -1,4 +1,4 @@
-package edu.brandeis.flow.ui.operator;
+package edu.brandeis.flow.ui.sidebar;
 
 import com.vaadin.data.Item;
 import com.vaadin.event.ItemClickEvent;
@@ -12,11 +12,11 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
 
-public class StateSidebar extends VerticalSplitPanel {
-	public StateSidebar(){
+public class OperatorFactoryDescriptionSidebar extends VerticalSplitPanel {
+	public OperatorFactoryDescriptionSidebar(){
 		
 		this.setLocked(true);
-		final StateLayout sl = new StateLayout();
+		final OperatorFactoryLayout sl = new OperatorFactoryLayout();
 		sl.setSizeFull();
 				
 		this.addComponent(sl);

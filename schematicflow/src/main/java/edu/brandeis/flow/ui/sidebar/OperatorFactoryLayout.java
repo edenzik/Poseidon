@@ -1,10 +1,9 @@
-package edu.brandeis.flow.ui.operator;
+package edu.brandeis.flow.ui.sidebar;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.flow.core.state.State;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.DragAndDropWrapper;
@@ -15,6 +14,8 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.Table;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
+import edu.brandeis.flow.core.state.State;
+import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 import edu.brandeis.flow.ui.operator.filter.UIFilterFactory;
 import edu.brandeis.flow.ui.operator.in.UIInFactory;
 import edu.brandeis.flow.ui.operator.in.twitter.UITwitterInFactory;
@@ -22,7 +23,7 @@ import edu.brandeis.flow.ui.operator.join.UIJoinFactory;
 import edu.brandeis.flow.ui.operator.map.UIMapFactory;
 import edu.brandeis.flow.ui.operator.out.UIOutFactory;
 
-public class StateLayout extends GridLayout{
+public class OperatorFactoryLayout extends GridLayout{
 	private final int numCols = 2;
 	private final UIOperatorFactory uiOpFactories[] = new UIOperatorFactory[] {
 		new UIFilterFactory(),
@@ -32,7 +33,7 @@ public class StateLayout extends GridLayout{
 		new UIJoinFactory()
 	};
 
-	public StateLayout(){
+	public OperatorFactoryLayout(){
 		setSizeFull();
 		setColumns(numCols);
 		this.setMargin(true);

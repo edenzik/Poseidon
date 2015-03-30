@@ -1,4 +1,4 @@
-package com.flow.server.test;
+package edu.brandeis.flow.server.test;
 
 
 import java.io.PrintWriter;

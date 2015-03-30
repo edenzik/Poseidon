@@ -1,4 +1,4 @@
-package com.flow.ui.workspace;
+package edu.brandeis.flow.ui.workspace;
 
 import com.vaadin.ui.AbsoluteLayout;
 

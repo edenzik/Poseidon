@@ -1,11 +1,11 @@
-package com.flow.server.source;
+package edu.brandeis.flow.server.source;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import com.flow.server.source.twitter.TwitterStreamSource;
+import edu.brandeis.flow.server.source.twitter.TwitterStreamSource;
 
 public class JSONSource {
 	public static void main(String[] args) throws Exception{

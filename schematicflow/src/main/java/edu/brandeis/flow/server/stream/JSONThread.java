@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.flow.server.stream;
+package edu.brandeis.flow.server.stream;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

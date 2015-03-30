@@ -9,8 +9,8 @@ import com.vaadin.ui.Layout;
 
 import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.flow.ui.inspector.InspectorSidebar;
-import edu.brandeis.flow.ui.operator.StateSidebar;
 import edu.brandeis.flow.ui.operator.UIOperator;
+import edu.brandeis.flow.ui.sidebar.OperatorFactoryDescriptionSidebar;
 import edu.brandeis.ui.storyboard.StoryBoard;
 
 public class MainLayout extends HorizontalLayout {
@@ -20,7 +20,7 @@ public class MainLayout extends HorizontalLayout {
 		setSizeFull();
 		
 		Component story = new StoryBoard(new InspectorCallback(this));
-		Component sidebar = new StateSidebar();
+		Component sidebar = new OperatorFactoryDescriptionSidebar();
 		
 		addComponent(sidebar);
 		this.setExpandRatio(sidebar, (float) 15.0);
