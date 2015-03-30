@@ -1,5 +1,6 @@
 package edu.brandeis.flow.ui.inspector;
 
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Accordion;
 import com.vaadin.ui.Alignment;
@@ -26,8 +27,8 @@ public abstract class Inspector extends VerticalLayout {
 		nc.setInspector(this);
 		setSizeFull();
 		
-	
-		head = new InspectorHeader();
+		String headName = nc.getOp().getOpName();
+		head = new InspectorHeader(headName);
 		tabsheet = new TabSheet();
 		
 		iotab = new IOTab();

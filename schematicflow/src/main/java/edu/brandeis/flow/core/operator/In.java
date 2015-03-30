@@ -39,12 +39,11 @@ public class In extends JSONOperator{
 		while(true) {
 			JSONObject top;
 			if((top = read()) != null) {
-				//System.out.println("hahahahah" + top);
-				send(top);
+				System.out.println(top);
+				//send(top);
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -53,9 +52,9 @@ public class In extends JSONOperator{
 //	
 //
 //	
-	public static void main(String[] args) throws Exception {
-		In test = new In("test");
-		test.process();
-	}
+//	public static void main(String[] args) throws Exception {
+//		In test = new In("test");
+//		test.process();
+//	}
 	
 }

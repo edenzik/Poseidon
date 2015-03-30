@@ -80,6 +80,9 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	@Override
 	public String toString() {return name;}
 	
+	public String getName() {
+		return this.name;
+	}
 	
 
 	

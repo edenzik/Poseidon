@@ -38,11 +38,23 @@ public abstract class UIOperator extends Node{
 		return "";
 		//return inspector.getName();
 	}
+	
+	public String getOpName() {
+		return operator.getName();
+	}
 
 
 	public String getDescription() {
 		return "";
 		//return inspector.getDesc();
+	}
+	
+	public JSONOperator getJSONOp(){
+		return this.operator;
+	}
+	
+	public void addNextOp(JSONOperator next) {
+		operator.addNext(next);
 	}
 	
 	public void clicked(InspectorCallback ic, UIOperatorNetworkDiagram nd){

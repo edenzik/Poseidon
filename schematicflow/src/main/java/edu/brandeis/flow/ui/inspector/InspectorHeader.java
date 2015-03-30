@@ -16,12 +16,12 @@ public class InspectorHeader extends VerticalLayout {
 	final TextField name;
 	final TextArea desc;
 	
-	public InspectorHeader () {
+	public InspectorHeader (String opName) {
 		name = new TextField("Name");
 		desc = new TextArea("Description");
 //		Button apply = new Button("Apply");
 		
-		Label title = new Label("<h2>Map</h2>");
+		Label title = new Label("<h2>" + opName + "</h2>");
 		title.setContentMode(ContentMode.HTML);
 	
 	

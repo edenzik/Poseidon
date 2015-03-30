@@ -17,6 +17,9 @@ public class JSONSource {
 		}
 		
 		
-		//TwitterStreamSource twitter = new TwitterStreamSource();
+//		while(true) {
+//			TwitterStreamSource twitter = new TwitterStreamSource();
+//			Thread.sleep(1000);
+//		}
 	}
 }

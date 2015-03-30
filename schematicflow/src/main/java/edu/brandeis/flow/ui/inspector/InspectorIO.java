@@ -59,7 +59,6 @@ final class InspectorIO extends VerticalLayout {
 							oldListeners.add(this);
 							nc.showInspector();
 							
-							
 						}
 					});
 				}

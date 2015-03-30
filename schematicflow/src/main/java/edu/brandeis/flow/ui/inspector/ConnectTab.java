@@ -53,6 +53,8 @@ public class ConnectTab extends VerticalLayout {
 							oldListeners.add(this);
 							nc.showInspector();
 							
+							//add op to the next operator of current operation
+							nc.getOp().addNextOp(op.getJSONOp());
 							
 						}
 					});
