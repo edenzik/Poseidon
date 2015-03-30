@@ -17,12 +17,17 @@ public class IOTab extends VerticalLayout {
 			in.setContent(new Label("Here prints the input stream"));
 			in.setHeight(8, Unit.CM);
 			
+//			//test
+//			Label test = new Label("xx");
+//			test.addListener(listener);
+					
 			Panel out = new Panel("Out Stream");
 			out.setContent(new Label("Here prints the output stream"));
 			out.setHeight(8, Unit.CM);
 			
 			this.addComponent(in);
 			this.addComponent(out);
+			
 		
 	}
 //	private final Button propertiesButton;

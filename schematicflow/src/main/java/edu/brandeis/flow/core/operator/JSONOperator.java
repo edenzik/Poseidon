@@ -84,6 +84,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 		return this.name;
 	}
 	
+	public JSONObject peak() {return buffer.peek();}
 
 	
 }

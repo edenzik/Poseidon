@@ -36,25 +36,27 @@ public class In extends JSONOperator{
 //			//send(top);
 //			System.out.println(top.toString());
 //		}
+		int count = 0;
 		while(true) {
 			JSONObject top;
 			if((top = read()) != null) {
 				System.out.println(top);
 				//send(top);
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				
 			}
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 		}
 	}
 //	
 //
 //	
-//	public static void main(String[] args) throws Exception {
-//		In test = new In("test");
-//		test.process();
-//	}
+	public static void main(String[] args) throws Exception {
+		In test = new In("test");
+		test.process();
+	}
 	
 }
