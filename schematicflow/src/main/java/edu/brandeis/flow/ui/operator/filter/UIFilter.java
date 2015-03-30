@@ -10,6 +10,7 @@ final class UIFilter extends UIOperator {
 	protected UIFilter() {
 		super(new Filter());
 		setImage("./VAADIN/images/filter.svg");
+		
 	}
 
 }

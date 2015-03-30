@@ -10,6 +10,7 @@ public final class UIFilterFactory extends UIOperatorFactory {
 	
 	public UIFilterFactory(){
 		super("Filter", "filter.svg");
+		
 	}
 
 	@Override

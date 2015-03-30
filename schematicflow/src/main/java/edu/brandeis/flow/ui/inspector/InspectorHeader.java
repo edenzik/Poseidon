@@ -25,9 +25,11 @@ public class InspectorHeader extends VerticalLayout {
 		title.setContentMode(ContentMode.HTML);
 	
 	
-		Image image = new Image(null, new ThemeResource("../runo/icons/64/arrow-down.png"));
+		Image image = new Image(null, new ThemeResource("../images/" + opName+ ".svg"));
 		name.setWidth("95%");
 		desc.setWidth("95%");
+		image.setWidth("20%");
+		image.setHeight("20%");
 		
 //		apply.setWidth("95%");
 		
