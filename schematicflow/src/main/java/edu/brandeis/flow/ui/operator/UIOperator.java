@@ -1,16 +1,6 @@
 package edu.brandeis.flow.ui.operator;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.vaadin.visjs.networkDiagram.NetworkDiagram;
 import org.vaadin.visjs.networkDiagram.Node;
-import org.vaadin.visjs.networkDiagram.Node.NodeClickListener;
-import org.vaadin.visjs.networkDiagram.event.node.ClickEvent;
-
-import com.vaadin.ui.Component.Listener;
-import com.vaadin.ui.HorizontalLayout;
-
 import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.ui.callback.Callback;
 import edu.brandeis.flow.ui.inspector.Inspector;
@@ -36,7 +26,6 @@ public abstract class UIOperator extends Node{
 
 	protected String getName() {
 		return "";
-		//return inspector.getName();
 	}
 	
 	public String getOpName() {

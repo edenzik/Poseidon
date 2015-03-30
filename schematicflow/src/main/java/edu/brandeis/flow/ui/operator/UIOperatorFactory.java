@@ -12,9 +12,7 @@ import com.vaadin.ui.Label;
 
 public abstract class UIOperatorFactory extends Image{
 	public UIOperatorFactory(String string, String image) {
-		super(string, new ThemeResource("../images/"+image));
-		System.out.println(VaadinService.getCurrent().getBaseDirectory());
-		
+		super(string, new ThemeResource("img/"+image));
 	}
 
 	public abstract UIOperator makeUIOperator() throws JSONException, IOException;
