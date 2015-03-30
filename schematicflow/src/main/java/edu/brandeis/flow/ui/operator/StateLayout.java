@@ -23,19 +23,19 @@ import edu.brandeis.flow.ui.operator.map.UIMapFactory;
 import edu.brandeis.flow.ui.operator.out.UIOutFactory;
 
 public class StateLayout extends GridLayout{
-	private final int numCols = 3;
+	private final int numCols = 2;
 	private final UIOperatorFactory uiOpFactories[] = new UIOperatorFactory[] {
 		new UIFilterFactory(),
-		new UIMapFactory(),
 		new UIInFactory(),
 		new UITwitterInFactory(),
+		new UIMapFactory(),
 		new UIJoinFactory()
 	};
 
 	public StateLayout(){
 		setSizeFull();
-		setColumns(3);
-
+		setColumns(numCols);
+		this.setMargin(true);
 		for (UIOperatorFactory uiOp : uiOpFactories){
 			uiOp.setWidth(this.getWidth()/3, this.getWidthUnits());
 			uiOp.setHeight(this.getHeight()/3, this.getHeightUnits());

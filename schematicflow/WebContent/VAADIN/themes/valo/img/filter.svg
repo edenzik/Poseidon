@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="96px" height="103px" viewBox="0 0 350 350" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" preserveAspectRatio="x200Y200 meet">
+<svg width="58px" height="72px" viewBox="0 0 58 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
-    <title>filter-3-icon</title>
+    <title>filter</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage" transform="scale(.50)">
-        <path d="M191.180968,24.383 C200.81454,3.685 122.821403,0 95.9945705,0 C70.3866394,0 -8.82539899,3.685 0.807672288,24.383 C5.24176839,33.9105 78.7382378,135.2475 78.7382378,135.2475 L78.7382378,180.273 L113.910661,206 L113.910661,135.247 C113.910661,135.247 186.746372,33.91 191.180968,24.383 L191.180968,24.383 Z M95.9945705,12.664 C137.147367,12.664 174.970337,18.1455 174.970337,24.3585 C174.970337,30.5715 137.147367,35.607 95.9945705,35.607 C54.8417736,35.607 18.010944,30.5715 18.010944,24.3585 C18.010944,18.1455 54.8417736,12.664 95.9945705,12.664 L95.9945705,12.664 Z" id="filter-3-icon" fill="#000000" sketch:type="MSShapeGroup"></path>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="filter" sketch:type="MSLayerGroup" fill="#000000">
+            <g id="Page-1" sketch:type="MSShapeGroup">
+                <g id="filter">
+                    <g id="Page-1">
+                        <path d="M57.752584,8.52221359 C60.6627256,1.28796117 37.1022988,0 28.9983599,0 C21.2626306,0 -2.66600595,1.28796117 0.243984337,8.52221359 C1.58345087,11.8522136 23.7855093,47.2709709 23.7855093,47.2709709 L23.7855093,63.0080388 L34.4105122,72 L34.4105122,47.270796 C34.4105122,47.270796 56.4129666,11.8520388 57.752584,8.52221359 L57.752584,8.52221359 L57.752584,8.52221359 Z M28.9983599,4.42625243 C41.4299337,4.42625243 52.8556226,6.3421165 52.8556226,8.51365048 C52.8556226,10.6851845 41.4299337,12.4451651 28.9983599,12.4451651 C16.5667858,12.4451651 5.440806,10.6851845 5.440806,8.51365048 C5.440806,6.3421165 16.5667858,4.42625243 28.9983599,4.42625243 L28.9983599,4.42625243 L28.9983599,4.42625243 Z" id="filter-3-icon"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
     </g>
 </svg>
