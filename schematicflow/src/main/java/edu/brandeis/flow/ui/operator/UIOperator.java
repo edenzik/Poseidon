@@ -27,10 +27,7 @@ public abstract class UIOperator extends Node{
 	protected UIOperator(JSONOperator operator, String imageURI){
 		super(operator.hashCode(), "Unamed " + operator.toString(), "./VAADIN/themes/valo/img/" + imageURI);
 		this.operator = operator;
-		this.name = "hello";
-		this.description = "some";
 		this.nextOperators = new HashSet<UIOperator>();
-		this.nextOperators.add(this);
 	}
 
 
@@ -40,11 +37,11 @@ public abstract class UIOperator extends Node{
 	}
 
 	protected String getName() {
-		return name;
+		return inspector.getName();
 	}
 	
 	protected String getDescription(){
-		return description;
+		return inspector.getDescription();
 	}
 	
 	protected void setName(String name){
@@ -71,12 +68,13 @@ public abstract class UIOperator extends Node{
 	}
 	
 	public void addNextOp(UIOperator next){
+		nextOperators.add(this);
 		if (nextOperators.contains(next)) return;
 		nextOperators.add(next);
 		Edge n = new Edge(this.getId(), next.getId(), Edge.Style.arrow);
 		ic.network.addEdge(n);
 		inspector.getTable().addOperator(next);
-		//addNextOp(next.operator);
+		addNextOp(next.operator);
 	}
 	
 	public void clicked(UIOperatorNetworkDiagram nd){

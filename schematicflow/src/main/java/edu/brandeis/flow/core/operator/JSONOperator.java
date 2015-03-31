@@ -5,6 +5,7 @@ package edu.brandeis.flow.core.operator;
  * It should be extended by all operators that process JSON object. 
  */
 
+import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -25,7 +26,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	protected JSONOperator(String name){
 		this.buffer = new ConcurrentLinkedQueue<JSONObject>();
-		this.next = null;
+		this.next = new HashSet<Operator<JSONObject>>();
 		this.name = name;
 	}
 	
@@ -80,11 +81,9 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	@Override
 	public String toString() {return name;}
 	
-	public String getName() {
-		return this.name;
-	}
+	public String getName() {return this.name;}
 	
-	public JSONObject peak() {return buffer.peek();}
+	public JSONObject peek() {return buffer.peek();}
 
 	
 }
