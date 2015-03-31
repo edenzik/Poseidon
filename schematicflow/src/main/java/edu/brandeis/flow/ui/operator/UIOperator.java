@@ -1,6 +1,7 @@
 package edu.brandeis.flow.ui.operator;
 
 import org.vaadin.visjs.networkDiagram.Node;
+
 import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.ui.callback.Callback;
 import edu.brandeis.flow.ui.inspector.Inspector;
@@ -21,8 +22,11 @@ public abstract class UIOperator extends Node{
 		this.operator = operator;
 		this.name = "";
 		this.description = "";
+		//inspector.setOperator(this);
 	}
-	
+
+
+
 	protected String getType(){
 		return operator.toString();
 	}
@@ -40,7 +44,7 @@ public abstract class UIOperator extends Node{
 		this.setLabel(name);
 	}
 	
-	protected void setDescription(String descrption){
+	protected void setDescription(String description){
 		this.description = description;
 	}
 	
@@ -59,10 +63,11 @@ public abstract class UIOperator extends Node{
 	}
 	
 	public void clicked(UIOperatorNetworkDiagram nd){
-		if (inspector == null) inspector = new FilterInspector(new NetworkCallback(ic, nd, this));
+		if (inspector==null) inspector = makeInspector();
 		ic.setInspector(inspector);
-		
 	}
+	
+	protected abstract Inspector makeInspector();
 	
 	public class NetworkCallback{
 		final InspectorCallback ic;

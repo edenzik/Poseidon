@@ -9,6 +9,8 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
+
 public class IOTab extends VerticalLayout {
 	
 	public IOTab() {

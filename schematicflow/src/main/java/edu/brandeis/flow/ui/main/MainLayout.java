@@ -19,6 +19,7 @@ public class MainLayout extends HorizontalLayout {
 	public MainLayout(){
 		setSizeFull();
 		UIOperator.ic = new InspectorCallback(this);
+		
 		Component story = new StoryBoard();
 		Component sidebar = new OperatorFactoryDescriptionSidebar();
 		

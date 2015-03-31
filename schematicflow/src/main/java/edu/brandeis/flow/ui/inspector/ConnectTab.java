@@ -20,7 +20,7 @@ import edu.brandeis.flow.ui.operator.UIOperator.NetworkCallback;
 
 public class ConnectTab extends VerticalLayout {
 	private final UIOperatorTable table;
-	public ConnectTab (NetworkCallback nc){
+	public ConnectTab (){
 		this.table = new UIOperatorTable();
 		Label label = new Label();
 		Button add = new Button("Add output");
@@ -34,9 +34,9 @@ public class ConnectTab extends VerticalLayout {
 		table.setHeight(8, Unit.CM);
 		table.setWidth(5, Unit.CM);
 		this.setSpacing(true);
-		
+		/**
 		add.addClickListener(new Button.ClickListener() {
-			
+		
 			@Override
 			public void buttonClick(ClickEvent event) {
 				Notification.show("Click on a node to connect");
@@ -78,6 +78,8 @@ public class ConnectTab extends VerticalLayout {
 			
 			}
 		});
+		*/
+		
 		
 	}
 	
