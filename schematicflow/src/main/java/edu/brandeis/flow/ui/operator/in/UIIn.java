@@ -12,7 +12,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIIn extends UIOperator {
 
 	protected UIIn() throws JSONException, IOException {
-		super(new In(), "in.svg");
+		super(new In("null"), "in.svg");
 	}
 
 	@Override

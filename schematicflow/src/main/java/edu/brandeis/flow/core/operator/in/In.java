@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import com.vaadin.annotations.Push;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
+import edu.brandeis.flow.server.source.JSONSource;
 import edu.brandeis.flow.server.stream.JSONThread;
 
 /**
@@ -17,14 +18,21 @@ import edu.brandeis.flow.server.stream.JSONThread;
  */
 @Push
 public class In extends JSONOperator {
-	public In(String name) throws JSONException, IOException {
+	String source = "";
+	public In(String name, String sr) throws JSONException, IOException {
 		super(name);
+		//feed JSON from its source(e.g. twitter/url) to server
+		source = sr;
+		new Thread(new JSONSource(source)).start();
+		
+		//feed JSON from server to In
 		JSONThread thread = new JSONThread(this);
 		thread.start();
 	}
+	
 
-	public In() throws JSONException, IOException {
-		this("In");
+	public In(String sr) throws JSONException, IOException {
+		this("In", sr);
 	}
 
 	@Override
@@ -33,12 +41,16 @@ public class In extends JSONOperator {
 		while (true) {
 			JSONObject top;
 			if ((top = read()) != null) {
-				// System.out.println(top);
+				System.out.println("IN:::" + top);
 				send(top);
 
 			}
 
 		}
+	}
+	
+	protected void setSource(String s) {
+		this.source = s;
 	}
 
 	// public static void main(String[] args) throws Exception {

@@ -6,6 +6,7 @@ package edu.brandeis.flow.server.stream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.Socket;
 
@@ -27,14 +28,21 @@ public final class JSONStream {
 	}
 
 	public JSONObject read() throws JSONException, IOException {
-		socket = new Socket("localhost", port);
-		BufferedReader is = new BufferedReader(new InputStreamReader(
-				socket.getInputStream()));
+		
+		try {
+			socket = new Socket("localhost", port);
+			BufferedReader is = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()));
 
-		String val;
-		if ((val = is.readLine()) != null)
-			return new JSONObject(val);
+			String val;
+			if ((val = is.readLine()) != null)
+				return new JSONObject(val);
+			
+		}catch (ConnectException e) {
+			
+		}
 		return null;
+		
 	}
 
 }

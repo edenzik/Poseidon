@@ -7,6 +7,7 @@ import org.json.JSONException;
 import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.core.operator.filter.Filter;
 import edu.brandeis.flow.core.operator.in.In;
+import edu.brandeis.flow.core.operator.in.twitter.TwitterIN;
 import edu.brandeis.flow.core.operator.join.Join;
 import edu.brandeis.flow.core.operator.map.Map;
 import edu.brandeis.flow.core.operator.out.Out;
@@ -14,7 +15,7 @@ import edu.brandeis.flow.core.operator.out.Out;
 public class OperatorDemo {
 
 		public OperatorDemo() throws JSONException, IOException {
-			In in = new In();
+			TwitterIN in = new TwitterIN();
 			Out out = new Out();
 			Filter filter = new Filter();
 			Map map = new Map();
