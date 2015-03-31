@@ -2,6 +2,7 @@ package edu.brandeis.flow.ui.inspector;
 
 import com.vaadin.server.Resource;
 import com.vaadin.server.ThemeResource;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -19,31 +20,29 @@ public class InspectorHeader extends VerticalLayout {
 	
 	public InspectorHeader (String opName) {
 		name = new TextField("Name");
+		
 		desc = new TextArea("Description");
 //		Button apply = new Button("Apply");
 		
 		Label title = new Label("<h2>" + opName + "</h2>");
+		title.setHeight("10%");
 		title.setContentMode(ContentMode.HTML);
-		title.setSizeUndefined();
-
-	
+		
+		
+		//title.setSizeUndefined();
+		this.setSpacing(false);
 	
 //		Image image = new Image(null, new ThemeResource("../images/" + opName+ ".svg"));
 		name.setWidth("95%");
 		desc.setWidth("95%");
-//		desc.setHeight("75%");
+		desc.setHeight("150%");
 		
-//		image.setWidth("20%");
-//		image.setHeight("10%");
-		
-
-		
+		this.getMargin().setMargins(true, true, false, true);
 		addComponent(title);
 //		addComponent(image);
 		addComponent(name);
 		addComponent(desc);
-
-	
+		this.setComponentAlignment(title, Alignment.TOP_CENTER);
 		
 //		setComponentAlignment(title, Alignment.TOP_CENTER);
 //		setComponentAlignment(image, Alignment.TOP_LEFT);

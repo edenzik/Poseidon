@@ -47,11 +47,13 @@ public abstract class Inspector extends VerticalSplitPanel {
 		tabsheet.addTab(iotab, "Live View");
 		tabsheet.addTab(connect, "Connect");
 		tabsheet.setSizeFull();
-		head.setHeight("100%");
+		head.setHeight("90%");
+		head.setMargin(true);
 		addComponent(head);
-		addComponent(tabsheet);
 		
-		this.setSplitPosition(40, Sizeable.UNITS_PERCENTAGE);
+		addComponent(tabsheet);
+		this.setSplitPosition(40, Unit.PERCENTAGE);
+		
 		this.setLocked(true);
 //		setComponentAlignment(head, Alignment.TOP_CENTER);
 //		setComponentAlignment(tabsheet, Alignment.TOP_CENTER);
