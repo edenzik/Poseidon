@@ -6,6 +6,7 @@ import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.event.LayoutEvents.LayoutClickEvent;
 import com.vaadin.event.LayoutEvents.LayoutClickListener;
 import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
@@ -24,20 +25,23 @@ public class OperatorFactoryDescriptionSidebar extends VerticalSplitPanel {
 		final OperatorFactoryLayout sl = new OperatorFactoryLayout();
 		sl.setSizeFull();
 				
-		this.addComponent(sl);
+		this.setFirstComponent(sl);
 		//description
 		final Panel desc = new Panel("DESCRIPTION");
 		desc.setContent(label);
-		desc.setHeight(100, Unit.PERCENTAGE);
-		this.addComponent(desc);
+		desc.setHeight("100%");
+	
+		
+		this.setSecondComponent(desc);
+		this.setSplitPosition(70, Unit.PERCENTAGE);
 		
 		sl.addListener(new LayoutClickListener() {
 
 			@Override
 			public void layoutClick(LayoutClickEvent event) {
 				UIOperatorFactory child = (UIOperatorFactory) event.getClickedComponent();
-				
-				switch (child.getType()) {
+				try {
+				switch (child.getType())  {
 					case "In": label.setValue("The In operator forwards an incoming stream to other operators");
 					break;
 					
@@ -56,7 +60,11 @@ public class OperatorFactoryDescriptionSidebar extends VerticalSplitPanel {
 					case "Join": label.setValue("The Join operator joins multiple streams into one based on a predicate.");
 					break;
 					
+				
 				}
+				} catch (NullPointerException npe){
+		            System.out.println("Null");
+		        }
 			}
 			
 		});
