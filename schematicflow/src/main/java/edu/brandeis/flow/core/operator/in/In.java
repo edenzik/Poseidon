@@ -23,8 +23,6 @@ import edu.brandeis.flow.server.stream.JSONThread;
 public class In extends JSONOperator{
 	public In(String name) throws JSONException, IOException {
 		super(name);
-		JSONThread thread = new JSONThread(this);
-		thread.start();
 	}
 	
 	public In() throws JSONException, IOException {
@@ -33,32 +31,8 @@ public class In extends JSONOperator{
 
 	@Override
 	public void process() {
-//		JSONObject top;
-//		while((top = read())!= null){
-//			//send(top);
-//			System.out.println(top.toString());
-//		}
-		int count = 0;
-		while(true) {
-			JSONObject top;
-			if((top = read()) != null) {
-				System.out.println(top);
-				//send(top);
-				
-			}
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-		}
+		
 	}
-//	
-//
-//	
-	public static void main(String[] args) throws Exception {
-		In test = new In("test");
-		test.process();
-	}
+
 	
 }
