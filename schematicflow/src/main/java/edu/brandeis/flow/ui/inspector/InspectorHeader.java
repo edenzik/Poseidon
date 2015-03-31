@@ -11,6 +11,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.VerticalSplitPanel;
 
 public class InspectorHeader extends VerticalLayout {
 	final TextField name;
@@ -23,30 +24,34 @@ public class InspectorHeader extends VerticalLayout {
 		
 		Label title = new Label("<h2>" + opName + "</h2>");
 		title.setContentMode(ContentMode.HTML);
+		title.setSizeUndefined();
+
 	
 	
-		Image image = new Image(null, new ThemeResource("../images/" + opName+ ".svg"));
+//		Image image = new Image(null, new ThemeResource("../images/" + opName+ ".svg"));
 		name.setWidth("95%");
 		desc.setWidth("95%");
-		image.setWidth("20%");
-		image.setHeight("20%");
+//		desc.setHeight("75%");
 		
-//		apply.setWidth("95%");
+//		image.setWidth("20%");
+//		image.setHeight("10%");
+		
+
 		
 		addComponent(title);
-		addComponent(image);
+//		addComponent(image);
 		addComponent(name);
 		addComponent(desc);
-//		addComponent(apply);
+
 	
 		
-		setComponentAlignment(title, Alignment.TOP_CENTER);
-		setComponentAlignment(image, Alignment.TOP_LEFT);
-		setComponentAlignment(name, Alignment.TOP_CENTER);
-		setComponentAlignment(desc, Alignment.TOP_CENTER);
-//		setComponentAlignment(apply, Alignment.MIDDLE_CENTER);
-		this.setSpacing(true);
+//		setComponentAlignment(title, Alignment.TOP_CENTER);
+//		setComponentAlignment(image, Alignment.TOP_LEFT);
+//		setComponentAlignment(name, Alignment.MIDDLE_CENTER);
+//		setComponentAlignment(desc, Alignment.BOTTOM_CENTER);
+//		this.setSpacing(true);
 		
 		
 	}
 }
+
