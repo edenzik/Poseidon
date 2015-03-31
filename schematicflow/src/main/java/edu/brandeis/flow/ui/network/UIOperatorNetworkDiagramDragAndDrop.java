@@ -3,7 +3,9 @@ package edu.brandeis.flow.ui.network;
 import java.io.IOException;
 
 import org.json.JSONException;
+import org.vaadin.visjs.networkDiagram.Node.NodeBlurListener;
 import org.vaadin.visjs.networkDiagram.Node.NodeClickListener;
+import org.vaadin.visjs.networkDiagram.event.node.BlurEvent;
 import org.vaadin.visjs.networkDiagram.event.node.ClickEvent;
 
 import com.vaadin.event.dd.DragAndDropEvent;

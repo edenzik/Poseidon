@@ -12,6 +12,7 @@ import edu.brandeis.flow.ui.inspector.InspectorSidebar;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.sidebar.OperatorFactoryDescriptionSidebar;
 import edu.brandeis.ui.storyboard.StoryBoard;
+import edu.brandeis.flow.ui.network.*;
 
 public class MainLayout extends HorizontalLayout {
 	private static final long serialVersionUID = 3402991554451061045L;
@@ -34,6 +35,7 @@ public class MainLayout extends HorizontalLayout {
 	
 	public class InspectorCallback{
 		Inspector inspector = null;
+		public UIOperatorNetworkDiagram network = null;
 		boolean enabled = true;
 		final HorizontalLayout layout;
 		
