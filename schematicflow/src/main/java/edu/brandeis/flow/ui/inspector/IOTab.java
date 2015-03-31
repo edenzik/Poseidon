@@ -15,18 +15,19 @@ public class IOTab extends VerticalLayout {
 
 			Panel in = new Panel("In Stream");
 			in.setContent(new Label("Here prints the input stream"));
-			in.setHeight(8, Unit.CM);
-			
+			in.setHeight(10, Unit.CM);
+			//in.setSizeFull();
 //			//test
 //			Label test = new Label("xx");
 //			test.addListener(listener);
 					
 			Panel out = new Panel("Out Stream");
 			out.setContent(new Label("Here prints the output stream"));
-			out.setHeight(8, Unit.CM);
+			//out.setHeight(8, Unit.CM);
+			//out.setSizeFull();
 			
 			this.addComponent(in);
-			this.addComponent(out);
+			//this.addComponent(out);
 			
 		
 	}
