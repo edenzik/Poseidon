@@ -18,8 +18,8 @@ public class MainLayout extends HorizontalLayout {
 
 	public MainLayout(){
 		setSizeFull();
-		
-		Component story = new StoryBoard(new InspectorCallback(this));
+		UIOperator.ic = new InspectorCallback(this);
+		Component story = new StoryBoard();
 		Component sidebar = new OperatorFactoryDescriptionSidebar();
 		
 		addComponent(sidebar);
@@ -33,10 +33,12 @@ public class MainLayout extends HorizontalLayout {
 	
 	public class InspectorCallback{
 		Inspector inspector = null;
+		boolean enabled = true;
 		final HorizontalLayout layout;
 		
 		InspectorCallback(HorizontalLayout layout){this.layout = layout;}
 		public void setInspector(Inspector inspector){
+			if (!enabled) return;
 			if (this.inspector!=null) layout.removeComponent(this.inspector);
 			this.inspector = inspector;
 			layout.addComponent(inspector);

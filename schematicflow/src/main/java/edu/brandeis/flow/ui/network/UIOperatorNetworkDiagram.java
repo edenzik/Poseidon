@@ -21,6 +21,7 @@ public class UIOperatorNetworkDiagram extends NetworkDiagram {
 
 	public UIOperatorNetworkDiagram() {
 		super(new UIOperatorNetworkOptions());
+		setSizeFull();
 		nodes = new HashSet<UIOperator>();
 		oldListeners = new HashSet<NodeClickListener>();
 		currentListeners = new HashSet<NodeClickListener>();

@@ -10,14 +10,17 @@ import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 
 
 public abstract class UIOperator extends Node{
+	public static InspectorCallback ic;
 	private final JSONOperator operator;
-	private static boolean toggle = true;
-	private static Callback cb = null;
 	private Inspector inspector;
+	private String name;
+	private String description;
 
 	protected UIOperator(JSONOperator operator, String imageURI){
-		super(operator.hashCode(), operator.toString(), "./VAADIN/themes/valo/img/" + imageURI);
+		super(operator.hashCode(), "Unamed " + operator.toString(), "./VAADIN/themes/valo/img/" + imageURI);
 		this.operator = operator;
+		this.name = "";
+		this.description = "";
 	}
 	
 	protected String getType(){
@@ -25,19 +28,28 @@ public abstract class UIOperator extends Node{
 	}
 
 	protected String getName() {
-		return "";
+		return name;
 	}
+	
+	protected String getDescription(){
+		return description;
+	}
+	
+	protected void setName(String name){
+		this.name = name;
+		this.setLabel(name);
+	}
+	
+	protected void setDescription(String descrption){
+		this.description = description;
+	}
+	
 	
 	public String getOpName() {
 		return operator.getName();
 	}
 
 
-	public String getDescription() {
-		return "";
-		//return inspector.getDesc();
-	}
-	
 	public JSONOperator getJSONOp(){
 		return this.operator;
 	}
@@ -46,7 +58,7 @@ public abstract class UIOperator extends Node{
 		operator.addNext(next);
 	}
 	
-	public void clicked(InspectorCallback ic, UIOperatorNetworkDiagram nd){
+	public void clicked(UIOperatorNetworkDiagram nd){
 		if (inspector == null) inspector = new FilterInspector(new NetworkCallback(ic, nd, this));
 		ic.setInspector(inspector);
 		
