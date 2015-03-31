@@ -19,7 +19,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperator.NetworkCallback;
 
 public class ConnectTab extends VerticalLayout {
-	private final UIOperatorTable table;
+	public final UIOperatorTable table;
 	public ConnectTab (){
 		this.table = new UIOperatorTable();
 		Label label = new Label();
@@ -34,51 +34,14 @@ public class ConnectTab extends VerticalLayout {
 		table.setHeight(8, Unit.CM);
 		table.setWidth(5, Unit.CM);
 		this.setSpacing(true);
-		/**
-		add.addClickListener(new Button.ClickListener() {
-		
+		add.addClickListener(new Button.ClickListener(){
+
 			@Override
 			public void buttonClick(ClickEvent event) {
-				Notification.show("Click on a node to connect");
-				final Set<NodeClickListener> oldListeners = new HashSet<NodeClickListener>();
-				for (UIOperator op : nc.getNetwork().nodes){
-					nc.getNetwork().addNodeClickListener(new NodeClickListener(op){
-
-						@Override
-						public void onFired(
-								org.vaadin.visjs.networkDiagram.event.node.ClickEvent arg0) {
-							table.addOperator(op);
-							Edge n = new Edge(nc.getOp().getId(), op.getId(), Edge.Style.arrow);
-							nc.getNetwork().addEdge(n);
-							oldListeners.add(this);
-							nc.showInspector();
-							
-							//add op to the next operator of current operation
-							nc.getOp().addNextOp(op.getJSONOp());
-							
-						}
-					});
-				}
-				nc.getNetwork().drawConnections();
-				add.removeClickListener(this);
-				add.setCaption("Stop adding");
-				add.addClickListener(new ClickListener(){
-
-					@Override
-					public void buttonClick(ClickEvent event) {
-						for (NodeClickListener li : oldListeners){
-							nc.getNetwork().removeNodeClickListeners(li);
-							add.setCaption("Add output");
-							add.removeClickListener(this);
-						}
-						
-					}
-					
-				});
-			
+				UIOperator.connectMode = true;
 			}
+			
 		});
-		*/
 		
 		
 	}

@@ -1,5 +1,9 @@
 package edu.brandeis.flow.ui.operator;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.vaadin.visjs.networkDiagram.Edge;
 import org.vaadin.visjs.networkDiagram.Node;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
@@ -12,7 +16,9 @@ import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 
 public abstract class UIOperator extends Node{
 	public static InspectorCallback ic;
-	public static UIOperator fromNode = null;
+	private final Set<UIOperator> nextOperators;
+	public static UIOperator selectedNode;
+	public static boolean connectMode = false;
 	private final JSONOperator operator;
 	private Inspector inspector;
 	private String name;
@@ -21,9 +27,10 @@ public abstract class UIOperator extends Node{
 	protected UIOperator(JSONOperator operator, String imageURI){
 		super(operator.hashCode(), "Unamed " + operator.toString(), "./VAADIN/themes/valo/img/" + imageURI);
 		this.operator = operator;
-		this.name = "";
-		this.description = "";
-		//inspector.setOperator(this);
+		this.name = "hello";
+		this.description = "some";
+		this.nextOperators = new HashSet<UIOperator>();
+		this.nextOperators.add(this);
 	}
 
 
@@ -64,15 +71,22 @@ public abstract class UIOperator extends Node{
 	}
 	
 	public void addNextOp(UIOperator next){
-
-		addNextOp(next.operator);
+		if (nextOperators.contains(next)) return;
+		nextOperators.add(next);
+		Edge n = new Edge(this.getId(), next.getId(), Edge.Style.arrow);
+		ic.network.addEdge(n);
+		inspector.getTable().addOperator(next);
+		//addNextOp(next.operator);
 	}
 	
 	public void clicked(UIOperatorNetworkDiagram nd){
 		if (inspector==null) inspector = makeInspector();
-		if (fromNode!=null) {
-			fromNode.addNextOp(this);
+		if (connectMode){
+			selectedNode.addNextOp(this);
+			connectMode = false;
+			return;
 		} else{
+			selectedNode = this;
 			ic.setInspector(inspector);
 		}
 	}
@@ -109,7 +123,7 @@ public abstract class UIOperator extends Node{
 	
 	@Override
 	public String toString() {
-		return "";
+		return getName();
 	}
 
 

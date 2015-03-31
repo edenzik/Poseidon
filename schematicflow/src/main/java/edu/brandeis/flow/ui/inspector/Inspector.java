@@ -1,23 +1,23 @@
 package edu.brandeis.flow.ui.inspector;
 
 import com.vaadin.ui.TabSheet;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalSplitPanel;
 
 
 
 public abstract class Inspector extends VerticalSplitPanel {
 	//private UIOperator operator;
-	public final TabSheet tabs;
+	public final InspectorTabs tabs;
 	public final InspectorHeader head;
 	
-	public Inspector(TabSheet tabs, InspectorHeader head){
+	public Inspector(InspectorTabs tabs, InspectorHeader head){
 		this.tabs = tabs;
 		this.head = head;
 	}
 
 	public Inspector(){
 		this(new InspectorTabs(), new InspectorHeader("To ChangeFilter"));
-		
 		
 		addComponent(head);
 		
@@ -26,6 +26,10 @@ public abstract class Inspector extends VerticalSplitPanel {
 		
 		setLocked(true);
 
+	}
+	
+	public UIOperatorTable getTable(){
+		return tabs.connect.table;
 	}
 
 

@@ -16,15 +16,12 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 
 public class UIOperatorNetworkDiagram extends NetworkDiagram {
 	public final Set<UIOperator> nodes;
-	private Set<NodeClickListener> currentListeners;
-	private Set<NodeClickListener> oldListeners;
 
 	public UIOperatorNetworkDiagram() {
 		super(new UIOperatorNetworkOptions());
+		UIOperator.ic.network = this;
 		setSizeFull();
 		nodes = new HashSet<UIOperator>();
-		oldListeners = new HashSet<NodeClickListener>();
-		currentListeners = new HashSet<NodeClickListener>();
 	}
 
 	public void addNode(UIOperator... node) {
