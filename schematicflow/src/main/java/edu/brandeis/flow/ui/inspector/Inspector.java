@@ -31,6 +31,14 @@ public abstract class Inspector extends VerticalSplitPanel {
 	public UIOperatorTable getTable(){
 		return tabs.connect.table;
 	}
+	
+	public String getName(){
+		return head.name.getValue();
+	}
+	
+	public String getDescription(){
+		return head.desc.getValue();
+	}
 
 
 
