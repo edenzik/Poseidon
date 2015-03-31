@@ -7,19 +7,21 @@ import com.vaadin.ui.VerticalSplitPanel;
 
 public abstract class Inspector extends VerticalSplitPanel {
 	//private UIOperator operator;
-	private final TabSheet tabsheet;
-	private final InspectorHeader head;
+	public final TabSheet tabs;
+	public final InspectorHeader head;
+	
+	public Inspector(TabSheet tabs, InspectorHeader head){
+		this.tabs = tabs;
+		this.head = head;
+	}
 
 	public Inspector(){
+		this(new InspectorTabs(), new InspectorHeader("To ChangeFilter"));
 		
-		head = new InspectorHeader("To ChangeFilter");
-		tabsheet = new InspectorTabs();
 		
-		head.setHeight("90%");
-		head.setMargin(true);
 		addComponent(head);
 		
-		addComponent(tabsheet);
+		addComponent(tabs);
 		setSplitPosition(40, Unit.PERCENTAGE);
 		
 		setLocked(true);

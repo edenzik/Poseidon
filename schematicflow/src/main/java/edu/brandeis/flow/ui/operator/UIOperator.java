@@ -12,6 +12,7 @@ import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 
 public abstract class UIOperator extends Node{
 	public static InspectorCallback ic;
+	public static UIOperator fromNode = null;
 	private final JSONOperator operator;
 	private Inspector inspector;
 	private String name;
@@ -62,9 +63,18 @@ public abstract class UIOperator extends Node{
 		operator.addNext(next);
 	}
 	
+	public void addNextOp(UIOperator next){
+
+		addNextOp(next.operator);
+	}
+	
 	public void clicked(UIOperatorNetworkDiagram nd){
 		if (inspector==null) inspector = makeInspector();
-		ic.setInspector(inspector);
+		if (fromNode!=null) {
+			fromNode.addNextOp(this);
+		} else{
+			ic.setInspector(inspector);
+		}
 	}
 	
 	protected abstract Inspector makeInspector();

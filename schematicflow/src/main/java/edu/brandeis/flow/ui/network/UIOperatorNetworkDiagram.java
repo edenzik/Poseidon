@@ -36,32 +36,7 @@ public class UIOperatorNetworkDiagram extends NetworkDiagram {
 	
 	
 	
-	@Override
-	public void addNodeClickListener(NodeClickListener nodeClickListener) {
-		currentListeners.add(nodeClickListener);
-		super.addNodeClickListener(nodeClickListener);
-	}
 
-	public void disableClick(){
-		for (NodeClickListener ncl : currentListeners){
-			oldListeners.add(ncl);
-			this.removeNodeClickListeners(ncl);
-		}
-		currentListeners.clear();
-	}
-	
-	private void deleteCallback(){
-		for (Object ncl : getListeners(NodeClickListener.class)){
-			removeListener((Listener) ncl);
-		}
-	}
-	
-	public void reEnableClick(){
-		deleteCallback();
-		for (NodeClickListener ncl : oldListeners){
-			addNodeClickListener(ncl);
-		}
-	}
 	
 
 	

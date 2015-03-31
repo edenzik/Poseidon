@@ -20,9 +20,9 @@ public class InspectorHeader extends VerticalLayout {
 	
 	public InspectorHeader (String opName) {
 		name = new TextField("Name");
-		
+		setHeight("90%");
+		setMargin(true);
 		desc = new TextArea("Description");
-//		Button apply = new Button("Apply");
 		
 		Label title = new Label("<h2>" + opName + "</h2>");
 		title.setHeight("10%");
@@ -39,16 +39,10 @@ public class InspectorHeader extends VerticalLayout {
 		
 		this.getMargin().setMargins(true, true, false, true);
 		addComponent(title);
-//		addComponent(image);
 		addComponent(name);
 		addComponent(desc);
 		this.setComponentAlignment(title, Alignment.TOP_CENTER);
-		
-//		setComponentAlignment(title, Alignment.TOP_CENTER);
-//		setComponentAlignment(image, Alignment.TOP_LEFT);
-//		setComponentAlignment(name, Alignment.MIDDLE_CENTER);
-//		setComponentAlignment(desc, Alignment.BOTTOM_CENTER);
-//		this.setSpacing(true);
+
 		
 		
 	}
