@@ -18,4 +18,10 @@ public final class UIFilterFactory extends UIOperatorFactory {
 		return new UIFilter();
 	}
 
+	@Override
+	public String getType() {
+		
+		return "Filter";
+	}
+
 }

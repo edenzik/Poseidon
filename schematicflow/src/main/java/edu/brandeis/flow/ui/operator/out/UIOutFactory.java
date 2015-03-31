@@ -16,4 +16,10 @@ public final class UIOutFactory extends UIOperatorFactory {
 		return new UIOut();
 	}
 
+	@Override
+	public String getType() {
+		
+		return "Out";
+	}
+
 }

@@ -20,4 +20,10 @@ public final class UITwitterInFactory extends UIOperatorFactory {
 		return new UITwitterIn();
 	}
 
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return "Twitter";
+	}
+
 }

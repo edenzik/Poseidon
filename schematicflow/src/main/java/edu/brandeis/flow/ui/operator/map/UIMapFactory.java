@@ -16,4 +16,10 @@ public final class UIMapFactory extends UIOperatorFactory {
 		return new UIMap();
 	}
 
+	@Override
+	public String getType() {
+		
+		return "Map";
+	}
+
 }

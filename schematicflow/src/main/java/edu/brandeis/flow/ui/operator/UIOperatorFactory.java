@@ -16,5 +16,7 @@ public abstract class UIOperatorFactory extends Image{
 		super(string, new ThemeResource("img/"+image));
 	}
 	
+	public abstract String getType();
+	
 	public abstract UIOperator makeUIOperator() throws JSONException, IOException;
 }

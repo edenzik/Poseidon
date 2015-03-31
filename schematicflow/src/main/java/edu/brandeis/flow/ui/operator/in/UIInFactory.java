@@ -19,6 +19,12 @@ public final class UIInFactory extends UIOperatorFactory {
 	public UIOperator makeUIOperator() throws JSONException, IOException {
 		return new UIIn();
 	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return "In";
+	}
 	
 
 }

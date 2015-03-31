@@ -16,4 +16,10 @@ public final class UIJoinFactory extends UIOperatorFactory {
 		return new UIJoin();
 	}
 
+	@Override
+	public String getType() {
+		
+		return "Join";
+	}
+
 }
