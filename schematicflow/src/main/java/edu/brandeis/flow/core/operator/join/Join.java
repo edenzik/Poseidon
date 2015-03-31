@@ -14,33 +14,37 @@ import edu.brandeis.flow.core.operator.JSONOperator;
  */
 public final class Join extends JSONOperator {
 	String key;
+
 	/**
 	 * @param name
 	 */
 	public Join() {
 		super("Join");
 	}
-	
+
 	public void setKey(String key) {
 		this.key = key;
 	}
+
 	public String getKey() {
 		return key;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see edu.brandeis.flow.core.operator.JSONOperator#process()
 	 */
 	@Override
 	public void process() throws JSONException {
 		JSONObject top;
 		JSONObject merged = read();
-		while((top =read()) != null) {
-			//merge 'top' with 'merged'
+		while ((top = read()) != null) {
+			// merge 'top' with 'merged'
 			merged.put(key, top.get(key));
 		}
-		
-		//send
+
+		// send
 		send(merged);
 	}
 

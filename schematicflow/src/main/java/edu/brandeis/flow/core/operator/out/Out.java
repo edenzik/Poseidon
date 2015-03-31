@@ -20,12 +20,22 @@ public final class Out extends JSONOperator {
 		super(name);
 	}
 
-	/* (non-Javadoc)
+	public Out() {
+		this("Out");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see edu.brandeis.flow.core.operator.JSONOperator#process()
 	 */
 	@Override
 	public void process() throws JSONException {
-		System.out.println(read());
+		while (true) {
+			if (!bufferIsEmpty()) {
+				System.out.println("OUT:::" + read());
+			}
+		}
 	}
 
 }

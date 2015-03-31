@@ -1,11 +1,8 @@
 package edu.brandeis.flow.ui.main;
 
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
-
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.UI;
+import java.util.concurrent.Executors;
 
 import org.vaadin.visjs.networkDiagram.Color;
 import org.vaadin.visjs.networkDiagram.Edge;
@@ -13,10 +10,8 @@ import org.vaadin.visjs.networkDiagram.NetworkDiagram;
 import org.vaadin.visjs.networkDiagram.Node;
 import org.vaadin.visjs.networkDiagram.options.Options;
 
-import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.HorizontalLayout;
 
 public class ShapesView extends HorizontalLayout implements View {
@@ -26,6 +21,7 @@ public class ShapesView extends HorizontalLayout implements View {
 	Node node2;
 	Node node3;
 	ExecutorService executorService;
+
 	@Override
 	public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
 		setSizeFull();
@@ -37,8 +33,10 @@ public class ShapesView extends HorizontalLayout implements View {
 		node1 = new Node(1, "circle", Node.Shape.circle, "group_x");
 		node2 = new Node(2, "ellipse", Node.Shape.ellipse, "group_x");
 		node3 = new Node(3, "database", Node.Shape.database, "group_x");
-		Node node4 = new Node(4, "box", Node.Shape.box, "group_x", "./VAADIN/images/png/Smiley-Grin-icon.png");
-		Node node5 = new Node(5, "shapes\nand\nsizes", Node.Shape.box, "group_main");
+		Node node4 = new Node(4, "box", Node.Shape.box, "group_x",
+				"./VAADIN/images/png/Smiley-Grin-icon.png");
+		Node node5 = new Node(5, "shapes\nand\nsizes", Node.Shape.box,
+				"group_main");
 		Edge edge1 = new Edge(3, 1, Edge.Style.arrow);
 		Edge edge2 = new Edge(1, 4, Edge.Style.dashLine);
 		Edge edge3 = new Edge(1, 2, Edge.Style.arrowCenter);
@@ -48,16 +46,19 @@ public class ShapesView extends HorizontalLayout implements View {
 		int mainId = 5;
 		for (int size = 1; size < 4; size++) {
 			int groupId = id;
-			Node node = new Node(id, "size " + size, Node.Shape.box, "group" + size);
+			Node node = new Node(id, "size " + size, Node.Shape.box, "group"
+					+ size);
 			node.setMass(size);
 			networkDiagram.addNode(node);
-			networkDiagram.addEdge(new Edge(mainId, id, new Color("gray"), size));
+			networkDiagram
+					.addEdge(new Edge(mainId, id, new Color("gray"), size));
 			id++;
 			for (Node.Shape shape : Node.Shape.values()) {
 				if (shape != Node.Shape.image) {
 					node = new Node(id, shape.toString(), shape, "group" + size);
 					networkDiagram.addNode(node);
-					networkDiagram.addEdge(new Edge(groupId, id, new Color("red"), size));
+					networkDiagram.addEdge(new Edge(groupId, id, new Color(
+							"red"), size));
 					id++;
 				}
 			}
@@ -68,7 +69,7 @@ public class ShapesView extends HorizontalLayout implements View {
 			public void run() {
 				while (true) {
 					try {
-						//networkDiagram.getUI().getSession().lock();
+						// networkDiagram.getUI().getSession().lock();
 						getUI().getCurrent().access(new Runnable() {
 							@Override
 							public void run() {
@@ -78,19 +79,21 @@ public class ShapesView extends HorizontalLayout implements View {
 								color.setHighlightColor(randomColor);
 								node1.setColor(color);
 								networkDiagram.updateNode(node1);
-								/* randomColor = getColor();
-color.setBackgroundColor(randomColor);
-color.setHighlightColor(randomColor);
-node2.setColor(color);
-networkDiagram.updateNode(node2);
-randomColor = getColor();
-color.setBackgroundColor(randomColor);
-color.setHighlightColor(randomColor);
-node3.setColor(color);
-networkDiagram.updateNode(node3);*/
+								/*
+								 * randomColor = getColor();
+								 * color.setBackgroundColor(randomColor);
+								 * color.setHighlightColor(randomColor);
+								 * node2.setColor(color);
+								 * networkDiagram.updateNode(node2); randomColor
+								 * = getColor();
+								 * color.setBackgroundColor(randomColor);
+								 * color.setHighlightColor(randomColor);
+								 * node3.setColor(color);
+								 * networkDiagram.updateNode(node3);
+								 */
 							}
 						});
-						//networkDiagram.getUI().getSession().unlock();
+						// networkDiagram.getUI().getSession().unlock();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -103,6 +106,7 @@ networkDiagram.updateNode(node3);*/
 			}
 		});
 	}
+
 	public String getColor() {
 		Random random = new Random();
 		int i = random.nextInt() % 9;
@@ -126,6 +130,7 @@ networkDiagram.updateNode(node3);*/
 		}
 		return "#FF00FF";
 	}
+
 	@Override
 	public void detach() {
 		executorService.shutdown();

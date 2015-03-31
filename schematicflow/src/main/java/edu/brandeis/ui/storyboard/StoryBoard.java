@@ -7,6 +7,6 @@ import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagramDragAndDrop;
 public class StoryBoard extends Panel {
 	public StoryBoard() {
 		setContent(new UIOperatorNetworkDiagramDragAndDrop());
-		setSizeFull();	
+		setSizeFull();
 	}
 }

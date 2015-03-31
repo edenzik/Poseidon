@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import org.json.JSONException;
 
-import edu.brandeis.flow.core.operator.JSONOperator;
-import edu.brandeis.flow.core.operator.filter.Filter;
 import edu.brandeis.flow.core.operator.in.twitter.TwitterIN;
 import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
@@ -16,11 +14,10 @@ final class UITwitterIn extends UIOperator {
 	protected UITwitterIn() throws JSONException, IOException {
 		super(new TwitterIN(), "twitter.svg");
 	}
-	
+
 	@Override
 	protected Inspector makeInspector() {
 		return new FilterInspector();
 	}
-
 
 }

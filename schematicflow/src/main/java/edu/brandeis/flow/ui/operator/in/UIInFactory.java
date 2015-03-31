@@ -4,14 +4,12 @@ import java.io.IOException;
 
 import org.json.JSONException;
 
-import com.vaadin.server.ThemeResource;
-
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
 public final class UIInFactory extends UIOperatorFactory {
-	
-	public UIInFactory(){
+
+	public UIInFactory() {
 		super("In", "in.svg");
 	}
 
@@ -25,6 +23,5 @@ public final class UIInFactory extends UIOperatorFactory {
 		// TODO Auto-generated method stub
 		return "In";
 	}
-	
 
 }

@@ -4,7 +4,6 @@
 package edu.brandeis.flow.core.operator.in.twitter;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import org.json.JSONException;
 
@@ -19,10 +18,11 @@ public final class TwitterIN extends In {
 	public TwitterIN() throws JSONException, IOException {
 		super("TwitterIN");
 	}
-//	
-//	public static void main(String[] args) throws JSONException, IOException {
-//		TwitterIN test = new TwitterIN("test");
-//		System.out.println(test.read().toString());
-//	}
+	//
+	// public static void main(String[] args) throws JSONException, IOException
+	// {
+	// TwitterIN test = new TwitterIN("test");
+	// System.out.println(test.read().toString());
+	// }
 
 }

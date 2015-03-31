@@ -3,7 +3,6 @@ package edu.brandeis.flow.ui.inspector;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextArea;
@@ -13,15 +12,17 @@ import com.vaadin.ui.VerticalLayout;
 class InspectorProperties extends VerticalLayout {
 	final TextField name;
 	final TextArea desc;
-	public InspectorProperties(){
+
+	public InspectorProperties() {
 		name = new TextField("Name");
 		Label title = new Label("<h2>Filter</h2>");
 		title.setContentMode(ContentMode.HTML);
 		title.setSizeUndefined();
-		//name.setSizeFull();
+		// name.setSizeFull();
 		desc = new TextArea("Description");
-		//desc.setSizeFull();
-		Image image = new Image(null, new ThemeResource("../runo/icons/64/arrow-down.png"));
+		// desc.setSizeFull();
+		Image image = new Image(null, new ThemeResource(
+				"../runo/icons/64/arrow-down.png"));
 		image.setSizeFull();
 		addComponent(title);
 		addComponent(image);
@@ -32,7 +33,7 @@ class InspectorProperties extends VerticalLayout {
 		setComponentAlignment(name, Alignment.MIDDLE_CENTER);
 		setComponentAlignment(desc, Alignment.BOTTOM_CENTER);
 	}
-	
-	//protected String getName(){return name.getValue();}
-	//protected String getDesc(){return desc.getValue();}
+
+	// protected String getName(){return name.getValue();}
+	// protected String getDesc(){return desc.getValue();}
 }

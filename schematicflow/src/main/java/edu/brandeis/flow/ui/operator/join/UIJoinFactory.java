@@ -1,13 +1,11 @@
 package edu.brandeis.flow.ui.operator.join;
 
-import com.vaadin.server.ThemeResource;
-
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
 public final class UIJoinFactory extends UIOperatorFactory {
-	
-	public UIJoinFactory(){
+
+	public UIJoinFactory() {
 		super("Join", "join.svg");
 	}
 
@@ -18,7 +16,7 @@ public final class UIJoinFactory extends UIOperatorFactory {
 
 	@Override
 	public String getType() {
-		
+
 		return "Join";
 	}
 
