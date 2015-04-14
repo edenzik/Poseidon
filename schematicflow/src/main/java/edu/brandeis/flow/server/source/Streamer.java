@@ -5,17 +5,16 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
 public class Streamer {
 	private final ServerSocket socket;
 	private Socket client;
 	private PrintWriter out;
-	
-	public Streamer(int port) throws IOException{
+
+	public Streamer(int port) throws IOException {
 		this.socket = new ServerSocket(port);
 	}
-	
-	public void send(String s) throws IOException{
+
+	public void send(String s) throws IOException {
 		client = socket.accept();
 		// Wait for a client to connect. The method will block;
 		// when it returns the socket will be connected to the client

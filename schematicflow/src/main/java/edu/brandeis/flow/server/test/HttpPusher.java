@@ -1,11 +1,11 @@
 package edu.brandeis.flow.server.test;
 
-
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import org.json.JSONObject;
 import java.util.Random;
+
+import org.json.JSONObject;
 
 public class HttpPusher {
 	public static void main(String args[]) {
@@ -16,19 +16,17 @@ public class HttpPusher {
 			int port = Integer.parseInt(args[0]);
 			// Create a ServerSocket to listen on that port.
 			ServerSocket ss = new ServerSocket(port);
-			
+
 			// Now enter an infinite loop, waiting for & handling connections.
-			
+
 			for (;;) {
 				Socket client = ss.accept();
 				// Wait for a client to connect. The method will block;
 				// when it returns the socket will be connected to the client
-				
 
 				// Get input and output streams to talk to the client
-				PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-
-
+				PrintWriter out = new PrintWriter(client.getOutputStream(),
+						true);
 
 				// Now, read the HTTP request from the client, and send it
 				// right back to the client as part of the body of our
@@ -38,16 +36,16 @@ public class HttpPusher {
 				// reading. This means we don't mirror the contents of POST
 				// requests, for example. Note that the readLine() method
 				// works with Unix, Windows, and Mac line terminators.
-				//     string line;
+				// string line;
 				System.out.println("RECIEVED REQUESTED");
 				JSONObject j = new JSONObject();
-				j.put("random",randomGenerator.nextInt(1000000));
+				j.put("random", randomGenerator.nextInt(1000000));
 				out.print(j.toString());
-				//     while ((line = in.readline()) != null) {
-				//      if (line.length() == 0)
-				//        break;
-				//    out.print("poop");//line + "\r\n");
-				//	  system.out.println(line);
+				// while ((line = in.readline()) != null) {
+				// if (line.length() == 0)
+				// break;
+				// out.print("poop");//line + "\r\n");
+				// system.out.println(line);
 				// }
 
 				// Close socket, breaking the connection to the client, and

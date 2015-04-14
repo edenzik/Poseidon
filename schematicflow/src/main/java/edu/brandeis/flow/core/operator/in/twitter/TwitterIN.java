@@ -4,7 +4,6 @@
 package edu.brandeis.flow.core.operator.in.twitter;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,7 +18,12 @@ import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.ConfigurationBuilder;
 import edu.brandeis.flow.core.operator.Operator;
 import edu.brandeis.flow.core.operator.in.In;
+<<<<<<< HEAD
 import edu.brandeis.flow.server.source.Streamer;
+=======
+import edu.brandeis.flow.server.source.JSONSource;
+import edu.brandeis.flow.server.stream.JSONThread;
+>>>>>>> e9b7f754e8d145714da9c88418132e1d65f4dfc0
 
 /**
  * @author Yahui
@@ -30,6 +34,7 @@ public final class TwitterIN extends In implements Runnable {
 	public TwitterStream twitterStream;
 	public StatusListener listener;
 
+<<<<<<< HEAD
 	public TwitterIN() throws JSONException, IOException {
 		super("TwitterIN");
 		setUpBuilder();
@@ -106,5 +111,20 @@ public final class TwitterIN extends In implements Runnable {
 		}
 		
 	}
+=======
+	public TwitterIN(String name) throws JSONException, IOException {
+		super(name, "twitter");
+	}
+	
+	public TwitterIN() throws JSONException, IOException{
+		this("TwitterIn");
+	}
+
+//	 public static void main(String[] args) throws JSONException, IOException
+//	 {
+//		 TwitterIN test = new TwitterIN("test");
+//		 test.process();
+//	 }
+>>>>>>> e9b7f754e8d145714da9c88418132e1d65f4dfc0
 
 }

@@ -1,13 +1,11 @@
 package edu.brandeis.flow.ui.operator.out;
 
-import com.vaadin.server.ThemeResource;
-
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
 public final class UIOutFactory extends UIOperatorFactory {
-	
-	public UIOutFactory(){
+
+	public UIOutFactory() {
 		super("Out", "out.svg");
 	}
 
@@ -18,7 +16,7 @@ public final class UIOutFactory extends UIOperatorFactory {
 
 	@Override
 	public String getType() {
-		
+
 		return "Out";
 	}
 
