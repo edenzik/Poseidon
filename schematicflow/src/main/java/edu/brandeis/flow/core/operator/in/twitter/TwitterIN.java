@@ -31,9 +31,8 @@ import edu.brandeis.flow.server.stream.JSONThread;
 public class TwitterIN extends JSONOperator{
 
 
-	public TwitterIN(String name) throws Exception{
-		super(name);
-		
+	public TwitterIN() throws Exception{
+
 		//start Twitter server
 		TwitterStreamSource twitter = new TwitterStreamSource();
 		
@@ -41,12 +40,10 @@ public class TwitterIN extends JSONOperator{
 		thread.start();
 	}
 	
-	public TwitterIN() throws Exception{
-		this("TwitterIn");
-	}
+	
 
 	@Override
-	public void process() throws JSONException {
+	public void run() {
 		while (true) {
 			JSONObject top;
 			if ((top = read()) != null) {
@@ -55,7 +52,6 @@ public class TwitterIN extends JSONOperator{
 			}
 
 		}
-		
 	}
 
 //	 public static void main(String[] args) throws Exception

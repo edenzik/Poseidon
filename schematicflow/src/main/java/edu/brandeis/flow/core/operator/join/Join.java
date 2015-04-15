@@ -19,7 +19,7 @@ public final class Join extends JSONOperator {
 	 * @param name
 	 */
 	public Join() {
-		super("Join");
+		super();
 	}
 
 	public void setKey(String key) {
@@ -36,12 +36,17 @@ public final class Join extends JSONOperator {
 	 * @see edu.brandeis.flow.core.operator.JSONOperator#process()
 	 */
 	@Override
-	public void process() throws JSONException {
+	public void run() {
 		JSONObject top;
 		JSONObject merged = read();
 		while ((top = read()) != null) {
 			// merge 'top' with 'merged'
-			merged.put(key, top.get(key));
+			try {
+				merged.put(key, top.get(key));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		// send

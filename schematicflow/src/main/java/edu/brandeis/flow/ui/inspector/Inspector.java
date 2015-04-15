@@ -2,18 +2,18 @@ package edu.brandeis.flow.ui.inspector;
 
 import com.vaadin.ui.VerticalSplitPanel;
 
+import edu.brandeis.flow.ui.operator.UIOperator;
+
 public abstract class Inspector extends VerticalSplitPanel {
-	// private UIOperator operator;
 	public final InspectorTabs tabs;
 	public final InspectorHeader head;
+	public UIOperator op = null;
 
-	public Inspector(InspectorTabs tabs, InspectorHeader head) {
-		this.tabs = tabs;
-		this.head = head;
-	}
 
-	public Inspector() {
-		this(new InspectorTabs(), new InspectorHeader("To ChangeFilter"));
+	public Inspector(UIOperator op) {
+		this.op = op;
+		this.tabs = new InspectorTabs(op);
+		this.head = new InspectorHeader("To ChangeFilter");
 
 		addComponent(head);
 

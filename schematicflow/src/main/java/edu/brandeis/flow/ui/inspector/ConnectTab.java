@@ -6,6 +6,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
+import edu.brandeis.flow.ui.main.FlowUI;
 import edu.brandeis.flow.ui.operator.UIOperator;
 
 public class ConnectTab extends VerticalLayout {
@@ -29,7 +30,7 @@ public class ConnectTab extends VerticalLayout {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				UIOperator.connectMode = true;
+				((FlowUI) getUI()).layout.storyBoard.setAdd();
 			}
 
 		});

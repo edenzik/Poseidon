@@ -4,6 +4,7 @@
 package edu.brandeis.flow.core.operator.out;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
 
@@ -16,13 +17,10 @@ public final class Out extends JSONOperator {
 	/**
 	 * @param name
 	 */
-	public Out(String name) {
-		super(name);
+	public Out() {
+		super();
 	}
 
-	public Out() {
-		this("Out");
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -30,12 +28,7 @@ public final class Out extends JSONOperator {
 	 * @see edu.brandeis.flow.core.operator.JSONOperator#process()
 	 */
 	@Override
-	public void process() throws JSONException {
-		while (true) {
-			if (!bufferIsEmpty()) {
-				System.out.println("OUT:::" + read());
-			}
-		}
+	public void run() {
 	}
 
 }

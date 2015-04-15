@@ -13,7 +13,7 @@ final class UIMap extends UIOperator {
 
 	@Override
 	protected Inspector makeInspector() {
-		return new FilterInspector();
+		return new FilterInspector(this);
 	}
 
 }

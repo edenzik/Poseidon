@@ -46,13 +46,7 @@ public class OperatorDemo {
 			
 			@Override
 			public void run() {
-				while(true) {
-					try {
-						op.process();
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				}
+				
 			}
 			
 

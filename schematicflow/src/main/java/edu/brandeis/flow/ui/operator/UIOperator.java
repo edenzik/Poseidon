@@ -11,14 +11,15 @@ import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.flow.ui.main.FlowUI;
 import edu.brandeis.flow.ui.main.MainLayout.InspectorCallback;
 import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
+import edu.brandeis.ui.storyboard.StoryBoard;
 
 public abstract class UIOperator extends Node {
 	public static InspectorCallback ic;
 	private final Set<UIOperator> nextOperators;
 	public static UIOperator selectedNode;
 	public static boolean connectMode = false;
-	private final JSONOperator operator;
-	private Inspector inspector;
+	public final JSONOperator operator;
+	private transient Inspector inspector;
 	private String name;
 	private String description;
 
@@ -27,6 +28,7 @@ public abstract class UIOperator extends Node {
 				"./VAADIN/themes/valo/img/" + imageURI);
 		this.operator = operator;
 		this.nextOperators = new HashSet<UIOperator>();
+		this.inspector = makeInspector();
 	}
 
 	protected String getType() {
@@ -51,7 +53,7 @@ public abstract class UIOperator extends Node {
 	}
 
 	public String getOpName() {
-		return operator.getName();
+		return operator.toString();
 	}
 
 	public JSONOperator getJSONOp() {
@@ -62,28 +64,28 @@ public abstract class UIOperator extends Node {
 		operator.addNext(next);
 	}
 
-	public void addNextOp(UIOperator next) {
-		nextOperators.add(this);
-		if (nextOperators.contains(next))
-			return;
+	public Edge addNextOp(UIOperator next) {
+		if (next==this) return null;
+		if (nextOperators.contains(next)) return null;
 		nextOperators.add(next);
-		Edge n = new Edge(this.getId(), next.getId(), Edge.Style.arrow);
-		ic.network.addEdge(n);
 		inspector.getTable().addOperator(next);
 		addNextOp(next.operator);
+		return new Edge(this.getId(), next.getId(), Edge.Style.arrow);
 	}
 
 	public void clicked(FlowUI ui) {
-		if (inspector == null)
-			inspector = makeInspector();
-		if (connectMode) {
-			selectedNode.addNextOp(this);
-			connectMode = false;
-			return;
-		} else {
-			selectedNode = this;
-			ui.setInspector(inspector);
+		switch (ui.layout.storyBoard.getMode()){
+			case Add:
+				StoryBoard sb = ui.layout.storyBoard;
+				sb.network.addEdge(sb.getSelectedOperator().addNextOp(this));
+				ui.layout.storyBoard.setSelect();
+			case Select:
+				ui.layout.setInspector(inspector);
 		}
+	}
+	
+	public void removeInspector(FlowUI ui) {
+		ui.removeInspector();
 	}
 
 	protected abstract Inspector makeInspector();

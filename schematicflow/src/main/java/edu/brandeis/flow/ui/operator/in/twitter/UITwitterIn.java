@@ -17,7 +17,7 @@ final class UITwitterIn extends UIOperator {
 
 	@Override
 	protected Inspector makeInspector() {
-		return new FilterInspector();
+		return new FilterInspector(this);
 	}
 
 }
