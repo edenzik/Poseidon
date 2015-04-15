@@ -8,12 +8,12 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIJoin extends UIOperator {
 
 	protected UIJoin() {
-		super(new Join(), "join.svg", new FilterInspector());
+		super(new Join(), "join.svg");
 	}
 
 	@Override
 	protected Inspector makeInspector() {
-		return new FilterInspector();
+		return new FilterInspector(this);
 	}
 
 }

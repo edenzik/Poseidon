@@ -5,6 +5,7 @@ package edu.brandeis.flow.core.operator;
  * It should be extended by all operators that process JSON object. 
  */
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
@@ -20,10 +21,11 @@ import org.json.JSONObject;
 import com.vaadin.ui.UI;
 
 public abstract class JSONOperator implements Operator<JSONObject> {
-	protected final BlockingQueue<JSONObject> buffer; // hold all received JSON streams
+	public final BlockingQueue<JSONObject> buffer; // hold all received JSON streams
 	protected final Set<Operator<JSONObject>> next; // a set of operators that the
 													// current operator will
 													// send data to.
+	private final BlockingQueue<JSONObject> viewBuffer;
 
 	/**
 	 * Constructor
@@ -31,6 +33,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	protected JSONOperator() {
 		this.buffer = new LinkedBlockingQueue<JSONObject>();
 		this.next = new HashSet<Operator<JSONObject>>();
+		this.viewBuffer = new LinkedBlockingQueue<JSONObject>();
 		new Thread(this).start();
 	}
 
@@ -41,8 +44,8 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 *            JSONObject need to be received
 	 */
 	public void receive(JSONObject obj) {
-		System.out.println("Added it to here!");
 		buffer.add(obj);
+		viewBuffer.add(obj);
 	}
 
 	/**
@@ -52,10 +55,8 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 *            JSONObject needs to be send to next operators
 	 */
 	public void send(JSONObject obj) {
-		System.out.println("Starting tsend" + hashCode());
 		for (Operator<JSONObject> op : next){
 			op.receive(obj);
-			System.out.println("sent stuff to" + op);
 		}
 			
 	}
@@ -68,8 +69,6 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	public void addNext(Operator<JSONObject> op) {
 		next.add(op);
-		
-		System.out.println("Added " +  hashCode());
 	}
 
 	/**
@@ -117,12 +116,12 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	public boolean bufferIsEmpty() {
 		return buffer.isEmpty();
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	
+	public BlockingQueue<JSONObject> view(){
+		return viewBuffer;
 	}
+
+
 
 	
 

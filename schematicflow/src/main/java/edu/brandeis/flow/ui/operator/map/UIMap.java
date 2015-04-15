@@ -8,12 +8,12 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIMap extends UIOperator {
 
 	protected UIMap() {
-		super(new Map(), "map.svg", new FilterInspector());
+		super(new Map(), "map.svg");
 	}
 
 	@Override
 	protected Inspector makeInspector() {
-		return new FilterInspector();
+		return new FilterInspector(this);
 	}
 
 }

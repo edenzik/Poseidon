@@ -9,12 +9,12 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIOut extends UIOperator {
 
 	protected UIOut() {
-		super(new Out(), "out.svg", new FilterInspector());
+		super(new Out(), "out.svg");
 	}
 
 	@Override
 	protected Inspector makeInspector() {
-		return new FilterInspector();
+		return new FilterInspector(this);
 	}
 
 }

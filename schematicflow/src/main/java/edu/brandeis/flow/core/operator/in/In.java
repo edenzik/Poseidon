@@ -25,14 +25,15 @@ public class In extends JSONOperator {
 
 	@Override
 	public void run() {
-		
-		 while (true) {
+		int i = 0;
+		 while (i<100000) {
 			 //System.out.println("mooo loo");
 			 try {
+				 i++;
 				 JSONObject ob = new JSONObject();
 				 ob.append("some key", "some val");
 				 send(ob);
-				 Thread.sleep(10000);
+				 Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

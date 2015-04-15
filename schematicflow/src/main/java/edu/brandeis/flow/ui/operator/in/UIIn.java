@@ -12,12 +12,12 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIIn extends UIOperator {
 
 	protected UIIn() throws JSONException, IOException {
-		super(new In(), "in.svg", new FilterInspector());
+		super(new In(), "in.svg");
 	}
 
 	@Override
 	protected Inspector makeInspector() {
-		return new FilterInspector();
+		return new FilterInspector(this);
 	}
 
 }

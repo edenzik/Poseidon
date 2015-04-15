@@ -18,17 +18,17 @@ public abstract class UIOperator extends Node {
 	private final Set<UIOperator> nextOperators;
 	public static UIOperator selectedNode;
 	public static boolean connectMode = false;
-	private final JSONOperator operator;
+	public final JSONOperator operator;
 	private transient Inspector inspector;
 	private String name;
 	private String description;
 
-	protected UIOperator(JSONOperator operator, String imageURI, Inspector inspector) {
+	protected UIOperator(JSONOperator operator, String imageURI) {
 		super(operator.hashCode(), "Unamed " + operator.toString(),
 				"./VAADIN/themes/valo/img/" + imageURI);
 		this.operator = operator;
 		this.nextOperators = new HashSet<UIOperator>();
-		this.inspector = inspector;
+		this.inspector = makeInspector();
 	}
 
 	protected String getType() {

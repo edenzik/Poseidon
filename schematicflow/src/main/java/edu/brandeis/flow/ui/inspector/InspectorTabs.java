@@ -2,12 +2,17 @@ package edu.brandeis.flow.ui.inspector;
 
 import com.vaadin.ui.TabSheet;
 
+import edu.brandeis.flow.ui.operator.UIOperator;
+
 final class InspectorTabs extends TabSheet {
-	IOTab iotab = new IOTab();
+	final IOTab iotab;
 	PropertyTab properties = new PropertyTab();
 	ConnectTab connect = new ConnectTab();
+	final UIOperator op;
 
-	protected InspectorTabs() {
+	protected InspectorTabs(UIOperator op) {
+		iotab = new IOTab(op);
+		this.op = op;
 		setSizeFull();
 
 		addTab(properties, "Properties");

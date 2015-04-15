@@ -1,30 +1,45 @@
 package edu.brandeis.flow.ui.inspector;
 
+import org.json.JSONObject;
+
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
+
+import edu.brandeis.flow.ui.inspector.io.table.LiveViewTable;
+import edu.brandeis.flow.ui.operator.UIOperator;
 
 public class IOTab extends VerticalLayout {
 
-	public IOTab() {
+	public IOTab(UIOperator op) {
+		LiveViewTable lvt = new LiveViewTable();
+		this.addComponent(lvt);
+		new Thread(new Runnable(){
 
-		Panel in = new Panel("In Stream");
-		in.setContent(new Label("Here prints the input stream"));
-		in.setHeight(10, Unit.CM);
-		// in.setSizeFull();
-		// //test
-		// Label test = new Label("xx");
-		// test.addListener(listener);
+			@Override
+			public void run() {
+				while (true){
+					try {
+						lvt.addItem(op.operator.view().take());
+						
+						Thread.sleep(100);
+						
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 
-		Panel out = new Panel("Out Stream");
-		out.setContent(new Label("Here prints the output stream"));
-		// out.setHeight(8, Unit.CM);
-		// out.setSizeFull();
+			}
 
-		this.addComponent(in);
+
+		}).start();
+
 		// this.addComponent(out);
 
 	}
+
 	// private final Button propertiesButton;
 	// private final Button IOButton;
 	// private final Button functionButton;
