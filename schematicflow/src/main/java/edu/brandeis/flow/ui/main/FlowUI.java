@@ -9,6 +9,8 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
 
+import edu.brandeis.flow.ui.inspector.Inspector;
+
 /**
  * @author edenzik Main UI class which receives a stream of data from back end
  *         and displays it
@@ -17,16 +19,24 @@ import com.vaadin.ui.UI;
 @Push()
 @SuppressWarnings("serial")
 @Theme("valo")
-public class MainUI extends UI {
+public class FlowUI extends UI {
+	MainLayout layout;
+	
 
 	@WebServlet(value = { "/*" }, asyncSupported = true)
-	@VaadinServletConfiguration(productionMode = true, ui = MainUI.class)
+	@VaadinServletConfiguration(productionMode = true, ui = FlowUI.class)
 	public static class Servlet extends VaadinServlet {
 	}
 
 	@Override
 	protected void init(VaadinRequest request) {
-		setContent(new MainLayout());
+		layout = new MainLayout();
+		setContent(layout);
+	}
+	
+	public void setInspector(Inspector inspector){
+		layout.removeInspector();
+		layout.addInspector(inspector);
 	}
 
 }

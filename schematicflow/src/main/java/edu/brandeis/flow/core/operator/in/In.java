@@ -21,8 +21,6 @@ public class In extends JSONOperator {
 	String source = "";
 	public In(String name, String sr) throws JSONException, IOException {
 		super(name);
-<<<<<<< HEAD
-=======
 		//feed JSON from its source(e.g. twitter/url) to server
 		source = sr;
 		new Thread(new JSONSource(source)).start();
@@ -30,7 +28,6 @@ public class In extends JSONOperator {
 		//feed JSON from server to In
 		JSONThread thread = new JSONThread(this);
 		thread.start();
->>>>>>> e9b7f754e8d145714da9c88418132e1d65f4dfc0
 	}
 	
 
@@ -40,11 +37,6 @@ public class In extends JSONOperator {
 
 	@Override
 	public void process() {
-<<<<<<< HEAD
-		
-	}
-
-=======
 
 		while (true) {
 			JSONObject top;
@@ -56,15 +48,9 @@ public class In extends JSONOperator {
 
 		}
 	}
->>>>>>> e9b7f754e8d145714da9c88418132e1d65f4dfc0
 	
 	protected void setSource(String s) {
 		this.source = s;
 	}
 
-	// public static void main(String[] args) throws Exception {
-	// In test = new In("test");
-	// test.process();
-	// }
-	//
 }

@@ -4,24 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.vaadin.visjs.networkDiagram.NetworkDiagram;
+import org.vaadin.visjs.networkDiagram.Node.NodeBlurListener;
+import org.vaadin.visjs.networkDiagram.event.node.BlurEvent;
 
 import edu.brandeis.flow.ui.operator.UIOperator;
 
 public class UIOperatorNetworkDiagram extends NetworkDiagram {
+	private static final long serialVersionUID = 1L;
 	public final Set<UIOperator> nodes;
 
 	public UIOperatorNetworkDiagram() {
 		super(new UIOperatorNetworkOptions());
-		UIOperator.ic.network = this;
+
 		setSizeFull();
 		nodes = new HashSet<UIOperator>();
-	}
-
-	public void addNode(UIOperator... node) {
-		for (UIOperator op : node) {
-			nodes.add(op);
-		}
-		super.addNode(node);
 	}
 
 }

@@ -8,6 +8,7 @@ import org.vaadin.visjs.networkDiagram.Node;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.ui.inspector.Inspector;
+import edu.brandeis.flow.ui.main.FlowUI;
 import edu.brandeis.flow.ui.main.MainLayout.InspectorCallback;
 import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 
@@ -72,7 +73,7 @@ public abstract class UIOperator extends Node {
 		addNextOp(next.operator);
 	}
 
-	public void clicked(UIOperatorNetworkDiagram nd) {
+	public void clicked(FlowUI ui) {
 		if (inspector == null)
 			inspector = makeInspector();
 		if (connectMode) {
@@ -81,7 +82,7 @@ public abstract class UIOperator extends Node {
 			return;
 		} else {
 			selectedNode = this;
-			ic.setInspector(inspector);
+			ui.setInspector(inspector);
 		}
 	}
 

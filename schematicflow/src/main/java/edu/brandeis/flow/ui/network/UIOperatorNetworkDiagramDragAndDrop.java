@@ -12,6 +12,7 @@ import com.vaadin.event.dd.acceptcriteria.AcceptAll;
 import com.vaadin.event.dd.acceptcriteria.AcceptCriterion;
 import com.vaadin.ui.DragAndDropWrapper;
 
+import edu.brandeis.flow.ui.main.FlowUI;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
@@ -36,8 +37,7 @@ public class UIOperatorNetworkDiagramDragAndDrop extends DragAndDropWrapper {
 
 						@Override
 						public void onFired(ClickEvent arg0) {
-							op.clicked(diagram);
-
+							op.clicked((FlowUI) getUI());
 						}
 
 					});
