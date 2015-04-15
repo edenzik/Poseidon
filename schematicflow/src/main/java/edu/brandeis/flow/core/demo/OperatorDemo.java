@@ -14,7 +14,7 @@ import edu.brandeis.flow.core.operator.out.Out;
 
 public class OperatorDemo {
 
-		public OperatorDemo() throws JSONException, IOException {
+		public OperatorDemo() throws Exception {
 			TwitterIN in = new TwitterIN();
 			Out out = new Out();
 			Filter filter = new Filter();

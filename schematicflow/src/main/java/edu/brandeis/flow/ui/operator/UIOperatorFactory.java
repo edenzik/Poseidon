@@ -15,5 +15,5 @@ public abstract class UIOperatorFactory extends Image {
 	public abstract String getType();
 
 	public abstract UIOperator makeUIOperator() throws JSONException,
-			IOException;
+			IOException, Exception;
 }

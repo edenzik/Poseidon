@@ -11,7 +11,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 
 final class UITwitterIn extends UIOperator {
 
-	protected UITwitterIn() throws JSONException, IOException {
+	protected UITwitterIn() throws Exception {
 		super(new TwitterIN(), "twitter.svg");
 	}
 

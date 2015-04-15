@@ -43,7 +43,6 @@ public class In extends JSONOperator {
 			if ((top = read()) != null) {
 				System.out.println("IN:::" + top);
 				send(top);
-
 			}
 
 		}

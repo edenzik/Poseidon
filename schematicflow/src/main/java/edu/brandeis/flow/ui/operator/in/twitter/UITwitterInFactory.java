@@ -14,7 +14,7 @@ public final class UITwitterInFactory extends UIOperatorFactory {
 	}
 
 	@Override
-	public UIOperator makeUIOperator() throws JSONException, IOException {
+	public UIOperator makeUIOperator() throws Exception {
 		return new UITwitterIn();
 	}
 

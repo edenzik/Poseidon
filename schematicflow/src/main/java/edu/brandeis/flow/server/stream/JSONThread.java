@@ -9,7 +9,9 @@ import java.net.MalformedURLException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.core.operator.in.In;
+import edu.brandeis.flow.core.operator.in.twitter.TwitterIN;
 
 /**
  * @author Yahui
@@ -17,13 +19,13 @@ import edu.brandeis.flow.core.operator.in.In;
  */
 public final class JSONThread extends Thread {
 
-	In in;
+	JSONOperator op;
 
 	/**
 	 * 
 	 */
-	public JSONThread(In in) {
-		this.in = in;
+	public JSONThread(JSONOperator op) {
+		this.op = op;
 	}
 
 	@Override
@@ -39,7 +41,7 @@ public final class JSONThread extends Thread {
 			JSONObject json = null;
 			try {
 				if ((json = inStream.read()) != null)
-					in.receive(json);
+					op.receive(json);
 			} catch (JSONException | IOException e) {
 				e.printStackTrace();
 			}

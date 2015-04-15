@@ -44,6 +44,9 @@ public class UIOperatorNetworkDiagramDragAndDrop extends DragAndDropWrapper {
 				} catch (JSONException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 
 			}
