@@ -8,26 +8,30 @@ package edu.brandeis.flow.core.operator;
 import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public abstract class JSONOperator implements Operator<JSONObject> {
+import com.vaadin.ui.UI;
 
-	private final Queue<JSONObject> buffer; // hold all received JSON streams
-	private final Set<Operator<JSONObject>> next; // a set of operators that the
+public abstract class JSONOperator implements Operator<JSONObject> {
+	protected final BlockingQueue<JSONObject> buffer; // hold all received JSON streams
+	protected final Set<Operator<JSONObject>> next; // a set of operators that the
 													// current operator will
 													// send data to.
-	private final String name;
 
 	/**
 	 * Constructor
 	 */
-	protected JSONOperator(String name) {
-		this.buffer = new ConcurrentLinkedQueue<JSONObject>();
+	protected JSONOperator() {
+		this.buffer = new LinkedBlockingQueue<JSONObject>();
 		this.next = new HashSet<Operator<JSONObject>>();
-		this.name = name;
+		new Thread(this).start();
 	}
 
 	/**
@@ -37,6 +41,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 *            JSONObject need to be received
 	 */
 	public void receive(JSONObject obj) {
+		System.out.println("Added it to here!");
 		buffer.add(obj);
 	}
 
@@ -47,16 +52,13 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 *            JSONObject needs to be send to next operators
 	 */
 	public void send(JSONObject obj) {
-		for (Operator<JSONObject> op : next)
+		System.out.println("Starting tsend" + hashCode());
+		for (Operator<JSONObject> op : next){
 			op.receive(obj);
+			System.out.println("sent stuff to" + op);
+		}
+			
 	}
-
-	/**
-	 * Process input JSON. Need to be implemented by every opeartor
-	 * 
-	 * @throws JSONException
-	 */
-	public abstract void process() throws JSONException;
 
 	/**
 	 * Add the next operator to its set
@@ -66,6 +68,8 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	public void addNext(Operator<JSONObject> op) {
 		next.add(op);
+		
+		System.out.println("Added " +  hashCode());
 	}
 
 	/**
@@ -95,20 +99,31 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * 
 	 */
 	public JSONObject read() {
-		return buffer.poll();
+		try {
+			return buffer.take();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public String toString() {
-		return name;
+		return this.getClass().getName();
 	}
 
-	public String getName() {
-		return this.name;
-	}
 
 	public boolean bufferIsEmpty() {
 		return buffer.isEmpty();
 	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

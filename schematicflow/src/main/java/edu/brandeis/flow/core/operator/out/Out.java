@@ -16,13 +16,10 @@ public final class Out extends JSONOperator {
 	/**
 	 * @param name
 	 */
-	public Out(String name) {
-		super(name);
+	public Out() {
+		super();
 	}
 
-	public Out() {
-		this("Out");
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -30,11 +27,9 @@ public final class Out extends JSONOperator {
 	 * @see edu.brandeis.flow.core.operator.JSONOperator#process()
 	 */
 	@Override
-	public void process() throws JSONException {
+	public void run() {
 		while (true) {
-			if (!bufferIsEmpty()) {
-				System.out.println("OUT:::" + read());
-			}
+			System.out.println(this.read());
 		}
 	}
 

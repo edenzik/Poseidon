@@ -17,7 +17,7 @@ public final class Filter extends JSONOperator {
 	String term;
 
 	public Filter() {
-		super("Filter");
+		super();
 		this.key = "";
 		this.term = "";
 	}
@@ -38,23 +38,27 @@ public final class Filter extends JSONOperator {
 		this.term = term;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see edu.brandeis.flow.core.operator.JSONOperator#process()
-	 */
+
+
 	@Override
-	public void process() throws JSONException {
+	public void run() {
 		JSONObject top;
 		while (true) {
 			if ((top = read()) != null) {
 				if (!top.has(key))
 					send(top);
-				else if (!term.equals("") && !top.getString(key).contains(term)) {
-					send(top);
-				}
+				else
+					try {
+						if (!term.equals("") && !top.getString(key).contains(term)) {
+							send(top);
+						}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
 		}
+		
 	}
 
 }

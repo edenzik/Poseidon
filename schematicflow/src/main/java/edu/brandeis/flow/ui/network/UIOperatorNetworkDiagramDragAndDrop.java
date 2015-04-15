@@ -42,7 +42,7 @@ public class UIOperatorNetworkDiagramDragAndDrop extends DragAndDropWrapper {
 					
 
 					
-					NodeClickListener doubleClick = new NodeClickListener(op) {
+					NodeClickListener click = new NodeClickListener(op) {
 
 						@Override
 						public void onFired(ClickEvent arg0) {
@@ -52,7 +52,7 @@ public class UIOperatorNetworkDiagramDragAndDrop extends DragAndDropWrapper {
 						}
 
 					};
-					diagram.addNodeClickListener(doubleClick);
+					diagram.addNodeClickListener(click);
 
 				} catch (JSONException | IOException e) {
 					// TODO Auto-generated catch block

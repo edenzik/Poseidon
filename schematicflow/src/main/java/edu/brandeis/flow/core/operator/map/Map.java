@@ -22,7 +22,7 @@ public final class Map extends JSONOperator {
 	 * Constructor
 	 */
 	public Map() {
-		super("Map");
+		super();
 	}
 
 	/**
@@ -66,11 +66,16 @@ public final class Map extends JSONOperator {
 	}
 
 	@Override
-	public void process() throws JSONException {
+	public void run() {
 		JSONObject top = read();
 		if (top.has(key)) {
 			// apply map function
-			top.put(key, func.apply(top.getDouble(key)));
+			try {
+				top.put(key, func.apply(top.getDouble(key)));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// send the result
 			send(top);
 		}

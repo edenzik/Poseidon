@@ -5,7 +5,7 @@ package edu.brandeis.flow.core.operator;
  */
 import java.util.Set;
 
-public interface Operator<E> {
+public interface Operator<E> extends Runnable{
 	void addNext(Operator<E> op);
 
 	void removeNext(Operator<E> op);
@@ -13,8 +13,6 @@ public interface Operator<E> {
 	void receive(E obj);
 
 	void send(E obj);
-
-	void process() throws Exception;
 
 	Set<Operator<E>> getNext();
 

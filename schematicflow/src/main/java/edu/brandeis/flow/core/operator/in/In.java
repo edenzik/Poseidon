@@ -18,39 +18,30 @@ import edu.brandeis.flow.server.stream.JSONThread;
  */
 @Push
 public class In extends JSONOperator {
-	String source = "";
-	public In(String name, String sr) throws JSONException, IOException {
-		super(name);
-		//feed JSON from its source(e.g. twitter/url) to server
-		source = sr;
-		new Thread(new JSONSource(source)).start();
-		
-		//feed JSON from server to In
-		JSONThread thread = new JSONThread(this);
-		thread.start();
+	public In() throws JSONException, IOException {
+		super();
 	}
-	
 
-	public In(String sr) throws JSONException, IOException {
-		this("In", sr);
-	}
 
 	@Override
-	public void process() {
-
-		while (true) {
-			JSONObject top;
-			if ((top = read()) != null) {
-				System.out.println("IN:::" + top);
-				send(top);
-
+	public void run() {
+		
+		 while (true) {
+			 //System.out.println("mooo loo");
+			 try {
+				 JSONObject ob = new JSONObject();
+				 ob.append("some key", "some val");
+				 send(ob);
+				 Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
-		}
-	}
-	
-	protected void setSource(String s) {
-		this.source = s;
+         }
 	}
 
 }

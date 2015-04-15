@@ -32,7 +32,7 @@ public final class TwitterIN extends In implements Runnable {
 	public StatusListener listener;
 
 	public TwitterIN() throws JSONException, IOException {
-		super("TwitterIN");
+		super();
 		setUpBuilder();
 		twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
 		

@@ -53,7 +53,7 @@ public abstract class UIOperator extends Node {
 	}
 
 	public String getOpName() {
-		return operator.getName();
+		return operator.toString();
 	}
 
 	public JSONOperator getJSONOp() {
@@ -65,20 +65,19 @@ public abstract class UIOperator extends Node {
 	}
 
 	public Edge addNextOp(UIOperator next) {
-		System.out.println("hello world");
 		if (next==this) return null;
 		if (nextOperators.contains(next)) return null;
 		nextOperators.add(next);
 		inspector.getTable().addOperator(next);
 		addNextOp(next.operator);
-		return new Edge(next.getId(), this.getId(), Edge.Style.arrow);
+		return new Edge(this.getId(), next.getId(), Edge.Style.arrow);
 	}
 
 	public void clicked(FlowUI ui) {
 		switch (ui.layout.storyBoard.getMode()){
 			case Add:
 				StoryBoard sb = ui.layout.storyBoard;
-				sb.network.addEdge(addNextOp(sb.getSelectedOperator()));
+				sb.network.addEdge(sb.getSelectedOperator().addNextOp(this));
 				ui.layout.storyBoard.setSelect();
 			case Select:
 				ui.layout.setInspector(inspector);

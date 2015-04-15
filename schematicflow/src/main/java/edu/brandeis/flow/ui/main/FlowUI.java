@@ -10,6 +10,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
 
+import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.ui.storyboard.Mode;
 
@@ -41,6 +42,5 @@ public class FlowUI extends UI {
 		layout.removeInspector();
 	}
 	
-
 
 }
