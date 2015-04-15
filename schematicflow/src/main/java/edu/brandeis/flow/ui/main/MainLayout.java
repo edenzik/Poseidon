@@ -11,19 +11,20 @@ import edu.brandeis.flow.ui.network.*;
 public class MainLayout extends HorizontalLayout {
 	private static final long serialVersionUID = 3402991554451061045L;
 	Inspector inspector;
+	public final StoryBoard storyBoard;
+	final OperatorFactoryDescriptionSidebar sidebar;
 
 	public MainLayout(){
 		setSizeFull();
+		storyBoard = new StoryBoard();
+		sidebar = new OperatorFactoryDescriptionSidebar();
 		UIOperator.ic = new InspectorCallback(this);
-		
-		Component story = new StoryBoard();
-		Component sidebar = new OperatorFactoryDescriptionSidebar();
 		
 		addComponent(sidebar);
 		this.setExpandRatio(sidebar, (float) 15.0);
 
-		addComponent(story);
-		this.setExpandRatio(story, (float) 55.0);
+		addComponent(storyBoard);
+		this.setExpandRatio(storyBoard, (float) 55.0);
 		
 
 	}
@@ -32,7 +33,13 @@ public class MainLayout extends HorizontalLayout {
 		if (inspector!=null) removeComponent(inspector);
 	}
 	
+	public void setInspector(Inspector inspector){
+		removeInspector();
+		addInspector(inspector);
+	}
+	
 	protected void addInspector(Inspector inspector){
+		this.inspector = inspector;
 		addComponent(inspector);
 		setExpandRatio(inspector, (float) 20.0);
 	}

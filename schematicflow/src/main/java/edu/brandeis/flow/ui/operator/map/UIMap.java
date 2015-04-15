@@ -8,7 +8,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIMap extends UIOperator {
 
 	protected UIMap() {
-		super(new Map(), "map.svg");
+		super(new Map(), "map.svg", new FilterInspector());
 	}
 
 	@Override

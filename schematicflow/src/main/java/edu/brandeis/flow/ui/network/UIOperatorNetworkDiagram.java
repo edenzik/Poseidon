@@ -15,7 +15,6 @@ public class UIOperatorNetworkDiagram extends NetworkDiagram {
 
 	public UIOperatorNetworkDiagram() {
 		super(new UIOperatorNetworkOptions());
-
 		setSizeFull();
 		nodes = new HashSet<UIOperator>();
 	}

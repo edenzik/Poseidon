@@ -8,7 +8,7 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 final class UIOut extends UIOperator {
 
 	protected UIOut() {
-		super(new Map(), "out.svg");
+		super(new Map(), "out.svg", new FilterInspector());
 	}
 
 	@Override

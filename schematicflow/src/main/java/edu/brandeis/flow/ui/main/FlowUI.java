@@ -2,6 +2,7 @@ package edu.brandeis.flow.ui.main;
 
 import javax.servlet.annotation.WebServlet;
 
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -10,6 +11,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
 
 import edu.brandeis.flow.ui.inspector.Inspector;
+import edu.brandeis.ui.storyboard.Mode;
 
 /**
  * @author edenzik Main UI class which receives a stream of data from back end
@@ -20,7 +22,8 @@ import edu.brandeis.flow.ui.inspector.Inspector;
 @SuppressWarnings("serial")
 @Theme("valo")
 public class FlowUI extends UI {
-	MainLayout layout;
+	public MainLayout layout;
+	
 	
 
 	@WebServlet(value = { "/*" }, asyncSupported = true)
@@ -34,9 +37,10 @@ public class FlowUI extends UI {
 		setContent(layout);
 	}
 	
-	public void setInspector(Inspector inspector){
+	public void removeInspector(){
 		layout.removeInspector();
-		layout.addInspector(inspector);
 	}
+	
+
 
 }

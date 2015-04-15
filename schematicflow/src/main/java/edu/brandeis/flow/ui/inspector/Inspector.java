@@ -3,7 +3,6 @@ package edu.brandeis.flow.ui.inspector;
 import com.vaadin.ui.VerticalSplitPanel;
 
 public abstract class Inspector extends VerticalSplitPanel {
-	// private UIOperator operator;
 	public final InspectorTabs tabs;
 	public final InspectorHeader head;
 
