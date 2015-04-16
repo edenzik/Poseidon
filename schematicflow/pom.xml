@@ -142,6 +142,11 @@
 			<artifactId>visjs-addon</artifactId>
 			<version>1.0.0.4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.peimari</groupId>
+			<artifactId>dawn</artifactId>
+			<version>4</version>
+		</dependency>
 	</dependencies>
 	<build>
 <plugins>

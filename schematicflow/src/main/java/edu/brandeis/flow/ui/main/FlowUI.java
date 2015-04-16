@@ -21,7 +21,7 @@ import edu.brandeis.flow.ui.storyboard.Mode;
  */
 @Push()
 @SuppressWarnings("serial")
-@Theme("valo")
+@Theme("dawn")
 public class FlowUI extends UI {
 	public MainLayout layout;
 	

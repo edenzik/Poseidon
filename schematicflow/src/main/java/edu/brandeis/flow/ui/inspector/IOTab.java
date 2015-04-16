@@ -22,8 +22,7 @@ public class IOTab extends VerticalLayout {
 				while (true){
 					try {
 						lvt.addItem(op.operator.view().take());
-						
-						Thread.sleep(100);
+						lvt.markAsDirty();
 						
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block

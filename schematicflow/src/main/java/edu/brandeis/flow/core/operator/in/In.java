@@ -27,11 +27,15 @@ public class In extends JSONOperator {
 	public void run() {
 		
 		while (true) {
-			JSONObject top;
-			if ((top = read()) != null) {
-				System.out.println("IN:::" + top);
-				send(top);
+			JSONObject top = new JSONObject();
+			try {
+				top.append("hello", "world");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			System.out.println("IN:::" + top);
+			send(top);
 		}
 		
 //		int i = 0;
