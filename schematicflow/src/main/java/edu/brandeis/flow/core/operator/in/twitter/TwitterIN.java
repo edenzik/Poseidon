@@ -36,7 +36,7 @@ public class TwitterIN extends JSONOperator{
 		//start Twitter server
 		TwitterStreamSource twitter = new TwitterStreamSource();
 		
-		JSONThread thread = new JSONThread(this);
+		JSONThread thread = new JSONThread(this, 5050);
 		thread.start();
 	}
 	

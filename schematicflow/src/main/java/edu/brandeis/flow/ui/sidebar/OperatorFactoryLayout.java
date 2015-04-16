@@ -16,8 +16,9 @@ import edu.brandeis.flow.ui.operator.out.UIOutFactory;
 public class OperatorFactoryLayout extends GridLayout {
 	private final int numCols = 2;
 	private final UIOperatorFactory uiOpFactories[] = new UIOperatorFactory[] {
-			new UIFilterFactory(), new UIInFactory(), new UIOutFactory(),
-			new UITwitterInFactory(), new UIMapFactory(), new UIJoinFactory()};
+			new UIFilterFactory(), new UIInFactory("http://developer.mbta.com/Data/Red.json",3000), new UIOutFactory(),
+			new UITwitterInFactory(), new UIMapFactory(), new UIJoinFactory() };
+
 	//new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory(),new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() };
 
 	public OperatorFactoryLayout() {

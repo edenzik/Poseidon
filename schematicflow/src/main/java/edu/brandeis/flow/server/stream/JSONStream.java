@@ -35,11 +35,14 @@ public final class JSONStream {
 					socket.getInputStream()));
 
 			String val;
+			
 			if ((val = is.readLine()) != null)
 				return new JSONObject(val);
 			
 		}catch (ConnectException e) {
 			
+		}catch (JSONException ee) {
+			System.out.println("not a json error");
 		}
 		return null;
 		

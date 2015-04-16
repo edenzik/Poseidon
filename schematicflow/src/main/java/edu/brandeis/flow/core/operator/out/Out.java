@@ -29,6 +29,13 @@ public final class Out extends JSONOperator {
 	 */
 	@Override
 	public void run() {
+		JSONObject s;
+		while(true) {
+			if ((s = read()) != null) {
+				System.out.println("OUT:::" + s.toString());
+			}
+		}
+		
 	}
 
 }
