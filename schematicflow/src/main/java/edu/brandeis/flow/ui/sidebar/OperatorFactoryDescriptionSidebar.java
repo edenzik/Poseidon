@@ -9,6 +9,8 @@ import com.vaadin.ui.VerticalSplitPanel;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
 public class OperatorFactoryDescriptionSidebar extends VerticalSplitPanel {
+	private static final long serialVersionUID = 1L;
+
 	@SuppressWarnings("deprecation")
 	public OperatorFactoryDescriptionSidebar() {
 		Label label = new Label("Description Here");

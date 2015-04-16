@@ -1,4 +1,4 @@
-package edu.brandeis.ui.storyboard;
+package edu.brandeis.flow.ui.storyboard;
 
 import org.vaadin.visjs.networkDiagram.NetworkDiagram;
 import org.vaadin.visjs.networkDiagram.Node;

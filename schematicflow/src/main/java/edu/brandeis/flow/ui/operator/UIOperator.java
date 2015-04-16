@@ -11,7 +11,7 @@ import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.flow.ui.main.FlowUI;
 import edu.brandeis.flow.ui.main.MainLayout.InspectorCallback;
 import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
-import edu.brandeis.ui.storyboard.StoryBoard;
+import edu.brandeis.flow.ui.storyboard.StoryBoard;
 
 public abstract class UIOperator extends Node {
 	public static InspectorCallback ic;
