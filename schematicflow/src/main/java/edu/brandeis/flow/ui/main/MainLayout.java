@@ -1,11 +1,13 @@
 package edu.brandeis.flow.ui.main;
 
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
+
 import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.sidebar.OperatorFactoryDescriptionSidebar;
-import edu.brandeis.ui.storyboard.StoryBoard;
+import edu.brandeis.flow.ui.storyboard.StoryBoard;
 import edu.brandeis.flow.ui.network.*;
 
 public class MainLayout extends HorizontalLayout {
@@ -21,10 +23,10 @@ public class MainLayout extends HorizontalLayout {
 		UIOperator.ic = new InspectorCallback(this);
 		
 		addComponent(sidebar);
-		this.setExpandRatio(sidebar, (float) 15.0);
+		this.setExpandRatio(sidebar, (float) 12.0);
 
 		addComponent(storyBoard);
-		this.setExpandRatio(storyBoard, (float) 55.0);
+		this.setExpandRatio(storyBoard, (float) 48.0);
 		
 
 	}
@@ -42,6 +44,8 @@ public class MainLayout extends HorizontalLayout {
 		this.inspector = inspector;
 		addComponent(inspector);
 		setExpandRatio(inspector, (float) 20.0);
+		storyBoard.markAsDirtyRecursive();
+		//getUI().push();
 	}
 	
 	public class InspectorCallback{

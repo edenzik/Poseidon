@@ -1,5 +1,6 @@
 package edu.brandeis.flow.ui.sidebar;
 
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.DragAndDropWrapper.DragStartMode;
 import com.vaadin.ui.GridLayout;
@@ -18,13 +19,16 @@ public class OperatorFactoryLayout extends GridLayout {
 			new UIFilterFactory(), new UIInFactory("http://developer.mbta.com/Data/Red.json",3000), new UIOutFactory(),
 			new UITwitterInFactory(), new UIMapFactory(), new UIJoinFactory() };
 
+	//new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory(),new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() ,new UIJoinFactory() };
+
 	public OperatorFactoryLayout() {
 		setSizeFull();
 		setColumns(numCols);
 		this.setMargin(true);
+		this.setSpacing(true);
 		for (UIOperatorFactory uiOp : uiOpFactories) {
-			uiOp.setWidth(this.getWidth() / 3, this.getWidthUnits());
-			uiOp.setHeight(this.getHeight() / 3, this.getHeightUnits());
+			uiOp.setWidth(this.getWidth() / 2, this.getWidthUnits());
+			uiOp.setHeight(this.getHeight() / 2, this.getHeightUnits());
 			DragAndDropWrapper transferable = new DragAndDropWrapper(uiOp);
 			transferable.setSizeUndefined();
 			transferable.setDragStartMode(DragStartMode.WRAPPER);

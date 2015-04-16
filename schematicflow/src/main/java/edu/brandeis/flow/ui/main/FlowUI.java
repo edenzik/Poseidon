@@ -12,7 +12,7 @@ import com.vaadin.ui.UI;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.ui.inspector.Inspector;
-import edu.brandeis.ui.storyboard.Mode;
+import edu.brandeis.flow.ui.storyboard.Mode;
 
 /**
  * @author edenzik Main UI class which receives a stream of data from back end
