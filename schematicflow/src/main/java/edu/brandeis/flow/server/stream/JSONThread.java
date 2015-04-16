@@ -20,19 +20,21 @@ import edu.brandeis.flow.core.operator.in.twitter.TwitterIN;
 public final class JSONThread extends Thread {
 
 	JSONOperator op;
+	int port;
 
 	/**
 	 * 
 	 */
-	public JSONThread(JSONOperator op) {
+	public JSONThread(JSONOperator op, int port) {
 		this.op = op;
+		this.port = port;
 	}
 
 	@Override
 	public void run() {
 		JSONStream inStream = null;
 		try {
-			inStream = new JSONStream("localhost", 5050);
+			inStream = new JSONStream("localhost", port);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

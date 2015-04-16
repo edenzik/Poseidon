@@ -1,6 +1,7 @@
 package edu.brandeis.flow.core.operator.in;
 
 import java.io.IOException;
+import java.net.URL;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,8 +19,23 @@ import edu.brandeis.flow.server.stream.JSONThread;
  */
 @Push
 public class In extends JSONOperator {
-	public In() throws JSONException, IOException {
+	int port;
+	URL url;
+	
+	public In(String url,int port) throws JSONException, IOException {
 		super();
+		this.port = port;
+		this.url = new URL(url);
+		
+		//start source server
+		JSONSource source = new JSONSource(this.url, port);
+		new Thread(source).start();
+
+		//read from the source server
+		JSONThread thread = new JSONThread(this, port);
+		thread.start();		
+		
+		
 	}
 
 
