@@ -2,6 +2,13 @@ package edu.brandeis.flow.ui.main;
 
 import javax.servlet.annotation.WebServlet;
 
+
+
+
+
+
+import org.vaadin.addons.d3Gauge.Gauge;
+
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
@@ -21,14 +28,13 @@ import edu.brandeis.flow.ui.storyboard.Mode;
  */
 @Push()
 @SuppressWarnings("serial")
-@Theme("dawn")
+@Theme("valo")
 public class FlowUI extends UI {
 	public MainLayout layout;
 	
 	
 
-	@WebServlet(value = { "/*" }, asyncSupported = true)
-	@VaadinServletConfiguration(productionMode = true, ui = FlowUI.class)
+
 	public static class Servlet extends VaadinServlet {
 	}
 
@@ -36,10 +42,21 @@ public class FlowUI extends UI {
 	protected void init(VaadinRequest request) {
 		layout = new MainLayout();
 		setContent(layout);
+		
+		
 	}
 	
 	public void removeInspector(){
 		layout.removeInspector();
+		this.addDetachListener(new DetachListener(){
+
+			@Override
+			public void detach(DetachEvent event) {
+				System.out.println("leaving!");
+				
+			}
+			
+		});
 	}
 	
 

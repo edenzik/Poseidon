@@ -23,5 +23,6 @@ public class LiveViewTable extends Table {
 		Object newItemId = addItem();
 		Item row1 = getItem(newItemId);
 		row1.getItemProperty("Content").setValue(obj);
+		this.fireValueChange(false);
 	}
 }
