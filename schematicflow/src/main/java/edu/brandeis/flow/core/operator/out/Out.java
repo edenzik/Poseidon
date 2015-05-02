@@ -3,7 +3,6 @@
  */
 package edu.brandeis.flow.core.operator.out;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
@@ -32,7 +31,7 @@ public final class Out extends JSONOperator {
 		JSONObject s;
 		while(true) {
 			if ((s = read()) != null) {
-				System.out.println("OUT:::" + s.toString());
+//				System.out.println("OUT:::" + s.toString());
 			}
 		}
 		

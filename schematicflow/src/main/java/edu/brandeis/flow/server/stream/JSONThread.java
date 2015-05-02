@@ -10,8 +10,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
-import edu.brandeis.flow.core.operator.in.In;
-import edu.brandeis.flow.core.operator.in.twitter.TwitterIN;
 
 /**
  * @author Yahui

@@ -1,6 +1,5 @@
 package edu.brandeis.flow.ui.sidebar;
 
-import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.DragAndDropWrapper;
 import com.vaadin.ui.DragAndDropWrapper.DragStartMode;
 import com.vaadin.ui.GridLayout;

@@ -28,12 +28,12 @@ public class In extends JSONOperator {
 		this.url = new URL(url);
 		
 		//start source server
-		JSONSource source = new JSONSource(this.url, port);
-		new Thread(source).start();
+//		JSONSource source = new JSONSource(this.url, port);
+//		new Thread(source).start();
 
 		//read from the source server
-		JSONThread thread = new JSONThread(this, port);
-		thread.start();		
+//		JSONThread thread = new JSONThread(this, port);
+//		thread.start();		
 		
 		
 	}
@@ -44,13 +44,13 @@ public class In extends JSONOperator {
 		
 		while (true) {
 			JSONObject top = new JSONObject();
-			try {
-				top.append("hello", "world");
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println("IN:::" + top);
+//			try {
+////				top.append("hello", "world");
+//			} catch (JSONException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			System.out.println("IN:::" + top);
 			send(top);
 		}
 		

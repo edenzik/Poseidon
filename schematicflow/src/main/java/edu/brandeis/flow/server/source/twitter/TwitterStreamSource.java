@@ -43,27 +43,32 @@ public final class TwitterStreamSource {
 	public void setUpListener() {
 		listener = new StatusListener() {
 
+			@Override
 			public void onException(Exception arg0) {
 				// TODO Auto-generated method stub
 
 			}
 
+			@Override
 			public void onDeletionNotice(StatusDeletionNotice arg0) {
 				// System.out.println("Deletion notice from" +
 				// arg0.getUserId());
 
 			}
 
+			@Override
 			public void onScrubGeo(long arg0, long arg1) {
 				// TODO Auto-generated method stub
 
 			}
 
+			@Override
 			public void onStallWarning(StallWarning arg0) {
 				// TODO Auto-generated method stub
 
 			}
 
+			@Override
 			public void onStatus(Status arg0) {
 				// TwitterStreamFactor.getRawJSON(arg0.getTw)
 				try {
@@ -75,6 +80,7 @@ public final class TwitterStreamSource {
 
 			}
 
+			@Override
 			public void onTrackLimitationNotice(int arg0) {
 				// TODO Auto-generated method stub
 

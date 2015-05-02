@@ -7,7 +7,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import edu.brandeis.flow.ui.main.FlowUI;
-import edu.brandeis.flow.ui.operator.UIOperator;
 
 public class ConnectTab extends VerticalLayout {
 	public final UIOperatorTable table;

@@ -1,14 +1,12 @@
 package edu.brandeis.flow.ui.main;
 
-import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 
 import edu.brandeis.flow.ui.inspector.Inspector;
+import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.sidebar.OperatorFactoryDescriptionSidebar;
 import edu.brandeis.flow.ui.storyboard.StoryBoard;
-import edu.brandeis.flow.ui.network.*;
 
 public class MainLayout extends HorizontalLayout {
 	private static final long serialVersionUID = 3402991554451061045L;

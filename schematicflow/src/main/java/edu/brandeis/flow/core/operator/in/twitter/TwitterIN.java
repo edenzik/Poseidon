@@ -3,24 +3,9 @@
  */
 package edu.brandeis.flow.core.operator.in.twitter;
 
-import java.io.IOException;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import twitter4j.StallWarning;
-import twitter4j.Status;
-import twitter4j.StatusDeletionNotice;
-import twitter4j.StatusListener;
-import twitter4j.TwitterObjectFactory;
-import twitter4j.TwitterStream;
-import twitter4j.TwitterStreamFactory;
-import twitter4j.conf.ConfigurationBuilder;
 import edu.brandeis.flow.core.operator.JSONOperator;
-import edu.brandeis.flow.core.operator.Operator;
-import edu.brandeis.flow.core.operator.in.In;
-import edu.brandeis.flow.server.source.Streamer;
-import edu.brandeis.flow.server.source.JSONSource;
 import edu.brandeis.flow.server.source.twitter.TwitterStreamSource;
 import edu.brandeis.flow.server.stream.JSONThread;
 

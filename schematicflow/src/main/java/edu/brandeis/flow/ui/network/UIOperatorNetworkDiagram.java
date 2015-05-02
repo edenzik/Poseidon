@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.vaadin.visjs.networkDiagram.NetworkDiagram;
-import org.vaadin.visjs.networkDiagram.Node.NodeBlurListener;
-import org.vaadin.visjs.networkDiagram.event.node.BlurEvent;
 
 import edu.brandeis.flow.ui.operator.UIOperator;
 

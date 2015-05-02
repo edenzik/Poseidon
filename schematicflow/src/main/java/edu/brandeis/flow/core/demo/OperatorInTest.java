@@ -1,9 +1,5 @@
 package edu.brandeis.flow.core.demo;
 
-import java.io.IOException;
-
-import org.json.JSONException;
-
 import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.core.operator.in.In;
 import edu.brandeis.flow.core.operator.out.Out;
@@ -39,9 +35,9 @@ public class OperatorInTest {
 
 		}
 		
-		public static void main(String[] args) throws Exception{
-			OperatorInTest demo = new OperatorInTest();
-		}
+//		public static void main(String[] args) throws Exception{
+//			OperatorInTest demo = new OperatorInTest();
+//		}
 
 
 }
