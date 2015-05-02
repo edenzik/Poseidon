@@ -1,13 +1,7 @@
 package edu.brandeis.flow.ui.storyboard;
 
-import org.vaadin.visjs.networkDiagram.NetworkDiagram;
-import org.vaadin.visjs.networkDiagram.Node;
-
-import com.vaadin.event.MouseEvents.ClickEvent;
-import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.ui.Panel;
 
-import edu.brandeis.flow.ui.main.FlowUI;
 import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagramDragAndDrop;
 import edu.brandeis.flow.ui.operator.UIOperator;

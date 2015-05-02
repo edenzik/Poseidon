@@ -1,6 +1,5 @@
 package edu.brandeis.flow.core.operator;
 
-import java.util.Collection;
 /**
  * Operator is the interface designed for all stream operators. 
  */

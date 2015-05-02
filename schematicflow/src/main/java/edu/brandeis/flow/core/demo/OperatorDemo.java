@@ -1,12 +1,7 @@
 package edu.brandeis.flow.core.demo;
 
-import java.io.IOException;
-
-import org.json.JSONException;
-
 import edu.brandeis.flow.core.operator.JSONOperator;
 import edu.brandeis.flow.core.operator.filter.Filter;
-import edu.brandeis.flow.core.operator.in.In;
 import edu.brandeis.flow.core.operator.in.twitter.TwitterIN;
 import edu.brandeis.flow.core.operator.join.Join;
 import edu.brandeis.flow.core.operator.map.Map;

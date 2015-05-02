@@ -1,10 +1,5 @@
 package edu.brandeis.flow.ui.inspector;
 
-import org.json.JSONObject;
-
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 
 import edu.brandeis.flow.ui.inspector.io.table.LiveViewTable;

@@ -4,9 +4,9 @@ import com.vaadin.ui.TabSheet;
 
 import edu.brandeis.flow.ui.operator.UIOperator;
 
-final class InspectorTabs extends TabSheet {
+public final class InspectorTabs extends TabSheet {
 	final IOTab iotab;
-	PropertyTab properties = new PropertyTab();
+	PropertyTab properties;
 	ConnectTab connect = new ConnectTab();
 	final UIOperator op;
 
@@ -14,7 +14,13 @@ final class InspectorTabs extends TabSheet {
 		iotab = new IOTab(op);
 		this.op = op;
 		setSizeFull();
-
+	} 
+	public void setProperties(PropertyTab properties) {
+		this.properties = properties;
+		
+	}
+	
+	public void setTabs() {
 		addTab(properties, "Properties");
 		addTab(iotab, "Live View");
 		addTab(connect, "Connect");

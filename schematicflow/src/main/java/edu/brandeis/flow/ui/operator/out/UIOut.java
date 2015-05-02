@@ -1,6 +1,5 @@
 package edu.brandeis.flow.ui.operator.out;
 
-import edu.brandeis.flow.core.operator.map.Map;
 import edu.brandeis.flow.core.operator.out.Out;
 import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.flow.ui.inspector.operators.FilterInspector;

@@ -1,9 +1,5 @@
 package edu.brandeis.flow.ui.operator.in.twitter;
 
-import java.io.IOException;
-
-import org.json.JSONException;
-
 import edu.brandeis.flow.core.operator.in.twitter.TwitterIN;
 import edu.brandeis.flow.ui.inspector.Inspector;
 import edu.brandeis.flow.ui.inspector.operators.FilterInspector;

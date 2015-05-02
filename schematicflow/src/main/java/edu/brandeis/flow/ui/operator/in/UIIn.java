@@ -6,7 +6,7 @@ import org.json.JSONException;
 
 import edu.brandeis.flow.core.operator.in.In;
 import edu.brandeis.flow.ui.inspector.Inspector;
-import edu.brandeis.flow.ui.inspector.operators.FilterInspector;
+import edu.brandeis.flow.ui.inspector.operators.InInspector;
 import edu.brandeis.flow.ui.operator.UIOperator;
 
 final class UIIn extends UIOperator {
@@ -17,7 +17,7 @@ final class UIIn extends UIOperator {
 
 	@Override
 	protected Inspector makeInspector() {
-		return new FilterInspector(this);
+		return new InInspector(this);
 	}
 
 }

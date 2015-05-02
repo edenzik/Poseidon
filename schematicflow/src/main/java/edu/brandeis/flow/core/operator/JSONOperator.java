@@ -5,20 +5,12 @@ package edu.brandeis.flow.core.operator;
  * It should be extended by all operators that process JSON object. 
  */
 
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Queue;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.vaadin.ui.UI;
 
 public abstract class JSONOperator implements Operator<JSONObject> {
 	public final BlockingQueue<JSONObject> buffer; // hold all received JSON streams
@@ -43,6 +35,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * @param obj
 	 *            JSONObject need to be received
 	 */
+	@Override
 	public void receive(JSONObject obj) {
 		buffer.add(obj);
 		viewBuffer.add(obj);
@@ -54,6 +47,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * @param obj
 	 *            JSONObject needs to be send to next operators
 	 */
+	@Override
 	public void send(JSONObject obj) {
 		for (Operator<JSONObject> op : next){
 			op.receive(obj);
@@ -67,6 +61,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * @param op
 	 *            the next operator need to be added
 	 */
+	@Override
 	public void addNext(Operator<JSONObject> op) {
 		next.add(op);
 	}
@@ -77,6 +72,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * @param op
 	 *            the next operator need to be added
 	 */
+	@Override
 	public void removeNext(Operator<JSONObject> op) {
 		next.remove(op);
 	}
@@ -87,6 +83,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * @return Set<Operator<JSONObject>> next operator(s), which returns more
 	 *         than one operation when implement Split operator
 	 */
+	@Override
 	public Set<Operator<JSONObject>> getNext() {
 		return this.next;
 	}
@@ -97,6 +94,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 * @return JSONObject processed JSONObject
 	 * 
 	 */
+	@Override
 	public JSONObject read() {
 		try {
 			return buffer.take();
