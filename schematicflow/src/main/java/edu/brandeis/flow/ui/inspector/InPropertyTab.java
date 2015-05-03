@@ -35,6 +35,7 @@ public class InPropertyTab extends PropertyTab {
 		        	try {
 						in.setURL("http://developer.mbta.com/Data/Red.json",6000);
 						in.startRequest();
+						new Thread(in).start();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

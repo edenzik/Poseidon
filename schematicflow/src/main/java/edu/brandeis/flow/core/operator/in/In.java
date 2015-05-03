@@ -44,9 +44,9 @@ public class In extends JSONOperator {
 
 	@Override
 	public void run() {
-		
+		JSONObject top;
 		while (true) {
-			JSONObject top = new JSONObject();
+			
 //			try {
 ////				top.append("hello", "world");
 //			} catch (JSONException e) {
@@ -54,7 +54,9 @@ public class In extends JSONOperator {
 //				e.printStackTrace();
 //			}
 //			System.out.println("IN:::" + top);
-			send(top);
+			if((top = read()) != null) {
+				send(top);
+			}
 		}
 		
 //		int i = 0;
