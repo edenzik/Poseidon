@@ -47,14 +47,15 @@ public class In extends JSONOperator {
 		
 		while (true) {
 			JSONObject top = new JSONObject();
-//			try {
-////				top.append("hello", "world");
-//			} catch (JSONException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			System.out.println("IN:::" + top);
-			send(top);
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			for (int i=0; i<100000; i++){
+				send(new JSONObject());
+			}
 		}
 		
 //		int i = 0;

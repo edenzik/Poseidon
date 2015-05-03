@@ -1,8 +1,11 @@
 package edu.brandeis.flow.ui.inspector;
 
 import org.vaadin.addons.d3Gauge.Gauge;
+import org.vaadin.addons.d3Gauge.GaugeConfig;
+import org.vaadin.addons.d3Gauge.GaugeStyle;
 
 import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -14,29 +17,41 @@ public class IOTab extends VerticalLayout {
 
 	public IOTab(UIOperator op) {
 		
-		Gauge gauge = new Gauge("Memory",0,100);
-		Label lb = new Label();
+		
+		GaugeConfig config = new GaugeConfig(); 
+		config.setStyle(GaugeStyle.STYLE_DARK.toString());
+		config.setMax(30000);
+		Gauge gauge = new Gauge("Content",200,200, config);
 		UI ui = UI.getCurrent();
 		Runnable s = new Runnable() {
 		    @Override
 		    public void run() {
 		    	while (true){
-		        gauge.setValue(gauge.getValue()+1);
-		        ui.push();
+		    		int v = gauge.getValue();
+		    		int newVal = op.operator.buffer.size();
+		    		if (v!= newVal) {
+		    			gauge.setValue(newVal);
+		    			ui.push();
+		    		}
+		    		
 		        try {
 					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+				} catch (Error e) {
 					e.printStackTrace();
+				} catch (Exception e) {
+
 				}
 		    	}
 		    }
 		};
 		
 		new Thread(s).start();
-
-		gauge.setHeight(50, Unit.PERCENTAGE);
 		addComponent(gauge); 
+		//gauge.setWidth(10, Unit.CM);
+		//gauge.setHeight(10, Unit.CM);
+		this.setComponentAlignment(gauge, Alignment.BOTTOM_CENTER);
+		//gauge.setHeight(50, Unit.PERCENTAGE);
+		
 
 	}
 
