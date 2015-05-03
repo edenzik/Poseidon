@@ -16,8 +16,12 @@ import edu.brandeis.flow.server.stream.JSONThread;
 public class TwitterIN extends JSONOperator{
 
 
-	public TwitterIN() throws Exception{
+	public TwitterIN() {
 
+		
+	}
+	
+	public void startRequest() throws Exception {
 		//start Twitter server
 		TwitterStreamSource twitter = new TwitterStreamSource();
 		

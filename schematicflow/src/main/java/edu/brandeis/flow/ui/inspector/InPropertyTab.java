@@ -13,6 +13,7 @@ import com.vaadin.ui.ComboBox;
 
 import edu.brandeis.flow.core.demo.OperatorInTest;
 import edu.brandeis.flow.core.operator.in.In;
+import edu.brandeis.flow.core.operator.in.twitter.TwitterIN;
 
 public class InPropertyTab extends PropertyTab {
 	final ComboBox combobox;
@@ -26,6 +27,7 @@ public class InPropertyTab extends PropertyTab {
         combobox.setNullSelectionAllowed(false);
 		combobox.addItem("MBTA Red Line");
 		combobox.addItem("MBTA Orange Line");
+		combobox.addItem("Twitter");
 		button = new Button("Start", new Button.ClickListener() {
 		    @Override
 		    public void buttonClick(ClickEvent event) {
@@ -46,8 +48,16 @@ public class InPropertyTab extends PropertyTab {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+		        } else if (combobox.getValue().equals("Twitter")) {
+		        	try {
+		        		TwitterIN twitterIn = new TwitterIN();
+						twitterIn.startRequest();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 		        }
-		    }
+		    } 
 		  });
 		addComponent(combobox);
 		addComponent(button);
