@@ -1,6 +1,7 @@
 package edu.brandeis.flow.core.operator.in;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.json.JSONException;
@@ -22,20 +23,22 @@ public class In extends JSONOperator {
 	int port;
 	URL url;
 	
-	public In(String url,int port) throws JSONException, IOException {
+	public In() {
 		super();
+	}
+	public void setURL(String url, int port) throws MalformedURLException {
 		this.port = port;
 		this.url = new URL(url);
-		
+	}
+	
+	public void startRequest() throws IOException {
 		//start source server
-//		JSONSource source = new JSONSource(this.url, port);
-//		new Thread(source).start();
+		JSONSource source = new JSONSource(this.url, port);
+		new Thread(source).start();
 
 		//read from the source server
-//		JSONThread thread = new JSONThread(this, port);
-//		thread.start();		
-		
-		
+		JSONThread thread = new JSONThread(this, port);
+		thread.start();		
 	}
 
 

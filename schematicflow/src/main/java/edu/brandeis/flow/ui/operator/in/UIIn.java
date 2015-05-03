@@ -11,8 +11,8 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 
 final class UIIn extends UIOperator {
 
-	protected UIIn(String url,int port) throws JSONException, IOException {
-		super(new In(url,port), "in.svg");
+	protected UIIn() throws JSONException, IOException {
+		super(new In(), "in.svg");
 	}
 
 	@Override

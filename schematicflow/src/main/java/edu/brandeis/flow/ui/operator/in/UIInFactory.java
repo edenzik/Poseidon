@@ -14,13 +14,11 @@ public final class UIInFactory extends UIOperatorFactory {
 	
 	public UIInFactory(String url, int port) {
 		super("In", "in.svg");
-		this.port = port;
-		this.url = url;
 	}
 
 	@Override
 	public UIOperator makeUIOperator() throws JSONException, IOException {
-		return new UIIn(url,port);
+		return new UIIn();
 	}
 
 	@Override

@@ -8,17 +8,17 @@ public class OperatorInTest {
 
 		public OperatorInTest() throws Exception {
 			
-			In in = new In("http://developer.mbta.com/Data/Red.json",6000);
-			Out out = new Out();
-			
-			in.addNext(out);
-			
-			OpThread threadIn = new OpThread(in);
-			new Thread(threadIn).start();
-			
-			OpThread threadOut = new OpThread(out);
-			new Thread(threadOut).start();
-			
+//			In in = new In("http://developer.mbta.com/Data/Red.json",6000);
+//			Out out = new Out();
+//			
+//			in.addNext(out);
+//			
+//			OpThread threadIn = new OpThread(in);
+//			new Thread(threadIn).start();
+//			
+//			OpThread threadOut = new OpThread(out);
+//			new Thread(threadOut).start();
+//			
 		}
 		
 		public class OpThread implements Runnable {
