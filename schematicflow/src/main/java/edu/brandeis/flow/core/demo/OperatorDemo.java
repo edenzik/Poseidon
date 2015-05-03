@@ -12,40 +12,19 @@ public class OperatorDemo {
 		public OperatorDemo() throws Exception {
 			TwitterIN in = new TwitterIN();
 			Out out = new Out();
-			Filter filter = new Filter();
-			Map map = new Map();
-			Join join = new Join();
 			
-			filter.setKey("delete");
-			filter.setTerm("status");
+			Filter filter = new Filter();
+			filter.setup("in_reply_to_status_id_str", ".*", "regex", "");
 			
 			in.addNext(filter);
 			filter.addNext(out);
 			
-			OpThread threadIn = new OpThread(in);
-			new Thread(threadIn).start();
-			
-			OpThread threadFilter = new OpThread(filter);
-			new Thread(threadFilter).start();
-			
-			OpThread threadOut = new OpThread(out);
-			new Thread(threadOut).start();
+			new Thread(in).start();
+			new Thread(filter).start();
+			new Thread(out).start();
 			
 		}
-		
-		public class OpThread implements Runnable {
-			JSONOperator op;
-			public OpThread(JSONOperator op) {
-				this.op = op;
-			}
-			
-			@Override
-			public void run() {
-				
-			}
-			
 
-		}
 		
 		public static void main(String[] args) throws Exception{
 			OperatorDemo demo = new OperatorDemo();
@@ -53,3 +32,4 @@ public class OperatorDemo {
 
 
 }
+

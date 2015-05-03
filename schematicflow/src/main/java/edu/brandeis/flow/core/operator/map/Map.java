@@ -15,14 +15,43 @@ import edu.brandeis.flow.core.operator.JSONOperator;
  *
  */
 public final class Map extends JSONOperator {
-	String key;
-	Function<Double, Double> func;
+	String key = "";
+//	Function<Double, Double> func;
+	String term = "";
 
 	/**
 	 * Constructor
 	 */
 	public Map() {
 		super();
+	}
+	
+	public void setup(String key, String term){
+		this.key = key;
+		this.term = term;
+	}
+	
+	public void run(){
+		JSONObject top;
+		while(true){
+			if((top = read())!= null) {
+				if(top.has(key))
+					try {
+						top.append(key, term);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				else
+					try {
+						top.put(key, term);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				send(top);
+			}
+		}
 	}
 
 	/**
@@ -42,44 +71,15 @@ public final class Map extends JSONOperator {
 	public String getKey() {
 		return key;
 	}
-
-	/**
-	 * Set map function
-	 * 
-	 * @param oper
-	 *            user operator in String format
-	 * @param num
-	 */
-	public void setFunc(String oper, Double num) {
-		switch (oper) {
-		case "times":
-			func = val -> val * num;
-		case "adds":
-			func = val -> val + num;
-		case "minus":
-			func = val -> val - num;
-		case "divides":
-			func = val -> val / num;
-		default:
-			break;
-		}
+	
+	public void setTerm(String term){
+		this.term = term;
+	}
+	
+	public String getTerm() {
+		return term;
 	}
 
-	@Override
-	public void run() {
-		JSONObject top = read();
-		if (top.has(key)) {
-			// apply map function
-			try {
-				top.put(key, func.apply(top.getDouble(key)));
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// send the result
-			send(top);
-		}
-
-	}
 
 }
+
