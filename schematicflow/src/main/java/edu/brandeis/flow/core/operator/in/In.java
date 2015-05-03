@@ -44,17 +44,18 @@ public class In extends JSONOperator {
 
 	@Override
 	public void run() {
-		
+		JSONObject top;
 		while (true) {
-			JSONObject top = new JSONObject();
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			for (int i=0; i<100000; i++){
-				send(new JSONObject());
+			
+//			try {
+////				top.append("hello", "world");
+//			} catch (JSONException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			System.out.println("IN:::" + top);
+			if((top = read()) != null) {
+				send(top);
 			}
 		}
 		
