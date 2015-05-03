@@ -147,6 +147,11 @@
 			<artifactId>dawn</artifactId>
 			<version>4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>d3Gauge</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 <plugins>

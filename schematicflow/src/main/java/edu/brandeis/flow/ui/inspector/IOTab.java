@@ -1,5 +1,10 @@
 package edu.brandeis.flow.ui.inspector;
 
+import org.vaadin.addons.d3Gauge.Gauge;
+
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import edu.brandeis.flow.ui.inspector.io.table.LiveViewTable;
@@ -8,29 +13,30 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 public class IOTab extends VerticalLayout {
 
 	public IOTab(UIOperator op) {
-		LiveViewTable lvt = new LiveViewTable();
-		this.addComponent(lvt);
-		new Thread(new Runnable(){
-
-			@Override
-			public void run() {
-				while (true){
-					try {
-						lvt.addItem(op.operator.view().take());
-						lvt.markAsDirty();
-						
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+		
+		Gauge gauge = new Gauge("Memory",0,100);
+		Label lb = new Label();
+		UI ui = UI.getCurrent();
+		Runnable s = new Runnable() {
+		    @Override
+		    public void run() {
+		    	while (true){
+		        gauge.setValue(gauge.getValue()+1);
+		        ui.push();
+		        try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+		    	}
+		    }
+		};
+		
+		new Thread(s).start();
 
-			}
-
-
-		}).start();
-
-		// this.addComponent(out);
+		gauge.setHeight(50, Unit.PERCENTAGE);
+		addComponent(gauge); 
 
 	}
 
