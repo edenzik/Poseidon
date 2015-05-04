@@ -31,7 +31,7 @@ public final class Out extends JSONOperator {
 		JSONObject s;
 		while(true) {
 			if ((s = read()) != null) {
-//				System.out.println("OUT:::" + s.toString());
+				System.out.println("OUT:::" + s.toString());
 			}
 		}
 		

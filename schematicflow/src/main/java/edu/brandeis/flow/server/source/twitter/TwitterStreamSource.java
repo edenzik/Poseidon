@@ -11,6 +11,7 @@ import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.ConfigurationBuilder;
 import edu.brandeis.flow.server.source.Streamer;
+import edu.brandeis.flow.ui.callback.Callback;
 
 public final class TwitterStreamSource {
 
@@ -71,12 +72,7 @@ public final class TwitterStreamSource {
 			@Override
 			public void onStatus(Status arg0) {
 				// TwitterStreamFactor.getRawJSON(arg0.getTw)
-				try {
-					streamer.send(TwitterObjectFactory.getRawJSON(arg0));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+
 
 			}
 
