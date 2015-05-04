@@ -1,4 +1,4 @@
-package edu.brandeis.flow.ui.inspector;
+package edu.brandeis.flow.ui.inspector.operators;
 
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -8,6 +8,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.Button.ClickEvent;
 
 import edu.brandeis.flow.core.operator.map.Map;
+import edu.brandeis.flow.ui.inspector.PropertyTab;
 
 public class MapPropertyTab extends PropertyTab {
 	

@@ -42,11 +42,23 @@ public final class Filter extends JSONOperator {
 	
 	@Override
 	public void run() {
+		while (true) {
+			//System.out.println(read());
+			read();
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		/*
 		if (isNumerical()) {
 			numMode();
 		}else {
 			regexMode();
 		}
+		}*/
 	}
 	
 	public void regexMode(){ //accept only the "=" relational operator --> match
@@ -57,7 +69,7 @@ public final class Filter extends JSONOperator {
             pattern = Pattern.compile(target);
 
             while (true) {
-    			
+            	
     			if((top = read()) != null) {
     				//if no key is specified, then sends all json objects
         			if(key.equals("")) send(top);
@@ -80,7 +92,7 @@ public final class Filter extends JSONOperator {
         } catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 
 	}
 	

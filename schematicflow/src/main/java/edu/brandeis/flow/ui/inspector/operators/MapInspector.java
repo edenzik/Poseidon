@@ -4,7 +4,6 @@ import edu.brandeis.flow.core.operator.filter.Filter;
 import edu.brandeis.flow.core.operator.map.Map;
 import edu.brandeis.flow.ui.inspector.FilterPropertyTab;
 import edu.brandeis.flow.ui.inspector.Inspector;
-import edu.brandeis.flow.ui.inspector.MapPropertyTab;
 import edu.brandeis.flow.ui.inspector.PropertyTab;
 import edu.brandeis.flow.ui.operator.UIOperator;
 

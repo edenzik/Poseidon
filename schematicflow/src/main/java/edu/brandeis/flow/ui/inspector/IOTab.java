@@ -6,9 +6,12 @@ import org.vaadin.addons.d3Gauge.GaugeStyle;
 
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button.ClickEvent;
 
 import edu.brandeis.flow.ui.inspector.io.table.LiveViewTable;
 import edu.brandeis.flow.ui.operator.UIOperator;
@@ -19,18 +22,31 @@ public class IOTab extends VerticalLayout {
 		
 		
 		GaugeConfig config = new GaugeConfig(); 
-		config.setStyle(GaugeStyle.STYLE_DARK.toString());
-		config.setMax(30000);
-		Gauge gauge = new Gauge("Content",200,200, config);
+		//config.setStyle(GaugeStyle.STYLE_DARK.toString());
+		config.setMax(10);
+		
+		Button sample = new Button("Sample Data");
+		sample.addClickListener(new Button.ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				Notification.show("Sample",
+		                  op.operator.buffer.peek().toString(),
+		                  Notification.Type.HUMANIZED_MESSAGE);
+				
+				
+			}
+		});
+		Gauge gauge = new Gauge("Rate",0,300, config);
 		UI ui = UI.getCurrent();
 		Runnable s = new Runnable() {
 		    @Override
 		    public void run() {
+		    	int val = 0;
 		    	while (true){
-		    		int v = gauge.getValue();
-		    		int newVal = op.operator.buffer.size();
-		    		if (v!= newVal) {
-		    			gauge.setValue(newVal);
+		    		val = op.operator.getRate();
+		    		if (gauge.getValue()!=val){
+		    			gauge.setValue(val);
 		    			ui.push();
 		    		}
 		    		
@@ -46,29 +62,18 @@ public class IOTab extends VerticalLayout {
 		};
 		
 		new Thread(s).start();
-		addComponent(gauge); 
-		//gauge.setWidth(10, Unit.CM);
-		//gauge.setHeight(10, Unit.CM);
-		this.setComponentAlignment(gauge, Alignment.BOTTOM_CENTER);
-		//gauge.setHeight(50, Unit.PERCENTAGE);
+		addComponent(gauge);
+		addComponent(sample);
+		 
+		this.setMargin(true);
+		this.setSpacing(true);
+
+		this.setSizeFull();
+		this.setComponentAlignment(sample, Alignment.BOTTOM_CENTER);
+		this.setComponentAlignment(gauge, Alignment.MIDDLE_CENTER);
 		
 
 	}
 
-	// private final Button propertiesButton;
-	// private final Button IOButton;
-	// private final Button functionButton;
-	// private final Button liveButton;
-	//
-	// public InspectorTabs(){
-	// propertiesButton = new Button("Properties");
-	// IOButton = new Button("I/O");
-	// functionButton = new Button("Function");
-	// liveButton = new Button("Live");
-	// this.addComponent(propertiesButton);
-	// this.addComponent(IOButton);
-	// this.addComponent(functionButton);
-	// this.addComponent(liveButton);
-	// }
 
 }

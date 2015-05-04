@@ -13,17 +13,14 @@ public class ConnectTab extends VerticalLayout {
 
 	public ConnectTab() {
 		this.table = new UIOperatorTable();
-		Label label = new Label();
 		Button add = new Button("Add output");
-		this.addComponent(label);
 		this.addComponent(table);
 		this.addComponent(add);
 
-		setComponentAlignment(label, Alignment.TOP_CENTER);
 		setComponentAlignment(table, Alignment.MIDDLE_CENTER);
 		setComponentAlignment(add, Alignment.BOTTOM_CENTER);
 		table.setHeight(8, Unit.CM);
-		table.setWidth(5, Unit.CM);
+		table.setWidth(100, Unit.PERCENTAGE);
 		this.setSpacing(true);
 		add.addClickListener(new Button.ClickListener() {
 

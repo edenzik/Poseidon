@@ -18,7 +18,7 @@ public abstract class UIOperator extends Node {
 	private final Set<UIOperator> nextOperators;
 	public static UIOperator selectedNode;
 	public static boolean connectMode = false;
-	public final JSONOperator operator;
+	public transient final JSONOperator operator;
 	private transient Inspector inspector;
 	private String name;
 	private String description;

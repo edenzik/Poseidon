@@ -6,26 +6,30 @@ package edu.brandeis.flow.core.operator;
  */
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.json.JSONObject;
 
 public abstract class JSONOperator implements Operator<JSONObject> {
-	public final BlockingQueue<JSONObject> buffer; // hold all received JSON streams
+	public final ConcurrentLinkedQueue<JSONObject> buffer; // hold all received JSON streams
 	protected final Set<Operator<JSONObject>> next; // a set of operators that the
 													// current operator will
 													// send data to.
-	private final BlockingQueue<JSONObject> viewBuffer;
-
+	public final AtomicInteger size;
+	public final long time;
 	/**
 	 * Constructor
 	 */
 	protected JSONOperator() {
-		this.buffer = new LinkedBlockingQueue<JSONObject>();
+		size = new AtomicInteger(0);
+		time = System.currentTimeMillis();
+		this.buffer = new ConcurrentLinkedQueue<JSONObject>();
 		this.next = new HashSet<Operator<JSONObject>>();
-		this.viewBuffer = new LinkedBlockingQueue<JSONObject>();
 		new Thread(this).start();
 	}
 
@@ -37,8 +41,9 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	@Override
 	public void receive(JSONObject obj) {
+		size.incrementAndGet();
 		buffer.add(obj);
-		viewBuffer.add(obj);
+		
 	}
 
 	/**
@@ -49,10 +54,9 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	@Override
 	public void send(JSONObject obj) {
-		for (Operator<JSONObject> op : next){
-			op.receive(obj);
-		}
-			
+			for (Operator<JSONObject> op : next){
+					op.receive(obj);
+			}
 	}
 
 	/**
@@ -87,6 +91,16 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	public Set<Operator<JSONObject>> getNext() {
 		return this.next;
 	}
+	
+	public int getRate(){
+		int diff = (int) (System.currentTimeMillis() - time);
+		diff = diff/100;
+		diff = diff+1;
+		System.out.println(diff);
+		System.out.println(size.get());
+		return size.get()/diff;
+		
+	}
 
 	/**
 	 * Read the first JSONObject that is need to be processed
@@ -96,27 +110,18 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	@Override
 	public JSONObject read() {
-		try {
-			return buffer.take();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		return buffer.poll();
 	}
 
 	@Override
 	public String toString() {
 		return this.getClass().getName();
 	}
+	
 
 
 	public boolean bufferIsEmpty() {
 		return buffer.isEmpty();
-	}
-	
-	public BlockingQueue<JSONObject> view(){
-		return viewBuffer;
 	}
 
 

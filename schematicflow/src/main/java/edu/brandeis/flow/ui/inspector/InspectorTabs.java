@@ -6,8 +6,8 @@ import edu.brandeis.flow.ui.operator.UIOperator;
 
 public final class InspectorTabs extends TabSheet {
 	final IOTab iotab;
-	PropertyTab properties;
-	ConnectTab connect = new ConnectTab();
+	public PropertyTab properties;
+	public ConnectTab connect = new ConnectTab();
 	final UIOperator op;
 
 	protected InspectorTabs(UIOperator op) {
