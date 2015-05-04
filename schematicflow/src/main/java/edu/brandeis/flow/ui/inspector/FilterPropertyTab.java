@@ -43,12 +43,7 @@ public class FilterPropertyTab extends PropertyTab {
 					if (numerical.getValue())	{ //if use numerical model
 						filter.setup(key.getValue(),criterion.getValue(),"numerical",combobox.getValue().toString());
 					}else {
-						System.out.println(filter.getKey());
-
 						filter.setup(key.getValue(),criterion.getValue(),"regex","");
-						
-						System.out.println(filter.getKey());
-
 					}
 					new Thread(filter).start();
 			}
@@ -60,22 +55,13 @@ public class FilterPropertyTab extends PropertyTab {
 		addComponent(combobox);
 		addComponent(criterion);
 		addComponent(button);
-////		System.out.println("\n\n\n\n\n\n FOUND \n\n\n\n\n\n");
-//		key = new TextField("Key");
-//		term = new TextField("Term");
-//		Button accept = new Button("Accept");
-//
-//		key.setWidth("90%");
-//		term.setWidth("90%");
-//
-//		addComponent(key);
-//		addComponent(term);
-//		addComponent(accept);
-//
-//		setComponentAlignment(key, Alignment.TOP_CENTER);
-//		setComponentAlignment(term, Alignment.TOP_CENTER);
-//		setComponentAlignment(accept, Alignment.BOTTOM_CENTER);
-//		this.setSpacing(true);
+		setComponentAlignment(combobox, Alignment.TOP_CENTER);
+		setComponentAlignment(regex, Alignment.TOP_LEFT);
+		setComponentAlignment(key, Alignment.TOP_CENTER);
+		setComponentAlignment(criterion, Alignment.TOP_CENTER);
+		setComponentAlignment(numerical, Alignment.TOP_LEFT);
+		setComponentAlignment(button, Alignment.TOP_CENTER);
+		this.setSpacing(true);
 	}
 
 }

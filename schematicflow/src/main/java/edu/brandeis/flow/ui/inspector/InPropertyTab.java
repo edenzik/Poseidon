@@ -43,7 +43,7 @@ public class InPropertyTab extends PropertyTab {
 		        	
 		        } else if (combobox.getValue().equals("MBTA Orange Line")) {
 		        	try {
-						in.setURL("http://developer.mbta.com/Data/Orange.json",6000);
+						in.setURL("http://developer.mbta.com/Data/Orange.json",5000);
 						in.startRequest();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
