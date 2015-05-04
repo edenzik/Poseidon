@@ -11,8 +11,6 @@ public class OutInspector extends Inspector {
 
 		public OutInspector(UIOperator op) {
 			super(op);
-			PropertyTab properties = new PropertyTab();
-			this.tabs.setProperties(properties);
 			this.tabs.setTabs();
 			
 		}
