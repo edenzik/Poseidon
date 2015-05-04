@@ -1,8 +1,8 @@
 # Site settings
-title: Freelancer
+title: Poseidon
 email: your-email@domain.com
-url: https://example.github.io
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+url: https://edenzik.github.io/StreambaseBrandeis
+description: "Poseidon is a real-time JSON streaming application."
 
 # Contact form: comment the line below if you want to stick with the default PHP contact form
 contact: static
