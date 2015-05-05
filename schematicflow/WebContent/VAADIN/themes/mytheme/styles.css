@@ -2,14 +2,23 @@
 .v-slot {
 	
 }
+span.v-checkbox.v-widget {
+	margin-left: 10px !important;
+	margin-top: 15px !important;
+}
 .valo .v-tabsheet-tabitemcell .v-tabsheet-tabitem-selected .v-caption.v-caption {
 	border-bottom-color: white !important;
+	border-top-color: white !important;
 	color: white !important;
 }
 .v-slot.v-slot-story {
 	background-image: url("common/images/grid.svg") !important; 
  
  	background: transparent;
+}
+.valo .v-tabsheet-tabitemcell .v-caption {
+	border-top: 3px solid transparent !important;
+	border-bottom: 3px solid transparent !important;
 }
 
  .valo .v-button {
@@ -39,6 +48,52 @@
 .valo .v-panel-caption {
 	background-color: #2c3e50 !important;
 	color: white !important;
+}
+.d3-gauge.default path.yellowZone {
+	fill: #FF9900 !important;
+opacity: .6 !important;
+}
+
+.d3-gauge.default path.redZone {
+	fill: #DC3912 !important;
+opacity: .6 !important;
+}
+.d3-gauge.default circle.dialButton {
+	fill: #18bc9c !important;
+	stroke: #666 !important;
+	opacity: 1.0 !important;
+}
+
+.d3-gauge.default path.dialPointer {
+	fill: #2c3e50 !important;
+	stroke: #2c3e50 !important;
+	fill-opacity: 1 !important;
+}
+.d3-gauge.default circle.innerCircle {
+	fill: white !important;
+	stroke-width: 2px !important;
+	stroke: #e0e0e0 !important;
+	opacity: .93 !important;
+}
+path.zones.greenZone {
+	opacity: 0 !important;
+}
+.d3-gauge.default circle.outerRing {
+	fill: #2c3e50 !important;
+	stroke-width: 0px !important;
+	stroke: #000 !important;
+	opacity: .4 !important;
+}
+
+table.v-tabsheet-tabs {
+	background-color: #2c3e50 !important;
+	width: 100% !important;
+}
+.valo .v-table-header-wrap, .valo .v-table-footer-wrap, .valo .v-table-header-drag {
+	 background-image: none !important;
+  background-image: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 div.v-label.v-widget.v-has-width {
 	color: white !important;
