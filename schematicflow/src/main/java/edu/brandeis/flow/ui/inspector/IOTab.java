@@ -46,6 +46,7 @@ public class IOTab extends VerticalLayout {
 		});
 		Gauge gauge = new Gauge("Rate",0,300, config);
 		UI ui = UI.getCurrent();
+		IOTab dis = this;
 		Runnable s = new Runnable() {
 		    @Override
 		    public void run() {
@@ -55,7 +56,8 @@ public class IOTab extends VerticalLayout {
 		    		if (gauge.getValue()!=val){
 		    			gauge.setValue(val);
 		    			if (val>config.getMax()){
-		    				config.setMax(val*10);
+		    				config.setMax(config.getMax()*10);
+		    				//gauge.
 		    			}
 		    			ui.push();
 		    		}
@@ -70,7 +72,6 @@ public class IOTab extends VerticalLayout {
 		    	}
 		    }
 		};
-		
 		new Thread(s).start();
 		addComponent(gauge);
 		addComponent(sample);
@@ -89,25 +90,28 @@ public class IOTab extends VerticalLayout {
 		if (preview!=null){
 			preview.close();
 		}
-		System.out.println(json);
-		System.out.println(JSONObject.quote(json.toString()).replace("null", "\"null\""));
-		//json.
-		JSONObject x = new JSONObject();
-		x.append("stuff", new JSONObject);
-		JsonContainer dataSource = JsonContainer.Factory.newInstance(JSONObject.quote(json.toString().replace("null", "\"null\"")));
-		
-		
-		Table table = new Table();
-        table.setSizeFull();
-        table.setContainerDataSource(dataSource);
-		Window subWindow = new Window("Sub-window");
-        VerticalLayout subContent = new VerticalLayout();
+		VerticalLayout subContent = new VerticalLayout();
+		try{
+			JsonContainer dataSource = JsonContainer.Factory.newInstance(json.toString());
+			Table table = new Table();
+			table.setSizeFull();
+			table.setContainerDataSource(dataSource);
+			subContent.addComponent(table);
+		}
+		catch (Exception e){
+			Label label = new Label();
+			label.setStyleName("preview");
+			label.setValue(json.toString());
+			subContent.addComponent(label);
+		}
+			
+		Window subWindow = new Window("Preview Window");
+        
         subContent.setMargin(true);
         subWindow.setContent(subContent);
         
         // Put some components in it
-        subContent.addComponent(table);
-        subContent.addComponent(new Button("Awlright"));
+        
         
         // Center it in the browser window
         subWindow.center();
