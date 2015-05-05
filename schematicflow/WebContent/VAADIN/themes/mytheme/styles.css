@@ -1,8 +1,11 @@
 
 .v-slot {
-	background-color: #f7f7f7 !important;
+	
 }
-
+.valo .v-tabsheet-tabitemcell .v-tabsheet-tabitem-selected .v-caption.v-caption {
+	border-bottom-color: white !important;
+	color: white !important;
+}
 .v-slot.v-slot-story {
 	background-image: url("common/images/grid.svg") !important; 
  
@@ -30,6 +33,19 @@
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   }
+.v-splitpanel-vertical, .v-splitpanel-horizontal {
+	background-color: #18bc9c !important;
+}
+.valo .v-panel-caption {
+	background-color: #2c3e50 !important;
+	color: white !important;
+}
+div.v-label.v-widget.v-has-width {
+	color: white !important;
+}
+.v-captiontext {
+	color: white !important;
+}
 
 .v-button-danger.v-button-danger {
     background: #fff;
