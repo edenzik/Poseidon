@@ -1,7 +1,4 @@
 
-.v-slot {
-	
-}
 span.v-checkbox.v-widget {
 	margin-left: 10px !important;
 	margin-top: 15px !important;
@@ -10,6 +7,9 @@ span.v-checkbox.v-widget {
 	border-bottom-color: white !important;
 	border-top-color: white !important;
 	color: white !important;
+}
+h2 {
+	margin-top: 1px !important; 
 }
 .v-slot.v-slot-story {
 	background-image: url("common/images/grid.svg") !important; 
@@ -26,7 +26,7 @@ span.v-checkbox.v-widget {
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
     background-image: none !important;
-   
+   	margin-top: 10px !important;
     border-radius: 0px !important;
   } 
   
@@ -97,6 +97,7 @@ table.v-tabsheet-tabs {
 }
 div.v-label.v-widget.v-has-width {
 	color: white !important;
+	margin: 6px !important;
 }
 .v-captiontext {
 	color: white !important;
