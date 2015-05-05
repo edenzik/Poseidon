@@ -1,4 +1,6 @@
-
+div.v-label.v-widget.preview.v-label-preview.v-has-width {
+	color: black !important;
+}
 span.v-checkbox.v-widget {
 	margin-left: 10px !important;
 	margin-top: 15px !important;
@@ -114,5 +116,6 @@ div.v-label.v-widget.v-has-width {
     border: none !important;
   }
 }
+
 
 
