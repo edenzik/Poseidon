@@ -20,7 +20,7 @@ public class InspectorHeader extends VerticalLayout {
 		setMargin(true);
 		desc = new TextArea("Description");
 
-		Label title = new Label("<h2>" + op.getOpName() + "</h2>");
+		Label title = new Label("<h2>" + op.getOpName() + " Operator" + "</h2>");
 		name.setValue("Operator" + this.hashCode());
 		name.addValueChangeListener(new TextField.ValueChangeListener() {
 
@@ -31,8 +31,6 @@ public class InspectorHeader extends VerticalLayout {
 				System.out.println(op.getLabel());
 				op.setLabel(name.getValue());
 				op.getDiagram().updateNode(op);
-				//getUI().push();
-				//op.
 			}
 		});
 
