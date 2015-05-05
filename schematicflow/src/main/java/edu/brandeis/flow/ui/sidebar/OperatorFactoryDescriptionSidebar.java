@@ -13,7 +13,7 @@ public class OperatorFactoryDescriptionSidebar extends VerticalSplitPanel {
 
 	@SuppressWarnings("deprecation")
 	public OperatorFactoryDescriptionSidebar() {
-		Label label = new Label("");
+		Label label = new Label("Click on a operator for description");
 		this.setLocked(true);
 		final OperatorFactoryLayout sl = new OperatorFactoryLayout();
 		sl.setSizeFull();
