@@ -1,5 +1,6 @@
 package edu.brandeis.flow.ui.operator.filter;
 
+import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
@@ -11,8 +12,8 @@ public final class UIFilterFactory extends UIOperatorFactory {
 	}
 
 	@Override
-	public UIOperator makeUIOperator() {
-		return new UIFilter();
+	public UIOperator makeUIOperator(UIOperatorNetworkDiagram nd) {
+		return new UIFilter(nd);
 	}
 
 	@Override

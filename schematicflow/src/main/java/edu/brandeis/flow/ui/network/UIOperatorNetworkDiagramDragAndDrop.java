@@ -32,7 +32,7 @@ public class UIOperatorNetworkDiagramDragAndDrop extends DragAndDropWrapper {
 				try {
 					UIOperatorFactory opF = (UIOperatorFactory) ((DragAndDropWrapper) event
 							.getTransferable().getSourceComponent()).getData();
-					UIOperator op = opF.makeUIOperator();
+					UIOperator op = opF.makeUIOperator(diagram);
 					diagram.addNode(op);
 					
 

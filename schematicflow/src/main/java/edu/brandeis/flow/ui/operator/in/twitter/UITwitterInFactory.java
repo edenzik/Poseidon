@@ -1,5 +1,6 @@
 package edu.brandeis.flow.ui.operator.in.twitter;
 
+import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
@@ -10,8 +11,8 @@ public final class UITwitterInFactory extends UIOperatorFactory {
 	}
 
 	@Override
-	public UIOperator makeUIOperator() throws Exception {
-		return new UITwitterIn();
+	public UIOperator makeUIOperator(UIOperatorNetworkDiagram nd) throws Exception {
+		return new UITwitterIn(nd);
 	}
 
 	@Override

@@ -13,7 +13,7 @@ public abstract class Inspector extends VerticalSplitPanel {
 	public Inspector(UIOperator op) {
 		this.op = op;
 		this.tabs = new InspectorTabs(op);
-		this.head = new InspectorHeader(op.getOpName());
+		this.head = new InspectorHeader(op);
 
 		addComponent(head);
 

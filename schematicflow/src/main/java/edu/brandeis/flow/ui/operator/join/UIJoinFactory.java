@@ -1,5 +1,6 @@
 package edu.brandeis.flow.ui.operator.join;
 
+import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
@@ -10,8 +11,8 @@ public final class UIJoinFactory extends UIOperatorFactory {
 	}
 
 	@Override
-	public UIOperator makeUIOperator() {
-		return new UIJoin();
+	public UIOperator makeUIOperator(UIOperatorNetworkDiagram nd) {
+		return new UIJoin(nd);
 	}
 
 	@Override

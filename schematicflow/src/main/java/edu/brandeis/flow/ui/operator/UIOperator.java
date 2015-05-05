@@ -20,12 +20,14 @@ public abstract class UIOperator extends Node {
 	public static boolean connectMode = false;
 	public transient final JSONOperator operator;
 	private transient Inspector inspector;
+	private transient final UIOperatorNetworkDiagram nd;
 	private String name;
 	private String description;
 
-	protected UIOperator(JSONOperator operator, String imageURI) {
-		super(operator.hashCode(), "Unamed " + operator.toString(),
+	protected UIOperator(JSONOperator operator, String imageURI, UIOperatorNetworkDiagram nd) {
+		super(operator.hashCode(), "Default Operator",
 				"./VAADIN/themes/valo/img/" + imageURI);
+		this.nd = nd;
 		this.operator = operator;
 		this.nextOperators = new HashSet<UIOperator>();
 		this.inspector = makeInspector();
@@ -33,6 +35,10 @@ public abstract class UIOperator extends Node {
 
 	protected String getType() {
 		return operator.toString();
+	}
+	
+	public UIOperatorNetworkDiagram getDiagram(){
+		return nd;
 	}
 
 	protected String getName() {

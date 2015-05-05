@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.json.JSONException;
 
+import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 import edu.brandeis.flow.ui.operator.UIOperator;
 import edu.brandeis.flow.ui.operator.UIOperatorFactory;
 
@@ -17,8 +18,8 @@ public final class UIInFactory extends UIOperatorFactory {
 	}
 
 	@Override
-	public UIOperator makeUIOperator() throws JSONException, IOException {
-		return new UIIn();
+	public UIOperator makeUIOperator(UIOperatorNetworkDiagram nd) throws JSONException, IOException  {
+		return new UIIn(nd);
 	}
 
 	@Override

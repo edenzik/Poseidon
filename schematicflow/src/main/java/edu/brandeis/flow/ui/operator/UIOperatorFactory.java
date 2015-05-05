@@ -7,6 +7,8 @@ import org.json.JSONException;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Image;
 
+import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
+
 public abstract class UIOperatorFactory extends Image {
 	public UIOperatorFactory(String string, String image) {
 		super(string, new ThemeResource("img/" + image));
@@ -14,6 +16,6 @@ public abstract class UIOperatorFactory extends Image {
 
 	public abstract String getType();
 
-	public abstract UIOperator makeUIOperator() throws JSONException,
+	public abstract UIOperator makeUIOperator(UIOperatorNetworkDiagram nd) throws JSONException,
 			IOException, Exception;
 }

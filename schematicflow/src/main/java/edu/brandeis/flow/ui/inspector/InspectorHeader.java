@@ -14,20 +14,25 @@ public class InspectorHeader extends VerticalLayout {
 	final TextField name;
 	final TextArea desc;
 
-	public InspectorHeader(String opName) {
+	public InspectorHeader(UIOperator op) {
 		name = new TextField("Name");
 		setHeight("90%");
 		setMargin(true);
 		desc = new TextArea("Description");
 
-		Label title = new Label("<h2>" + opName + "</h2>");
+		Label title = new Label("<h2>" + op.getOpName() + "</h2>");
 		name.setValue("Operator" + this.hashCode());
 		name.addValueChangeListener(new TextField.ValueChangeListener() {
 
 			@Override
 			public void valueChange(ValueChangeEvent event) {
 				System.out.println(event.toString());
-				UIOperator.selectedNode.setLabel(event.toString());
+				System.out.println(op.getOpName());
+				System.out.println(op.getLabel());
+				op.setLabel(name.getValue());
+				op.getDiagram().updateNode(op);
+				//getUI().push();
+				//op.
 			}
 		});
 

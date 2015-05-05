@@ -96,8 +96,6 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 		int diff = (int) (System.currentTimeMillis() - time);
 		diff = diff/100;
 		diff = diff+1;
-		System.out.println(diff);
-		System.out.println(size.get());
 		return size.get()/diff;
 		
 	}

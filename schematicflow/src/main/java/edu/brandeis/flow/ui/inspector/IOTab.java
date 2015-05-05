@@ -1,5 +1,6 @@
 package edu.brandeis.flow.ui.inspector;
 
+import org.json.JSONObject;
 import org.vaadin.addons.d3Gauge.Gauge;
 import org.vaadin.addons.d3Gauge.GaugeConfig;
 import org.vaadin.addons.d3Gauge.GaugeStyle;
@@ -23,15 +24,17 @@ public class IOTab extends VerticalLayout {
 		
 		GaugeConfig config = new GaugeConfig(); 
 		//config.setStyle(GaugeStyle.STYLE_DARK.toString());
-		config.setMax(10);
+		config.setMax(100);
 		
 		Button sample = new Button("Sample Data");
 		sample.addClickListener(new Button.ClickListener() {
 			
 			@Override
 			public void buttonClick(ClickEvent event) {
+				JSONObject top = op.operator.buffer.peek();
+				if (top==null) return;
 				Notification.show("Sample",
-		                  op.operator.buffer.peek().toString(),
+		                  top.toString(),
 		                  Notification.Type.HUMANIZED_MESSAGE);
 				
 				
