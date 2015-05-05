@@ -50,12 +50,12 @@ h2 {
 	color: white !important;
 }
 .d3-gauge.default path.yellowZone {
-	fill: #FF9900 !important;
+	fill: none !important;
 opacity: .6 !important;
 }
 
 .d3-gauge.default path.redZone {
-	fill: #DC3912 !important;
+	fill: none !important;
 opacity: .6 !important;
 }
 .d3-gauge.default circle.dialButton {
