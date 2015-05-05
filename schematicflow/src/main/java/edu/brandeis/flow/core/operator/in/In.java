@@ -38,8 +38,6 @@ public class In extends JSONOperator {
 		this.url = url;
 	}
 	
-
-
 	@Override
 	public void run() {
 		while (true) {

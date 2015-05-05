@@ -34,6 +34,7 @@ public final class Out extends JSONOperator {
 		JSONObject s;
 		while(true) {
 			if ((s = read()) != null) {
+				System.out.println("OUT:::"+s);
 				try {
 					Unirest.post("http://localhost:8000")
 					  .queryString("name", "Mark")
