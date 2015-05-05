@@ -3,11 +3,17 @@ package edu.brandeis.flow.core.operator.in;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.vaadin.annotations.Push;
 
@@ -22,41 +28,39 @@ import edu.brandeis.flow.server.stream.JSONThread;
  */
 @Push
 public class In extends JSONOperator {
-	int port;
-	URL url;
+	String url;
 	
 	public In() {
 		super();
+		url = null;
 	}
-	public void setURL(String url, int port) throws MalformedURLException {
-		this.port = port;
-		this.url = new URL(url);
+	public void setURL(String url)  {
+		this.url = url;
 	}
 	
-	public void startRequest() throws IOException {
-		//start source server
-		JSONSource source = new JSONSource(this.url, port);
-		new Thread(source).start();
-
-		//read from the source server
-		JSONThread thread = new JSONThread(this, port);
-		thread.start();		
-	}
 
 
 	@Override
 	public void run() {
 		while (true) {
-			try {
-				JSONObject response = Unirest.get("http://localhost:4567")
-				  .queryString("name", "Mark")
-				  .asJson().getBody().getObject();
-				//System.out.println(response);
-				send(response);
-			} catch (UnirestException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				System.out.print("");
+				if (url==null) continue;
+				
+				try {
+					JSONArray arr = Unirest.get(url).asJson().getBody().getArray();
+					for (int i = 0; i < arr.length(); i++) {
+						  send(arr.getJSONObject(i));
+					}
+					//Thread.sleep(1000);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnirestException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			
 			
 		}
 

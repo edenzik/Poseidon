@@ -79,11 +79,7 @@ public class TwitterIN extends JSONOperator{
 		hosebirdClient.connect();
 		
 	}
-	
-	public void startRequest() throws Exception {
 
-		
-	}
 	
 	
 

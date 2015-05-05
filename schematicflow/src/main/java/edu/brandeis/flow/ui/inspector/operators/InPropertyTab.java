@@ -33,42 +33,12 @@ public class InPropertyTab extends PropertyTab {
 		button = new Button("Start", new Button.ClickListener() {
 		    @Override
 		    public void buttonClick(ClickEvent event) {
-		    	if (combobox.getValue().equals("Dummy")) {
-		        	try {
-						in.startRequest();
-						new Thread(in).start();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		        	
-		    	} else if (combobox.getValue().equals("MBTA Red Line")) {
-		        	try {
-						in.setURL("http://developer.mbta.com/Data/Red.json",6000);
-						in.startRequest();
-						new Thread(in).start();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+		    	 if (combobox.getValue().equals("MBTA Red Line")) {
+		        	in.setURL("http://developer.mbta.com/Data/Red.json");
 		        	
 		        } else if (combobox.getValue().equals("MBTA Orange Line")) {
-		        	try {
-						in.setURL("http://developer.mbta.com/Data/Orange.json",5000);
-						in.startRequest();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		        } else if (combobox.getValue().equals("Twitter")) {
-		        	try {
-		        		TwitterIN twitterIn = new TwitterIN();
-						twitterIn.startRequest();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		        }
+		        	in.setURL("http://developer.mbta.com/Data/Orange.json");
+		        } 
 		    } 
 		  });
 		addComponent(combobox);
