@@ -53,11 +53,9 @@ public class In extends JSONOperator {
 					}
 					//Thread.sleep(1000);
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+
 				} catch (UnirestException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+
 				}
 				
 			
