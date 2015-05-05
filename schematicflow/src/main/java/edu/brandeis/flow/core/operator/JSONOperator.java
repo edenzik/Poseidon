@@ -20,9 +20,11 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	protected final Set<Operator<JSONObject>> next; // a set of operators that the
 													// current operator will
 													// send data to.
+	public final ConcurrentLinkedQueue<JSONObject> previewOut;
 	public final AtomicInteger size;
 	public final long time;
 	public final Thread thread;
+	
 	/**
 	 * Constructor
 	 */
@@ -30,6 +32,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 		size = new AtomicInteger(0);
 		time = System.currentTimeMillis();
 		this.buffer = new ConcurrentLinkedQueue<JSONObject>();
+		this.previewOut = new ConcurrentLinkedQueue<JSONObject>();
 		this.next = new HashSet<Operator<JSONObject>>();
 		thread = new Thread(this);
 		thread.start();
@@ -43,7 +46,6 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	@Override
 	public void receive(JSONObject obj) {
-		size.incrementAndGet();
 		buffer.add(obj);
 		
 	}
@@ -59,6 +61,19 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 			for (Operator<JSONObject> op : next){
 					op.receive(obj);
 			}
+			previewOut.clear();
+			size.incrementAndGet();
+			previewOut.add(obj);
+	}
+	
+	/**
+	 * Previews the last outgoing object
+	 * 
+	 * @param obj
+	 *            JSONObject needs to be send to next operators
+	 */
+	public JSONObject preview() {
+			return previewOut.poll();
 	}
 
 	/**

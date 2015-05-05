@@ -14,6 +14,7 @@ public class TwitterInspector extends Inspector {
 		//PropertyTab properties = new InPropertyTab(in);
 		//this.tabs.setProperties(properties);
 		this.tabs.addTab(tabs.connect, "Connect");
+		this.tabs.addTab(tabs.iotab, "Live View");
 	}
 
 }

@@ -16,7 +16,7 @@ public class ConnectTab extends VerticalLayout {
 		Button add = new Button("Add output");
 		this.addComponent(table);
 		this.addComponent(add);
-
+		
 		setComponentAlignment(table, Alignment.MIDDLE_CENTER);
 		setComponentAlignment(add, Alignment.BOTTOM_CENTER);
 		table.setHeight(8, Unit.CM);

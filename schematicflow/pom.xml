@@ -167,6 +167,11 @@
 			<artifactId>httpmime</artifactId>
 			<version>4.3.6</version>
 		</dependency>
+		<dependency>
+			<groupId>org.vaadin.teemu.jsoncontainer</groupId>
+			<artifactId>JsonContainer</artifactId>
+			<version>0.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 <plugins>
