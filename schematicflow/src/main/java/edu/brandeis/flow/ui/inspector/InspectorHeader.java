@@ -20,8 +20,8 @@ public class InspectorHeader extends VerticalLayout {
 		setMargin(true);
 		desc = new TextArea("Description");
 
-		Label title = new Label("<h2>" + op.getOpName() + "</h2>");
-		name.setValue("Operator" + this.hashCode());
+		Label title = new Label("<h2>" +"Operator Type:" + op.getOpName() + "</h2>");
+//		name.setValue("Operator" + this.hashCode());
 		name.addValueChangeListener(new TextField.ValueChangeListener() {
 
 			@Override

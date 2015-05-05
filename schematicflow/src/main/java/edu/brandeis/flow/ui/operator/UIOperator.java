@@ -25,7 +25,7 @@ public abstract class UIOperator extends Node {
 	private String description;
 
 	protected UIOperator(JSONOperator operator, String imageURI, UIOperatorNetworkDiagram nd) {
-		super(operator.hashCode(), "Default Operator",
+		super(operator.hashCode(), "Untitled",
 				"./VAADIN/themes/valo/img/" + imageURI);
 		this.nd = nd;
 		this.operator = operator;
