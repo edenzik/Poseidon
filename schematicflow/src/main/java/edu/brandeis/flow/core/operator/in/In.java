@@ -51,11 +51,13 @@ public class In extends JSONOperator {
 					for (int i = 0; i < arr.length(); i++) {
 						  send(arr.getJSONObject(i));
 					}
-					//Thread.sleep(1000);
+					Thread.sleep(1);
 				} catch (JSONException e) {
 
 				} catch (UnirestException e) {
 
+				} catch (InterruptedException e) {
+					break;
 				}
 				
 			

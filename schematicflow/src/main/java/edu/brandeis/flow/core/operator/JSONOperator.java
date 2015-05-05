@@ -22,6 +22,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 													// send data to.
 	public final AtomicInteger size;
 	public final long time;
+	public final Thread thread;
 	/**
 	 * Constructor
 	 */
@@ -30,7 +31,8 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 		time = System.currentTimeMillis();
 		this.buffer = new ConcurrentLinkedQueue<JSONObject>();
 		this.next = new HashSet<Operator<JSONObject>>();
-		new Thread(this).start();
+		thread = new Thread(this);
+		thread.start();
 	}
 
 	/**

@@ -91,7 +91,10 @@ public class TwitterIN extends JSONOperator{
 			try {
 				msg = msgQueue.take();
 				send(new JSONObject(msg));
-			} catch (InterruptedException | JSONException e) {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				break;
+			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

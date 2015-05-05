@@ -39,9 +39,12 @@ public final class Out extends JSONOperator {
 					  .queryString("name", "Mark")
 					  .field("last", "Polo")
 					  .asJson();
+					Thread.sleep(1);
 				} catch (UnirestException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (InterruptedException e) {
+					break;
 				}
 			}
 		}

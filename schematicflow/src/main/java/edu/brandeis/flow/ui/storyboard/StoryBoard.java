@@ -1,6 +1,7 @@
 package edu.brandeis.flow.ui.storyboard;
 
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.UI;
 
 import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagram;
 import edu.brandeis.flow.ui.network.UIOperatorNetworkDiagramDragAndDrop;
