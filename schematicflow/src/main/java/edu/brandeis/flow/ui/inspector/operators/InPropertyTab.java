@@ -14,6 +14,7 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
@@ -53,8 +54,8 @@ public class InPropertyTab extends PropertyTab {
 	}
 	
 	public InPropertyTab(In in) {
-		addName = new TextField("Add new sources here");
-		addUrl = new TextField("Add new URL and press enter");
+		addName = new TextField();
+		addUrl = new TextField();
 		
 		combobox = new ComboBox("Select API");
 		combobox.setWidth("90%");
@@ -62,6 +63,7 @@ public class InPropertyTab extends PropertyTab {
         combobox.setNullSelectionAllowed(false);
 		combobox.addItem(new InType("MBTA Red Line","http://developer.mbta.com/Data/Red.json"));
 		combobox.addItem(new InType("MBTA Orange Line","http://developer.mbta.com/Data/Orange.json"));
+		combobox.addItem(new InType("MBTA Blue Line","http://developer.mbta.com/Data/Blue.json"));
 		combobox.addValueChangeListener(new ValueChangeListener(){
 
 			@Override
@@ -75,23 +77,42 @@ public class InPropertyTab extends PropertyTab {
 
 		addComponent(combobox);
 		
-		
-		addUrl.addValueChangeListener(new ValueChangeListener(){
+		Button addButton = new Button("Add Source");
+		addButton.addClickListener(new ClickListener(){
 
 			@Override
-			public void valueChange(ValueChangeEvent event) {
-				combobox.addItem(new InType(addName.getValue(), event.getProperty().getValue().toString()));
+			public void buttonClick(ClickEvent event) {
+				String name = addName.getValue();
+				String url = addUrl.getValue();
+				if (name=="" || url==""){
+					Notification.show("Empty Input",
+			                  Notification.Type.ERROR_MESSAGE);
+					return;
+				}
+				combobox.addItem(new InType(name,url));
 				Notification.show("Source Added",
 		                  "New source URL for " + addName.getValue() + " added.",
 		                  Notification.Type.TRAY_NOTIFICATION);
+				
 			}
 			
 		});
-		Component addBox = new HorizontalSplitPanel(addName,addUrl);
+		addName.setInputPrompt("Name");
+		addUrl.setInputPrompt("URL");
+		addName.setSizeFull();
+		addUrl.setSizeFull();
+		addName.setWidth(combobox.getWidth(), combobox.getWidthUnits());
+		//addUrl.setWidth(combobox.getWidth()/2, combobox.getWidthUnits());
+		this.setSpacing(true);
+		this.setMargin(true);
+		HorizontalSplitPanel addBox = new HorizontalSplitPanel(addName,addUrl);
+		addBox.setLocked(true);
+		addComponent(new Label("Add new input"));
 		addComponent(addBox);
+		addComponent(addButton);
 		setComponentAlignment(combobox, Alignment.TOP_CENTER);
 		setComponentAlignment(addBox, Alignment.TOP_CENTER);
-		this.setSpacing(true);
+		setComponentAlignment(addButton, Alignment.TOP_CENTER);
 		
 	}
 	

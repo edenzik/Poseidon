@@ -6,7 +6,7 @@ package edu.brandeis.flow.core.operator.join;
 import java.util.Iterator;
 
 import org.json.JSONException;
-import org.json.JSONObject;
+import edu.brandeis.flow.core.json.JSONObject;
 
 import com.google.common.collect.Iterables;
 

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.json.JSONException;
-import org.json.JSONObject;
+import edu.brandeis.flow.core.json.JSONObject;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
 
@@ -40,7 +40,7 @@ public final class JSONThread extends Thread {
 			// read
 			JSONObject json = null;
 			try {
-				if ((json = inStream.read()) != null)
+				if ((json = (JSONObject) inStream.read()) != null)
 					op.receive(json);
 			} catch (JSONException | IOException e) {
 				e.printStackTrace();

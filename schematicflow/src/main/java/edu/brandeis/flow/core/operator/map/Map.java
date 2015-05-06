@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.function.Function;
 
 import org.json.JSONException;
-import org.json.JSONObject;
+import edu.brandeis.flow.core.json.JSONObject;
 
 import edu.brandeis.flow.core.operator.JSONOperator;
 

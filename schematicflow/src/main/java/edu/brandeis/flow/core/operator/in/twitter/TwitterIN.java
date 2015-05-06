@@ -9,7 +9,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.JSONException;
-import org.json.JSONObject;
+import edu.brandeis.flow.core.json.JSONObject;
 
 import com.google.common.collect.Lists;
 import com.twitter.hbc.ClientBuilder;

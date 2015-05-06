@@ -19,7 +19,7 @@ public class OperatorDemo {
 			Out out = new Out();
 			
 			Filter filter = new Filter();
-			filter.setup("PlatformKey", "^(?!RHARS$).*$", "regex", "");
+			filter.setup("PlatformKey", "^(?!RHARS$).*$", "regex", "", false);
 			
 			RedIn.addNext(filter);
 			OrangeIn.addNext(filter);

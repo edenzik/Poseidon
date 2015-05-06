@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+import edu.brandeis.flow.core.json.JSONObject;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -47,16 +47,14 @@ public class In extends JSONOperator {
 				try {
 					JSONArray arr = Unirest.get(url).asJson().getBody().getArray();
 					for (int i = 0; i < arr.length(); i++) {
-						  send(arr.getJSONObject(i));
+						  send(new JSONObject(arr.getJSONObject(i)));
 					}
 					Thread.sleep(1);
-				} catch (JSONException e) {
-
-				} catch (UnirestException e) {
 
 				} catch (InterruptedException e) {
 					break;
-				}
+				} catch (Exception e) {}
+
 				
 			
 			

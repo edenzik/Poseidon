@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.json.JSONObject;
+import edu.brandeis.flow.core.json.JSONObject;
 
 public abstract class JSONOperator implements Operator<JSONObject> {
 	public final ConcurrentLinkedQueue<JSONObject> buffer; // hold all received JSON streams

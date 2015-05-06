@@ -3,7 +3,7 @@
  */
 package edu.brandeis.flow.core.operator.out;
 
-import org.json.JSONObject;
+import edu.brandeis.flow.core.json.JSONObject;
 
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -34,16 +34,10 @@ public final class Out extends JSONOperator {
 		JSONObject s;
 		while(true) {
 			if ((s = read()) != null) {
-				System.out.println("OUT:::"+s);
+
 				try {
-					Unirest.post("http://localhost:8000")
-					  .queryString("name", "Mark")
-					  .field("last", "Polo")
-					  .asJson();
+					System.out.println("OUT:::"+s);
 					Thread.sleep(1);
-				} catch (UnirestException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				} catch (InterruptedException e) {
 					break;
 				}
