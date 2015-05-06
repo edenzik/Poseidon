@@ -136,7 +136,7 @@ public class TwitterIN extends JSONOperator{
 			try {
 				msg = msgQueue.take();
 				
-				System.out.println(msg);
+				//System.out.println(msg);
 				send(new JSONObject(msg));
 				
 				
