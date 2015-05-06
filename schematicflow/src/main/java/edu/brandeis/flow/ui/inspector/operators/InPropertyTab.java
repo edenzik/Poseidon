@@ -5,13 +5,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONException;
+import org.json.JSONObject;
+import org.vaadin.teemu.jsoncontainer.JsonContainer;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
+import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Table;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.TextField;
@@ -77,14 +87,13 @@ public class InPropertyTab extends PropertyTab {
 			}
 			
 		});
-		
-		addComponent(addName);
-		addComponent(addUrl);
+		Component addBox = new HorizontalSplitPanel(addName,addUrl);
+		addComponent(addBox);
 		setComponentAlignment(combobox, Alignment.TOP_CENTER);
-		setComponentAlignment(addName, Alignment.TOP_CENTER);
-		setComponentAlignment(addUrl, Alignment.TOP_CENTER);
+		setComponentAlignment(addBox, Alignment.TOP_CENTER);
 		this.setSpacing(true);
 		
 	}
+	
 
 }

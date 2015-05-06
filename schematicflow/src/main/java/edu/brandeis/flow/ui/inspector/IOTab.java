@@ -37,29 +37,40 @@ public class IOTab extends VerticalLayout {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				JSONObject top = op.operator.preview();
-				if (top==null) return;
+				if (top==null) {
+					Notification.show("Currently Empty", Notification.TYPE_TRAY_NOTIFICATION);
+					return;
+				}
 				addPreviewWindow(top);
 
 				
 				
 			}
 		});
-		Gauge gauge = new Gauge("Rate",0,300, config);
+		Gauge initialGauge = new Gauge("Rate",0,300, config);
 		UI ui = UI.getCurrent();
 		IOTab dis = this;
 		Runnable s = new Runnable() {
 		    @Override
 		    public void run() {
 		    	int val = 0;
+		    	Gauge gauge = initialGauge;
 		    	while (op.operator.thread.isAlive()){
 		    		val = op.operator.getRate();
 		    		if (gauge.getValue()!=val){
 		    			gauge.setValue(val);
 		    			if (val>config.getMax()){
 		    				config.setMax(config.getMax()*10);
-		    				//gauge.
+		    				dis.removeComponent(gauge);
+		    				gauge = new Gauge("Rate",0,300, config);
+		    				dis.addComponentAsFirst(gauge);
+		    				dis.setComponentAlignment(gauge, Alignment.MIDDLE_CENTER);
+		    				Notification.show("Rescaling Gauge", Notification.TYPE_TRAY_NOTIFICATION);
+		    				
+		    			} else {
+		    				ui.push();
 		    			}
-		    			ui.push();
+		    			
 		    		}
 		    		
 		        try {
@@ -73,7 +84,7 @@ public class IOTab extends VerticalLayout {
 		    }
 		};
 		new Thread(s).start();
-		addComponent(gauge);
+		addComponent(initialGauge);
 		addComponent(sample);
 		 
 		this.setMargin(true);
@@ -81,7 +92,7 @@ public class IOTab extends VerticalLayout {
 
 		this.setSizeFull();
 		this.setComponentAlignment(sample, Alignment.BOTTOM_CENTER);
-		this.setComponentAlignment(gauge, Alignment.MIDDLE_CENTER);
+		this.setComponentAlignment(initialGauge, Alignment.MIDDLE_CENTER);
 		
 
 	}
@@ -109,6 +120,8 @@ public class IOTab extends VerticalLayout {
         
         subContent.setMargin(true);
         subWindow.setContent(subContent);
+        subWindow.setWidth(30, Unit.PERCENTAGE);
+        subWindow.setHeight(30, Unit.PERCENTAGE);
         
         // Put some components in it
         
