@@ -34,7 +34,6 @@ public final class Out extends JSONOperator {
 		JSONObject s;
 		while(true) {
 			if ((s = read()) != null) {
-
 				try {
 					System.out.println("OUT:::"+s);
 					Thread.sleep(1);

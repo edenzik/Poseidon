@@ -13,6 +13,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.json.JSONException;
+
 import edu.brandeis.flow.core.json.JSONObject;
 
 public abstract class JSONOperator implements Operator<JSONObject> {
@@ -58,6 +60,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 */
 	@Override
 	public void send(JSONObject obj) {
+			obj.changeAnnotation(this.getCurrTag());
 			for (Operator<JSONObject> op : next){
 					op.receive(obj);
 			}
@@ -134,21 +137,12 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	}
 	
 
-
 	public boolean bufferIsEmpty() {
 		return buffer.isEmpty();
 	}
 	
-	public JSONObject removeTag(JSONObject json) {
-		return null;
-	}
-	
-	public JSONObject addTag(JSONObject json) {
-		return null;
-	}
-	
-	public String getTag(JSONObject json) {
-		return null;
+	public String getCurrTag() {
+		return Integer.toString(this.hashCode());
 	}
 
 }
