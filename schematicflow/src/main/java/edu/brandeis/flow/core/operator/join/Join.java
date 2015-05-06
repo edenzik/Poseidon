@@ -42,8 +42,10 @@ public final class Join extends JSONOperator {
 			if((first = read()) != null && (second = read())!= null) {
 				try {
 					if (canJoin()) {
-						send(addTag(makeJoin()));
-//					System.out.println(makeJoin());
+						JSONObject tmp = makeJoin();
+						send(makeJoin());
+						tmp.changeAnnotation(getCurrTag());
+						System.out.println(tmp);
 					}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -55,27 +57,27 @@ public final class Join extends JSONOperator {
 	
 	
 	public boolean canJoin() throws JSONException {
-		if(sameTag() &&first.has(key) && second.has(key)) {
-			first = removeTag(first);
-			second = removeTag(second);
-			if (first.get(key).equals(second.get(key))) {
+		JSONObject tmpFirst = new JSONObject(first.toString().toLowerCase());
+		JSONObject tmpSecond = new JSONObject(second.toString().toLowerCase());
+		if(!sameTag() &&tmpFirst.has(key.toLowerCase()) && tmpSecond.has(key.toLowerCase())) {
+			if (tmpFirst.get(key.toLowerCase()).equals(tmpSecond.get(key.toLowerCase()))) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public boolean sameTag() {
-		return getTag(first).equals(getTag(second));
+	public boolean sameTag() throws JSONException {
+		return first.equalAnnotation(second);
 	}
 	
 	public JSONObject makeJoin(){
 		Iterator keys_second = second.keys();
 		while(keys_second.hasNext()) {
-			String key = keys_second.next().toString();
-			if (!first.has(key)) {
+			String tmpKey = keys_second.next().toString();
+			if (!first.has(tmpKey)) {
 				try {
-					first.put(key, second.get(key));
+					first.put(tmpKey, second.get(tmpKey));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -85,39 +87,24 @@ public final class Join extends JSONOperator {
 		return first;
 	}
 	
-//	public boolean canJoin(){
-//		Iterator keys_first = first.keys();
-//		Iterator keys_second;
-//		int count = 0;
-//		int total = 0;
-//		while(keys_first.hasNext()){
-//			++total;
-//			keys_second = second.keys();
-//			String tmp1 = keys_first.next().toString();
-//			while(keys_second.hasNext()) {
-//				String tmp2 = keys_second.next().toString();
-////				System.out.println(tmp1 + "  " + tmp2);
-//				if(tmp1.equalsIgnoreCase(tmp2)) {
-//					++count;
-//				}
-//			}
-//		}
-//		return 2*count <= total;
-//
-//	}
-//	
-//	public static void main(String[] args) throws JSONException {
-//		JSONObject first = new JSONObject("{1: lol, 2:lol, 3:lol, 4:lol, 5:lol}");
-//		JSONObject second = new JSONObject("{3: lol, 4:lol, 7:lol, 8:lol, 9:lol}");
-//		JSONObject third = new JSONObject("{1: lol, 2:lol, 5:lol, 4:lol, 3:lol}");
-//		JSONObject fourth = new JSONObject("{1: lol, 9:lol, 6:lol, 412:lol, 777:lol}");
-//		Join test = new Join();
-//		test.receive(first);
-//		test.receive(second);
-//		test.receive(third);
-//		test.receive(fourth);
-//		new Thread(test).start();
-//
-//	}
+
+	public static void main(String[] args) throws JSONException {
+		JSONObject first = new JSONObject("{1: lol, 2:lol, 3:lol, 4:lol, 5:lol}");
+		JSONObject second = new JSONObject("{1: lol, 3: lol, 4:lol, 7:lol, 8:lol, 9:lol}");
+		JSONObject third = new JSONObject("{1: lol, 2:lol, 5:lol, 4:lol, 3:lol}");
+		JSONObject fourth = new JSONObject("{1: lol, 9:lol, 6:lol, 412:lol, 777:lol}");
+		first.addAnnotation("1");
+		second.addAnnotation("2");
+		third.addAnnotation("1");
+		fourth.addAnnotation("4");
+		Join test = new Join();
+		test.setup("1");
+		test.receive(first);
+		test.receive(second);
+		test.receive(third);
+		test.receive(fourth);
+
+
+	}
 
 }
