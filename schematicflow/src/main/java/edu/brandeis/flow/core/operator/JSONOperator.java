@@ -130,7 +130,11 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 		}
 		int diff = (int) (System.currentTimeMillis() - time);
 		diff = diff+1;
-		return (1000*size.get())/diff;
+		int result = (1000*size.get())/diff;
+		if (result<0){
+			return 0;
+		}
+		return result;
 		
 	}
 
