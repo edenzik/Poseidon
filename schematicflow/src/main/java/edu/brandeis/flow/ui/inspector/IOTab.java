@@ -30,7 +30,7 @@ public class IOTab extends VerticalLayout {
 		
 		GaugeConfig config = new GaugeConfig(); 
 		//config.setStyle(GaugeStyle.STYLE_DARK.toString());
-		config.setMax(100);
+		config.setMax(1);
 		Button sample = new Button("Sample Data");
 		sample.addClickListener(new Button.ClickListener() {
 			
@@ -68,7 +68,9 @@ public class IOTab extends VerticalLayout {
 		    				Notification.show("Rescaling Gauge", Notification.TYPE_TRAY_NOTIFICATION);
 		    				
 		    			} else {
-		    				ui.push();
+		    				try {
+		    					ui.push();
+		    				} catch (Exception e){}
 		    			}
 		    			
 		    		}

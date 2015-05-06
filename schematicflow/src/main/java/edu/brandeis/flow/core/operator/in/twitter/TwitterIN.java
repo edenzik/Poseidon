@@ -4,11 +4,13 @@
 package edu.brandeis.flow.core.operator.in.twitter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.json.JSONException;
+
 import edu.brandeis.flow.core.json.JSONObject;
 
 import com.google.common.collect.Lists;
@@ -18,6 +20,8 @@ import com.twitter.hbc.core.Constants;
 import com.twitter.hbc.core.Hosts;
 import com.twitter.hbc.core.HttpHosts;
 import com.twitter.hbc.core.endpoint.StatusesFilterEndpoint;
+import com.twitter.hbc.core.endpoint.StatusesFirehoseEndpoint;
+import com.twitter.hbc.core.endpoint.StatusesSampleEndpoint;
 import com.twitter.hbc.core.event.Event;
 import com.twitter.hbc.core.processor.StringDelimitedProcessor;
 import com.twitter.hbc.httpclient.auth.Authentication;
@@ -51,7 +55,42 @@ public class TwitterIN extends JSONOperator{
 		super();
 	}
 	
-	private void setup(){
+	public void setup(){
+		/** Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */
+		msgQueue = new LinkedBlockingQueue<String>(100000);
+		BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<Event>(1000);
+
+		/** Declare the host you want to connect to, the endpoint, and authentication (basic auth or oauth) */
+		Hosts hosebirdHosts = new HttpHosts(Constants.STREAM_HOST);
+		StatusesSampleEndpoint endpoint = new StatusesSampleEndpoint();
+		// Optional: set up some followings and track terms
+		//List<Long> followings = Lists.newArrayList(1234L, 566788L);
+		//hosebirdEndpoint.followings(followings);
+		//hosebirdEndpoint.trackTerms(Lists.newArrayList("wow"));
+
+
+		// These secrets should be read from a config file
+		Authentication hosebirdAuth = new OAuth1("TTBE60eAPTsAXmlbbI40rLghJ", "PWpwNjRO7kbudahmo2iDkE8oleS1DYaIGXUolcUoYyARGN4Puc", "74636828-F2loUl3xriqQ2rzd6rljQHHU5PkDTtu54LHlO8w1E", "rtdw5lXoXWEUyI2cREJWZy3ma8jvZCESA8EYHl8FHKTgW");
+		builder = new ClientBuilder()
+		  .name("Hosebird-Client-01")                              // optional: mainly for the logs
+		  .hosts(hosebirdHosts)
+		  .authentication(hosebirdAuth)
+		  .endpoint(endpoint)
+		  .processor(new StringDelimitedProcessor(msgQueue))
+		  .eventMessageQueue(eventQueue);                          // optional: use this if you want to process client events
+		hosebirdClient = builder.build();
+		// Attempts to establish a connection.
+		hosebirdClient.connect();
+		
+	}
+	
+	public void clear(){
+		hosebirdClient.stop();
+		setup();
+	}
+	
+	public void resetParam(List<String> params){
+		hosebirdClient.stop();
 		/** Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */
 		msgQueue = new LinkedBlockingQueue<String>(100000);
 		BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<Event>(1000);
@@ -61,7 +100,7 @@ public class TwitterIN extends JSONOperator{
 		hosebirdEndpoint = new StatusesFilterEndpoint();
 		// Optional: set up some followings and track terms
 		//List<Long> followings = Lists.newArrayList(1234L, 566788L);
-		List<String> terms = Lists.newArrayList("goodbye");
+		List<String> terms = params;
 		//hosebirdEndpoint.followings(followings);
 		hosebirdEndpoint.trackTerms(terms);
 		
@@ -89,25 +128,18 @@ public class TwitterIN extends JSONOperator{
 	@Override
 	public void run() {
 		setup();
-		while (!hosebirdClient.isDone()) {
-			  String msg;
+
+		String msg;
+		while (true) {
+			  
 			try {
 				msg = msgQueue.take();
 				send(new JSONObject(msg));
-				//System.out.println(hosebirdEndpoint.getURI());
-				//System.out.println();
-				System.out.println(hosebirdEndpoint.getPostParamString());
-				hosebirdEndpoint.removePostParameter("track");
-				hosebirdEndpoint.trackTerms(Lists.newArrayList("hello"));
-				builder.endpoint(hosebirdEndpoint);
-				hosebirdClient.stop();
-				hosebirdClient = builder.build();
-				hosebirdClient.connect();
-				
 				
 				
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
+				hosebirdClient.stop();
 				break;
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

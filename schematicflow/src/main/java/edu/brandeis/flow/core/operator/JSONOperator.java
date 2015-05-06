@@ -113,6 +113,9 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	}
 	
 	public int getRate(){
+		if (buffer.size()==0){
+			size.decrementAndGet();
+		}
 		int diff = (int) (System.currentTimeMillis() - time);
 		diff = diff/100;
 		diff = diff+1;
