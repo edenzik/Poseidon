@@ -19,11 +19,16 @@ import edu.brandeis.flow.core.operator.JSONOperator;
 public final class Join extends JSONOperator {
 	JSONObject first;
 	JSONObject second;
+	String key;
 	/**
 	 * @param name
 	 */
 	public Join() {
 		super();
+	}
+	
+	public void setup(String key){
+		this.key = key;
 	}
 
 	/*
@@ -35,12 +40,33 @@ public final class Join extends JSONOperator {
 	public void run() {
 		while(true) {
 			if((first = read()) != null && (second = read())!= null) {
-				if (canJoin()) {
-					send(makeJoin());
+				try {
+					if (canJoin()) {
+						send(addTag(makeJoin()));
 //					System.out.println(makeJoin());
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}
+	}
+	
+	
+	public boolean canJoin() throws JSONException {
+		if(sameTag() &&first.has(key) && second.has(key)) {
+			first = removeTag(first);
+			second = removeTag(second);
+			if (first.get(key).equals(second.get(key))) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean sameTag() {
+		return getTag(first).equals(getTag(second));
 	}
 	
 	public JSONObject makeJoin(){
@@ -59,26 +85,26 @@ public final class Join extends JSONOperator {
 		return first;
 	}
 	
-	public boolean canJoin(){
-		Iterator keys_first = first.keys();
-		Iterator keys_second;
-		int count = 0;
-		int total = 0;
-		while(keys_first.hasNext()){
-			++total;
-			keys_second = second.keys();
-			String tmp1 = keys_first.next().toString();
-			while(keys_second.hasNext()) {
-				String tmp2 = keys_second.next().toString();
-//				System.out.println(tmp1 + "  " + tmp2);
-				if(tmp1.equalsIgnoreCase(tmp2)) {
-					++count;
-				}
-			}
-		}
-		return 2*count <= total;
-
-	}
+//	public boolean canJoin(){
+//		Iterator keys_first = first.keys();
+//		Iterator keys_second;
+//		int count = 0;
+//		int total = 0;
+//		while(keys_first.hasNext()){
+//			++total;
+//			keys_second = second.keys();
+//			String tmp1 = keys_first.next().toString();
+//			while(keys_second.hasNext()) {
+//				String tmp2 = keys_second.next().toString();
+////				System.out.println(tmp1 + "  " + tmp2);
+//				if(tmp1.equalsIgnoreCase(tmp2)) {
+//					++count;
+//				}
+//			}
+//		}
+//		return 2*count <= total;
+//
+//	}
 //	
 //	public static void main(String[] args) throws JSONException {
 //		JSONObject first = new JSONObject("{1: lol, 2:lol, 3:lol, 4:lol, 5:lol}");

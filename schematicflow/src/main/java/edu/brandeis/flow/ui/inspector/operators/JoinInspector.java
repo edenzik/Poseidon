@@ -10,6 +10,9 @@ public class JoinInspector extends Inspector {
 
 	public JoinInspector(UIOperator op) {
 		super(op);
+		Join join = (Join) this.op.getJSONOp();
+		PropertyTab properties = new JoinPropertyTab(join);
+		this.tabs.setProperties(properties);
 		this.tabs.setTabs();
 	}
 

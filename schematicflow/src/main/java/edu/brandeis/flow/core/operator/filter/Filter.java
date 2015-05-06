@@ -23,6 +23,7 @@ public final class Filter extends JSONOperator {
 	String key;
 	String target;
 	String mode;
+	boolean drop;
 
 	public Filter() {
 		super();
@@ -32,11 +33,12 @@ public final class Filter extends JSONOperator {
 		this.mode = "";
 	}
 	
-	public void setup(String key, String target, String mode, String exp){
+	public void setup(String key, String target, String mode, String exp, boolean drop){
 		this.setKey(key);
 		this.setMode(mode);
 		this.setTarget(target);
 		this.setExpression(exp);
+		this.drop = drop;
 		
 	}
 	
@@ -67,7 +69,10 @@ public final class Filter extends JSONOperator {
         				else{
         					Matcher matcher = pattern.matcher(top.getString(key));
                             //if not match, send; else, drop
-                            if(!matcher.matches()) send(top);
+        					if(matcher.matches() && !drop) {
+        						send(top);
+        					}
+        					else if(!matcher.matches() && drop) send(top);
                             //else System.out.println("FILTER:::" + top.toString());
         				}
                         
@@ -91,15 +96,23 @@ public final class Filter extends JSONOperator {
 				//if no key is specified, then sends all json objects
     			if(key.equals("")) send(top);
     			//else if term is not specified, filter out all json objects that contain the key specified
-    			else if(target.equals("") && !top.has(key)) send(top);
+    			else if(target.equals("") && !top.has(key) && drop) send(top);
+    			else if(target.equals("") && top.has(key) && !drop) send(top);
     			//if the term is specified
     			else {
     				try {
 						int termInt = Integer.parseInt(top.getString(key));
 						int targetInt = Integer.parseInt(target);
-						if(exp.equals("=") && targetInt != termInt) send(top); //send if not equal
-						else if(exp.equals(">") && targetInt >= termInt) send(top); //drop if target < term
-						else if(exp.equals("<") && targetInt <= termInt) send(top); //drop if target > term
+						if(drop){
+							if(exp.equals("=") && targetInt != termInt) send(top); //send if not equal
+							else if(exp.equals(">") && targetInt >= termInt) send(top); //drop if target < term
+							else if(exp.equals("<") && targetInt <= termInt) send(top); //drop if target > term
+						}else {
+							if(exp.equals("=") && targetInt == termInt) send(top); //send if not equal
+							else if(exp.equals(">") && targetInt < termInt) send(top); //drop if target < term
+							else if(exp.equals("<") && targetInt > termInt) send(top); //drop if target > term
+						}
+						
 					} catch (NumberFormatException | JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

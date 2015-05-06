@@ -15,12 +15,15 @@ public class FilterPropertyTab extends PropertyTab {
 	final Button button;
 	final CheckBox numerical;
 	final CheckBox regex;
+	final CheckBox not;
 	final TextField key;
 	final ComboBox combobox;
 	final TextField criterion;
 	
 	public FilterPropertyTab(Filter filter) {
 		key = new TextField("Key");
+		not = new CheckBox("NOT");
+		not.setValue(false);
 		criterion = new TextField("Criterion");
 		combobox = new ComboBox("Relational Operator");
 		regex = new CheckBox("Regular Expression");
@@ -31,6 +34,7 @@ public class FilterPropertyTab extends PropertyTab {
 		    numerical.setValue(! regex.getValue()));
 		numerical.addValueChangeListener(event -> // Java 8
 		    regex.setValue(! numerical.getValue()));
+//		not.addValueChangeListener(event -> not.setValue(!not.getValue()));
 		
 		combobox.addItem("=");
 		combobox.addItem("<");
@@ -41,9 +45,9 @@ public class FilterPropertyTab extends PropertyTab {
 			@Override
 			public void buttonClick(ClickEvent event) {
 					if (numerical.getValue())	{ //if use numerical model
-						filter.setup(key.getValue(),criterion.getValue(),"numerical",combobox.getValue().toString());
+						filter.setup(key.getValue(),criterion.getValue(),"numerical",combobox.getValue().toString(), not.getValue());
 					}else {
-						filter.setup(key.getValue(),criterion.getValue(),"regex","");
+						filter.setup(key.getValue(),criterion.getValue(),"regex","", not.getValue());
 					}
 					new Thread(filter).start();
 			}
@@ -51,10 +55,12 @@ public class FilterPropertyTab extends PropertyTab {
 
 		addComponent(regex);
 		addComponent(numerical);
+		addComponent(not);
 		addComponent(key);
 		addComponent(combobox);
 		addComponent(criterion);
 		addComponent(button);
+		setComponentAlignment(not, Alignment.TOP_LEFT);
 		setComponentAlignment(combobox, Alignment.TOP_CENTER);
 		setComponentAlignment(regex, Alignment.TOP_LEFT);
 		setComponentAlignment(key, Alignment.TOP_CENTER);

@@ -138,6 +138,17 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	public boolean bufferIsEmpty() {
 		return buffer.isEmpty();
 	}
-
+	
+	public JSONObject removeTag(JSONObject json) {
+		return null;
+	}
+	
+	public JSONObject addTag(JSONObject json) {
+		return null;
+	}
+	
+	public String getTag(JSONObject json) {
+		return null;
+	}
 
 }
