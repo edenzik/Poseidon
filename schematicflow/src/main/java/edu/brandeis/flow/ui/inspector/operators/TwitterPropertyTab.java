@@ -41,13 +41,13 @@ public class TwitterPropertyTab extends PropertyTab {
 		    public void buttonClick(ClickEvent event) {
 				Notification.show("Filter Changed",
 		                  Notification.Type.TRAY_NOTIFICATION);
-				if (textarea.getValue().trim()==""){
+				if (textarea.getValue().trim()=="" && false){
 					Notification.show("Search Parameter empty, switching to hose",
 			                  Notification.Type.TRAY_NOTIFICATION);
 					in.clear();
 					return;
 				}
-		    	String[] strarr = textarea.getValue().trim().split("\\s+");
+		    	String[] strarr = textarea.getValue().split("\\s+");
 		    	ArrayList<String> termsList = new ArrayList(Arrays.asList(strarr));
 		    	in.resetParam(termsList);
 		    }

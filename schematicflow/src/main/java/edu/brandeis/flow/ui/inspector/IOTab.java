@@ -60,12 +60,14 @@ public class IOTab extends VerticalLayout {
 		    		if (gauge.getValue()!=val){
 		    			gauge.setValue(val);
 		    			if (val>config.getMax()){
+		    				try {
 		    				config.setMax(config.getMax()*10);
 		    				dis.removeComponent(gauge);
 		    				gauge = new Gauge("Rate",0,300, config);
 		    				dis.addComponentAsFirst(gauge);
 		    				dis.setComponentAlignment(gauge, Alignment.MIDDLE_CENTER);
 		    				Notification.show("Rescaling Gauge", Notification.TYPE_TRAY_NOTIFICATION);
+		    				} catch (Exception e){}
 		    				
 		    			} else {
 		    				try {

@@ -49,7 +49,7 @@ public class In extends JSONOperator {
 					for (int i = 0; i < arr.length(); i++) {
 						  send(new JSONObject(arr.getJSONObject(i).toString()));
 					}
-					Thread.sleep(1);
+					Thread.sleep(0);
 
 				} catch (InterruptedException e) {
 					break;

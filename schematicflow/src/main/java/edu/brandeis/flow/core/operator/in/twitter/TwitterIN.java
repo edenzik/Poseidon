@@ -90,7 +90,7 @@ public class TwitterIN extends JSONOperator{
 	}
 	
 	public void resetParam(List<String> params){
-		hosebirdClient.stop();
+		//hosebirdClient.stop();
 		/** Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */
 		msgQueue = new LinkedBlockingQueue<String>(100000);
 		BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<Event>(1000);
@@ -106,7 +106,8 @@ public class TwitterIN extends JSONOperator{
 		
 
 		// These secrets should be read from a config file
-		Authentication hosebirdAuth = new OAuth1("TTBE60eAPTsAXmlbbI40rLghJ", "PWpwNjRO7kbudahmo2iDkE8oleS1DYaIGXUolcUoYyARGN4Puc", "74636828-F2loUl3xriqQ2rzd6rljQHHU5PkDTtu54LHlO8w1E", "rtdw5lXoXWEUyI2cREJWZy3ma8jvZCESA8EYHl8FHKTgW");
+		
+		Authentication hosebirdAuth = new OAuth1("NB4qEM6mFsomiOI26Sp8BQ", "bTSpDvixWSpiYyZ5HaEp2KJYZsggKL7DnDZGbh7r8", "414557955-kkVlvRvQNUDXKMKsv1E6odOgpyjjEDTj374kbG1S", "IEMyckpYCWtOfLRIzaMy82KVhmnAWzNml8sHoGjAIGO9u");
 		builder = new ClientBuilder()
 		  .name("Hosebird-Client-01")                              // optional: mainly for the logs
 		  .hosts(hosebirdHosts)
@@ -134,10 +135,11 @@ public class TwitterIN extends JSONOperator{
 			  
 			try {
 				msg = msgQueue.take();
+				
+				System.out.println(msg);
 				send(new JSONObject(msg));
 				
 				
-				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				hosebirdClient.stop();
 				break;

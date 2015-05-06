@@ -36,10 +36,11 @@ public final class Out extends JSONOperator {
 			if ((s = read()) != null) {
 				try {
 					System.out.println("OUT:::"+s);
-					Thread.sleep(1);
+					send(s);
+					Thread.sleep(0);
 				} catch (InterruptedException e) {
 					break;
-				}
+				} 
 			}
 		}
 		

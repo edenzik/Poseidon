@@ -61,12 +61,19 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	@Override
 	public void send(JSONObject obj) {
 			obj.changeAnnotation(this.getCurrTag());
+			boolean forwarded = false;
+			previewOut.clear();
+			previewOut.add(obj);
 			for (Operator<JSONObject> op : next){
 					op.receive(obj);
+					forwarded = true;
 			}
-			previewOut.clear();
+			if (!forwarded){
+				buffer.add(obj);
+			}
+			
 			size.incrementAndGet();
-			previewOut.add(obj);
+			
 	}
 	
 	/**
@@ -76,7 +83,12 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	 *            JSONObject needs to be send to next operators
 	 */
 	public JSONObject preview() {
-			return previewOut.poll();
+		JSONObject temp = previewOut.poll();
+		if (temp!=null){
+			previewOut.add(temp);
+		}
+		
+		return previewOut.peek();
 	}
 
 	/**
@@ -117,9 +129,8 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 			size.decrementAndGet();
 		}
 		int diff = (int) (System.currentTimeMillis() - time);
-		diff = diff/100;
 		diff = diff+1;
-		return size.get()/diff;
+		return (1000*size.get())/diff;
 		
 	}
 
