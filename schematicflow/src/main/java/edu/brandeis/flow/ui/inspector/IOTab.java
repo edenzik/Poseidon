@@ -120,8 +120,8 @@ public class IOTab extends VerticalLayout {
         
         subContent.setMargin(true);
         subWindow.setContent(subContent);
-        subWindow.setWidth(30, Unit.PERCENTAGE);
-        subWindow.setHeight(30, Unit.PERCENTAGE);
+        subWindow.setWidth(50, Unit.PERCENTAGE);
+        subWindow.setHeight(50, Unit.PERCENTAGE);
         
         // Put some components in it
         

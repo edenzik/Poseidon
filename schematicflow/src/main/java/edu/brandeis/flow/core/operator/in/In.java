@@ -47,7 +47,7 @@ public class In extends JSONOperator {
 				try {
 					JSONArray arr = Unirest.get(url).asJson().getBody().getArray();
 					for (int i = 0; i < arr.length(); i++) {
-						  send(new JSONObject(arr.getJSONObject(i)));
+						  send(new JSONObject(arr.getJSONObject(i).toString()));
 					}
 					Thread.sleep(1);
 

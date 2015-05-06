@@ -44,6 +44,8 @@ public class TwitterIN extends JSONOperator{
 
 	Client hosebirdClient;
 	BlockingQueue<String> msgQueue;
+	StatusesFilterEndpoint hosebirdEndpoint;
+	ClientBuilder builder;
 	
 	public TwitterIN() {
 		super();
@@ -56,29 +58,30 @@ public class TwitterIN extends JSONOperator{
 
 		/** Declare the host you want to connect to, the endpoint, and authentication (basic auth or oauth) */
 		Hosts hosebirdHosts = new HttpHosts(Constants.STREAM_HOST);
-		StatusesFilterEndpoint hosebirdEndpoint = new StatusesFilterEndpoint();
+		hosebirdEndpoint = new StatusesFilterEndpoint();
 		// Optional: set up some followings and track terms
-		List<Long> followings = Lists.newArrayList(1234L, 566788L);
-		List<String> terms = Lists.newArrayList("twitter", "api");
-		hosebirdEndpoint.followings(followings);
+		//List<Long> followings = Lists.newArrayList(1234L, 566788L);
+		List<String> terms = Lists.newArrayList("goodbye");
+		//hosebirdEndpoint.followings(followings);
 		hosebirdEndpoint.trackTerms(terms);
 		
 
 		// These secrets should be read from a config file
 		Authentication hosebirdAuth = new OAuth1("TTBE60eAPTsAXmlbbI40rLghJ", "PWpwNjRO7kbudahmo2iDkE8oleS1DYaIGXUolcUoYyARGN4Puc", "74636828-F2loUl3xriqQ2rzd6rljQHHU5PkDTtu54LHlO8w1E", "rtdw5lXoXWEUyI2cREJWZy3ma8jvZCESA8EYHl8FHKTgW");
-		ClientBuilder builder = new ClientBuilder()
+		builder = new ClientBuilder()
 		  .name("Hosebird-Client-01")                              // optional: mainly for the logs
 		  .hosts(hosebirdHosts)
 		  .authentication(hosebirdAuth)
 		  .endpoint(hosebirdEndpoint)
 		  .processor(new StringDelimitedProcessor(msgQueue))
 		  .eventMessageQueue(eventQueue);                          // optional: use this if you want to process client events
-
 		hosebirdClient = builder.build();
 		// Attempts to establish a connection.
 		hosebirdClient.connect();
 		
 	}
+	
+	
 
 	
 	
@@ -91,6 +94,18 @@ public class TwitterIN extends JSONOperator{
 			try {
 				msg = msgQueue.take();
 				send(new JSONObject(msg));
+				//System.out.println(hosebirdEndpoint.getURI());
+				//System.out.println();
+				System.out.println(hosebirdEndpoint.getPostParamString());
+				hosebirdEndpoint.removePostParameter("track");
+				hosebirdEndpoint.trackTerms(Lists.newArrayList("hello"));
+				builder.endpoint(hosebirdEndpoint);
+				hosebirdClient.stop();
+				hosebirdClient = builder.build();
+				hosebirdClient.connect();
+				
+				
+				
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				break;
