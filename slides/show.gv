@@ -1,0 +1,24 @@
+digraph A{
+a [label="Filter"]
+b [label="Union"]
+Twitter -> a [label="All"]
+red [label="Red Line"]
+orange [label="Orange Line"]
+blue [label="Blue Line"]
+
+red -> b [label="Today"]
+orange -> b [label="Today"]
+blue -> b [label="Today"]
+
+a -> c [label="Boston"]
+
+
+c ->d [label="Train / MBTA / The T"]
+
+b -> d
+c [label="Filter"]
+
+d [label="Union"]
+e[label="Are people complaining about a slow train?" shape=none]
+d -> e 
+}
