@@ -45,7 +45,12 @@ public final class Filter extends JSONOperator {
 	@Override
 	public void run() {
 		if (isNumerical()) {
-			numMode();
+			try {
+				numMode();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else {
 			regexMode();
 		}
@@ -56,7 +61,7 @@ public final class Filter extends JSONOperator {
 		//Match patterns
 		Pattern pattern = null;
 		try {
-            pattern = Pattern.compile(target);
+            pattern = Pattern.compile(target.toLowerCase());
 
             while (true) {
             	
@@ -65,9 +70,10 @@ public final class Filter extends JSONOperator {
         			if(key.equals("")) send(top);
         			//else, filter out all json object that matches the pattern
         			else{   
-        				if(!top.has(key)) send(top);
+        				JSONObject tmpTop = new JSONObject(top.toString().toLowerCase());
+        				if(!tmpTop.has(key.toLowerCase())) send(top);
         				else{
-        					Matcher matcher = pattern.matcher(top.getString(key));
+        					Matcher matcher = pattern.matcher(tmpTop.getString(key.toLowerCase()));
                             //if not match, send; else, drop
         					if(matcher.matches() && !drop) {
         						send(top);
@@ -89,19 +95,20 @@ public final class Filter extends JSONOperator {
 
 	}
 	
-	public void numMode() {
+	public void numMode() throws JSONException {
 		JSONObject top;
 		while (true) {
 			if ((top = read()) != null) {
+				JSONObject tmpTop = new JSONObject(top.toString().toLowerCase());
 				//if no key is specified, then sends all json objects
     			if(key.equals("")) send(top);
     			//else if term is not specified, filter out all json objects that contain the key specified
-    			else if(target.equals("") && !top.has(key) && drop) send(top);
-    			else if(target.equals("") && top.has(key) && !drop) send(top);
+    			else if(target.equals("") && !tmpTop.has(key.toLowerCase()) && drop) send(top);
+    			else if(target.equals("") && tmpTop.has(key.toLowerCase()) && !drop) send(top);
     			//if the term is specified
     			else {
     				try {
-						int termInt = Integer.parseInt(top.getString(key));
+						int termInt = Integer.parseInt(tmpTop.getString(key.toLowerCase()));
 						int targetInt = Integer.parseInt(target);
 						if(drop){
 							if(exp.equals("=") && targetInt != termInt) send(top); //send if not equal
