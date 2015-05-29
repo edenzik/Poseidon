@@ -42,6 +42,10 @@ public final class Filter extends JSONOperator {
 		
 	}
 	
+	/**
+	 * Runs the thread and filters on a predicate (in num or regex mode)
+	 * 
+	 */
 	@Override
 	public void run() {
 		if (isNumerical()) {
@@ -56,6 +60,10 @@ public final class Filter extends JSONOperator {
 		}
 	}
 	
+	/**
+	 * Filters by regular expressions
+	 * 
+	 */
 	public void regexMode(){ //accept only the "=" relational operator --> match
 		JSONObject top;
 		//Match patterns
@@ -95,6 +103,10 @@ public final class Filter extends JSONOperator {
 
 	}
 	
+	/**
+	 * Filters by number predicate
+	 * @throws JSONException
+	 */
 	public void numMode() throws JSONException {
 		JSONObject top;
 		while (true) {
@@ -130,10 +142,18 @@ public final class Filter extends JSONOperator {
 		}
 	}
 	
+	/**
+	 * Gets the current expression filtering on
+	 * @return
+	 */
 	public String getExpression(){
 		return exp;
 	}
 	
+	/**
+	 * Sets the filter expression
+	 * @param exp
+	 */
 	private void setExpression(String exp) {
 		this.exp = exp;
 	}

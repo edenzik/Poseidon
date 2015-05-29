@@ -1,9 +1,6 @@
 package edu.brandeis.flow.core.operator;
 
-/**
- * JSONOperator is the abstract class implemented from Operator interface.
- * It should be extended by all operators that process JSON object. 
- */
+
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -17,6 +14,15 @@ import org.json.JSONException;
 
 import edu.brandeis.flow.core.json.JSONObject;
 
+/**
+ *
+ * JSONOperator is the abstract class implemented from Operator interface.
+ * It should be extended by all operators that process JSON object. 
+ *
+ * @author edenzik
+ *
+ */
+
 public abstract class JSONOperator implements Operator<JSONObject> {
 	public final ConcurrentLinkedQueue<JSONObject> buffer; // hold all received JSON streams
 	protected final Set<Operator<JSONObject>> next; // a set of operators that the
@@ -29,6 +35,7 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 	
 	/**
 	 * Constructor
+	 * Initializes all elements, and starts itself
 	 */
 	protected JSONOperator() {
 		size = new AtomicInteger(0);
@@ -149,16 +156,25 @@ public abstract class JSONOperator implements Operator<JSONObject> {
 		return buffer.poll();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return this.getClass().getName();
 	}
 	
 
+	/**
+	 * @return if the buffer is currently empty
+	 */
 	public boolean bufferIsEmpty() {
 		return buffer.isEmpty();
 	}
 	
+	/**
+	 * @return returns the tag of the JSON
+	 */
 	public String getCurrTag() {
 		return Integer.toString(this.hashCode());
 	}
