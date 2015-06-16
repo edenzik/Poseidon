@@ -1,6 +1,6 @@
 #Poseidon
 
-#[Documentation](edenzik.github.io/Poseidon/doc/index.html)
+#[Documentation](http://edenzik.github.io/Poseidon/doc/index.html)
 
 ## Introduction
 Poseidon is a library and simply demo application put together by four students at Brandeis University with guidance from Streambase, a subsidiary of Tibco inc.
